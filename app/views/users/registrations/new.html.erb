@@ -6,22 +6,23 @@
   <div class="field">
     <label for="user_email">邮箱</label>
     <br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, placeholder:'请输入邮箱', autofocus: true %>
   </div>
+    <div>没有邮箱？请用<a href="#">手机注册</a></div>
 
   <div class="field">
     <label for="user_password">密码</label>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>-20个字符)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password,  placeholder:'请输入密码',autocomplete: "off" %>
   </div>
 
   <div class="field">
 
     <label for="user_password_confirmation">确认密码</label>
     <br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, placeholder:'请输入确认密码',autocomplete: "off" %>
   </div>
 
   <div class="actions">
