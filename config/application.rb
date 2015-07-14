@@ -30,8 +30,8 @@ module Dm
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.i18n.default_locale = 'en'
-    # config.i18n.default_locale = 'zh-CN'
+    # config.i18n.default_locale = 'en'
+    config.i18n.default_locale = 'zh-CN'
     config.encoding = 'utf-8'
   end
 end
