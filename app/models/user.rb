@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :confirmable,
          :lockable, :timeoutable, :authentication_keys => [:login]
 
-  validates :username, length: {in: 4..20}
+  # validates :username, length: {in: 4..20}
 
   attr_accessor :login
 

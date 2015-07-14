@@ -43,6 +43,7 @@ en:
     sessions:
       signed_in: "登录成功." # Signed in successfully.
       already_signed_out: "注销成功." # Signed out successfully.
+      signed_out: "注销成功"
     unlocks:
       send_instructions: "您的注册邮箱地址将在几分钟内收到一封邮件关于如何解除账户锁定." # You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: "如果您的账户存在,您的邮箱在几分钟内将收到一份邮件关于如何解除账户锁定." # If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.

@@ -10,6 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap
+ *= require bootstrap-theme
+ *= require bootstrap-select
+ *= require bootstrap-dialog
+ *= require bootstrap-ekko-lightbox
+ *= require bootstrap-fileinput
+ *= require bootstrap-star-rating
  *= require_tree .
  *= require_self
  */

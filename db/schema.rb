@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709030935) do
+ActiveRecord::Schema.define(version: 20150713062900) do
+
+  create_table "mobile_codes", force: true do |t|
+    t.string   "mobile",          limit: 20
+    t.string   "code",            limit: 20
+    t.string   "message_type",    limit: 20
+    t.integer  "failed_attempts"
+    t.string   "ip",              limit: 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mobile_codes", ["ip"], name: "index_mobile_codes_on_ip", using: :btree
+  add_index "mobile_codes", ["message_type"], name: "index_mobile_codes_on_message_type", using: :btree
+  add_index "mobile_codes", ["mobile"], name: "index_mobile_codes_on_mobile", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",               default: ""

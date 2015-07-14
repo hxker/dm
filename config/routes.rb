@@ -5,6 +5,16 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: "users/sessions"}
   root to: 'home#index'
 
+
+  resources :accounts, only: [:new, :create, :destroy] do
+    collection do
+      get :register
+      post :register_post
+      get :reset_password
+      post :reset_password_post
+    end
+  end
+
   if Rails.env.development?
     match '*path', via: :all, to: 'pages#error_404'
   end
