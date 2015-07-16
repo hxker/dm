@@ -1,4 +1,4 @@
-class SingUp
+class ResetPassword
 
   include Virtus::Model
 
@@ -9,27 +9,25 @@ class SingUp
   attribute :mobile, String
   attribute :password, String
   attribute :mobile_code, String
-  attribute :not_validate_code, Boolean
 
   validates :mobile, presence: true, length: {is: 11}, numericality: true
   validates :password, presence: true, length: {minimum: 6, maximum: 20}
   validates :mobile_code, presence: true, length: {is: 4}
-  validate :register_validation
+
+  validate :mobile_validation
   validate :mobile_code_validation
 
-  def register_validation
-    if User.find_by(mobile: mobile).present?
-      errors[:mobile] << "手机号码已被注册"
+  def mobile_validation
+    unless User.find_by_mobile(self.mobile).present?
+      errors[:mobile] << "手机号码尚未注册"
     end
   end
 
   def mobile_code_validation
-    unless not_validate_code
-      sms = SMSService.new(mobile)
-      status, message = sms.validate?(mobile_code, SMSService::TYPE_CODE_REGISTER)
-      unless status
-        errors[:mobile_code] << message
-      end
+    sms = SMSService.new(self.mobile)
+    status, message = sms.validate?(self.mobile_code, SMSService::TYPE_CODE_RESET_PASSWORD)
+    unless status
+      errors[:mobile_code] << message
     end
   end
 
@@ -39,7 +37,7 @@ class SingUp
 
   def save
     if valid?
-      sing_up
+      reset_password(self.mobile)
     else
       nil
     end
@@ -47,9 +45,9 @@ class SingUp
 
   private
 
-  def sing_up
-    user = User.new(mobile: mobile, password: password, confirmed_at: Time.now)
-
-    user.save ? user : nil
+  def reset_password(mobile)
+    user = User.find_by_mobile(mobile)
+    user.password = self.password
+    user.save
   end
 end

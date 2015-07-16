@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dm</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>豆姆文化</title>
+  <meta charset="utf-8">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <p class="notice"><%= notice %></p>
-<p class=""><%= alert %></p>
 
+<p class=""><%= alert %></p>
 <% if user_signed_in? %>
-    <%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to '退出', destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <%= link_to current_user.email.present? ? current_user.email : current_user.mobile, edit_user_registration_path, :class => 'navbar-link' %>
+    |
+    <%= link_to '退出', destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
 <% else %>
-    <%= link_to '注册', new_user_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to '登录', new_user_session_path, :class => 'navbar-link'  %>
+    <%= link_to '注册', new_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to '登录', new_user_session_path, :class => 'navbar-link' %>
 <% end %>
 
 <%= yield %>

@@ -1,34 +1,50 @@
-<h2>注册</h2>
+<div class="container">
+  <h2 class="page-header">
+    用户注册
+  </h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div class="field">
-    <label for="user_email">邮箱</label>
-    <br />
-    <%= f.email_field :email, placeholder:'请输入邮箱', autofocus: true %>
+          <div class="field form-group">
+            <label for="user_email" class="control-label">邮箱</label>
+
+            <div class="pull-right">没有邮箱？请用<a href="/accounts/register">手机注册</a><br/>
+            </div>
+            <br/>
+            <%= f.email_field :email, placeholder: '请输入邮箱', autofocus: true, class: 'form-control' %>
+          </div>
+
+
+          <div class="field form-group">
+            <label for="user_password" class="control-label">密码</label>
+
+            <%= f.password_field :password, placeholder: '请输入密码（6-20位）', autocomplete: "off", class: 'form-control' %>
+          </div>
+
+          <div class="field form-group">
+
+            <label for="user_password_confirmation" class="control-label">确认密码</label>
+            <br/>
+            <%= f.password_field :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
+          </div>
+
+          <div class="actions form-group form-group-lg">
+            <%= f.submit class: 'btn btn-primary btn-block', value: '立即注册' %>
+          </div>
+      <% end %>
+      <p class="clearfix text-right">
+        <a href="<%= new_user_session_path %>">使用已有账户登录</a>
+      </p>
+    </div>
   </div>
-    <div>没有邮箱？请用<a href="/accounts/register">手机注册</a>
-  </div>
 
-  <div class="field">
-    <label for="user_password">密码</label>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>-20个字符)</em>
-    <% end %><br />
-    <%= f.password_field :password,  placeholder:'请输入密码',autocomplete: "off" %>
-  </div>
+</div>
 
-  <div class="field">
 
-    <label for="user_password_confirmation">确认密码</label>
-    <br />
-    <%= f.password_field :password_confirmation, placeholder:'请输入确认密码',autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "注册" %>
-  </div>
-<% end %>
 
-<%= render "users/shared/links" %>
+
+<!--<%= render "users/shared/links" %>-->

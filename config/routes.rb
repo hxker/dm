@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
-  # get 'home/index'
-
   devise_for :users, controllers: {sessions: "users/sessions"}
   root to: 'home#index'
+
+  # get 'forget_password'  => 'accounts/forget_password'
 
 
   resources :accounts, only: [:new, :create, :destroy] do
     collection do
       get :register
       post :register_post
+      get :forget_password
       get :reset_password
       post :reset_password_post
+      post :send_code
     end
   end
 

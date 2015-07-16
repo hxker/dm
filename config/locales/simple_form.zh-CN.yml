@@ -1,0 +1,53 @@
+zh-CN:
+  simple_form:
+    labels:
+      defaults:
+        mobile: '手机号码'
+        mobile_code: '验证码'
+        username: '用户名'
+        old_password: '原密码'
+        new_password: '新密码'
+        new_mobile: '新手机号'
+        password: '密码'
+        encrypted_password: '密码'
+        password_digest: '加密密码'
+        name: '名称'
+        birthday: '出生生日'
+        nickname: '昵称'
+        experience: '经验值'
+        point: '账户积分'
+        sign_in_count: '登录次数'
+        tel: '联系电话'
+        address: '地址'
+
+    "yes": '是'
+    "no": '否'
+    "create": '创建'
+    required:
+      text: '必填字段'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "很抱歉出现了错误。。。"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+#
+#    errors:
+#      models:
+#        supplier:
+#          attributes:
+#            name:
+#              blank: '名称不能为空'
