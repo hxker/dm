@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require bootstrap
+//= require bootstrap-select
+//= require bootstrap-dialog
+//= require bootstrap-ekko-lightbox
+//= require bootstrap-fileinput
+//= require bootstrap-star-rating
+//= require notify
+
 //= require turbolinks
 //= require_tree .

@@ -9,17 +9,19 @@ class SingUp
   attribute :mobile, String
   attribute :password, String
   attribute :mobile_code, String
+  attribute :nickname, String
   attribute :not_validate_code, Boolean
 
   validates :mobile, presence: true, length: {is: 11}, numericality: true
   validates :password, presence: true, length: {minimum: 6, maximum: 20}
   validates :mobile_code, presence: true, length: {is: 4}
+  validates :nickname, presence: true, length: {minimum: 3, maximum: 10}
   validate :register_validation
   validate :mobile_code_validation
 
   def register_validation
     if User.find_by(mobile: mobile).present?
-      errors[:mobile] << "手机号码已被注册"
+      errors[:mobile] << '手机号码已被注册'
     end
   end
 
@@ -48,7 +50,7 @@ class SingUp
   private
 
   def sing_up
-    user = User.new(mobile: mobile, password: password, confirmed_at: Time.now)
+    user = User.new(mobile: mobile, nickname: nickname, password: password, confirmed_at: Time.now)
 
     user.save ? user : nil
   end

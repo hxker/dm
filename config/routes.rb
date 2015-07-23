@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   devise_for :users, controllers: {sessions: "users/sessions"}
   root to: 'home#index'
 
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
       get :reset_password
       post :reset_password_post
       post :send_code
+      post :register_email_exists
+      post :register_mobile_exists
+      post :register_nickname_exists
     end
   end
 

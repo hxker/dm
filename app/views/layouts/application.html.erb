@@ -9,11 +9,9 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
 
-<p class=""><%= alert %></p>
 <% if user_signed_in? %>
-    <%= link_to current_user.email.present? ? current_user.email : current_user.mobile, edit_user_registration_path, :class => 'navbar-link' %>
+    <%= link_to current_user.nickname, edit_user_registration_path, :class => 'navbar-link' %>
     |
     <%= link_to '退出', destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
 <% else %>
@@ -22,6 +20,15 @@
 <% end %>
 
 <%= yield %>
+
+
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>
 
 </body>
 </html>

@@ -566,7 +566,7 @@ $.notify.addStyle("bootstrap", {
             "padding": "12px 15px 11px 14px",
             "text-shadow": "0 1px 0 rgba(255, 255, 255, 0.5)",
             "background-color": "#fcf8e3",
-            "border": "4px solid #666",
+            "border": "3px solid #666",
             "border-radius": "0",
             "white-space": "nowrap"
         },

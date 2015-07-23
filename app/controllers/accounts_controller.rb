@@ -7,9 +7,39 @@ class AccountsController < ApplicationController
     data = sms.send_code(params[:type], params[:ip])
     render json: data
   end
-  # def forget_password
-  #
-  # end
+
+  # 验证邮箱是否已经注册
+  def register_email_exists
+    result = User.find_by_email(params[:email])
+    if result.present?
+      status = true
+    else
+      status = false
+    end
+    render json: status
+  end
+
+  # 验证手机是否已经注册
+  def register_mobile_exists
+    result = User.find_by_mobile(params[:mobile])
+    if result.present?
+      status = true
+    else
+      status = false
+    end
+    render json: status
+  end
+
+  # 验证昵称是否已经注册
+  def register_nickname_exists
+    result = User.find_by_nickname(params[:nickname])
+    if result.present?
+      status = true
+    else
+      status = false
+    end
+    render json: status
+  end
 
   def register
     if @current_user.present?
@@ -32,12 +62,6 @@ class AccountsController < ApplicationController
     else
       render :register
     end
-  end
-
-  def destroy
-    cookies[:access_token] = nil
-    flash[:notice] = '您已安全退出登录。'
-    redirect_to action: :login
   end
 
   def reset_password

@@ -8,7 +8,7 @@
       <%= simple_form_for(@sing_up, url: register_post_accounts_path, method: :post) do |f| %>
           <div class="pull-right">没有手机？请用<a href="/users/sign_up">邮箱注册</a><br/>
           </div>
-          <%= f.input :mobile, as: :tel,  autofocus: true,placeholder: '请输入手机号', wrapper_html: {class: ''} %>
+          <%= f.input :mobile, as: :tel, autofocus: true, placeholder: '请输入手机号', wrapper_html: {class: ''} %>
           <div class="row">
             <%= f.input :mobile_code, as: :tel, placeholder: '请输入验证码', wrapper_html: {class: 'col-md-6'} %>
             <div class="form-group tel required sing_up_mobile_code col-md-6">
@@ -18,13 +18,8 @@
               <button type="button" data-key="sing_up" data-type="REGISTER" id="btn_send_mobile_code" class="btn btn-default btn-block">获取验证码</button>
             </div>
           </div>
-          <div class="form-group password required sing_up_password">
-            <label class="password required control-label" for="sing_up_password">
-              <abbr title="必填字段">*</abbr>
-              密码
-            </label>
-            <input id="sing_up_password" class="password required form-control" type="password" placeholder="请设置您的密码 (6-20位)" name="sing_up[password]">
-          </div>
+          <%= f.input :nickname, as: :tel, placeholder: '请输入昵称', wrapper_html: {class: ''} %>
+          <%= f.input :password, placeholder: '请设置您的密码 (6-20位)', wrapper_html: {class: ''} %>
 
           <div class="form-group form-group-lg">
             <%= f.submit class: 'btn btn-primary btn-block', value: '立即注册' %>
