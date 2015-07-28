@@ -2,6 +2,7 @@ zh-CN:
   simple_form:
     labels:
       defaults:
+        email: '邮箱'
         mobile: '手机号码'
         mobile_code: '验证码'
         username: '用户名'
@@ -19,6 +20,12 @@ zh-CN:
         sign_in_count: '登录次数'
         tel: '联系电话'
         address: '地址'
+        phone: '手机'
+        gender: '性别'
+        age: '年龄'
+        position: '职位'
+        permissions: '权限'
+        job_number: '工号'
 
     "yes": '是'
     "no": '否'

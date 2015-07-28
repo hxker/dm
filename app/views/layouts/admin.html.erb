@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>豆姆文化 － 管理后台</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=false">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/admin/">豆姆文化管理后台</a>
+    </div>
+    <% if @current_admin.present? %>
+        <div id="navbar" class="navbar-collapse collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <%= @current_admin.job_number %> <%= "- #{@current_admin.name}" if @current_admin.name.present? %>
+                <i class="glyphicon glyphicon-user" style="font-size:16px;margin-left: 6px"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li style="">
+                  <a href="<%= change_password_admin_accounts_path %>">
+                    <i class="glyphicon glyphicon-cog" style="margin: 0 6px"></i>
+                    修改密码
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to admin_account_path(@current_admin), method: :delete, data: {confirm: '确认退出吗？'}, title: '退出登录', class: '' do %>
+                      <i class="glyphicon glyphicon-off" style="margin: 0 6px"></i>
+                      退出登录
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    <% end %>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+
+
+        <li class="nav-divider"></li>
+        <li class="nav-divider"></li>
+        <li class="nav-divider"></li>
+        <li class="nav-divider"></li>
+        <li class="nav-divider"></li>
+        <li <%= params[:controller] == 'admin/admins' ? 'class=active' : '' %>>
+          <a href="<%= admin_admins_path %>">管理员</a>
+        </li>
+        <li <%= params[:controller] == 'admin/admins' ? 'class=active' : '' %>>
+          <a href="<%= admin_admins_path %>">管理员</a>
+        </li>
+
+
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <%= yield %>
+    </div>
+
+  </div>
+</div>
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+</body>
+</html>

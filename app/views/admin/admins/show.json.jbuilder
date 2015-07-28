@@ -1,0 +1,1 @@
+json.extract! @admin, :job_number, :password_digest, :name, :permissions, :position, :age, :gender, :email, :phone, :address, :created_at, :updated_at

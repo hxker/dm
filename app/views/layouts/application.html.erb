@@ -3,12 +3,11 @@
 <head>
   <title>豆姆文化</title>
   <meta charset="utf-8">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 
 <% if user_signed_in? %>
     <%= link_to current_user.nickname, edit_user_registration_path, :class => 'navbar-link' %>

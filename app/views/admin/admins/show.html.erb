@@ -1,0 +1,68 @@
+<h1 class="page-header">
+  显示 <%= t('activerecord.models.admin') %>
+  <small class="pull-right">
+    <%= link_to '编辑', edit_admin_admin_path(@admin) %> |
+    <%= link_to '列表', admin_admins_path %>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.admin') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.job_number') %>:</h4>
+
+      <p><%= @admin.job_number %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.password_digest') %>:</h4>
+
+      <p><%= @admin.password_digest %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <p><%= @admin.name %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.permissions') %>:</h4>
+      <%= show_permissions(@admin) %>
+    </li>
+
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.position') %>:</h4>
+
+      <p><%= @admin.position %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.age') %>:</h4>
+
+      <p><%= @admin.age %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.gender') %>:</h4>
+
+      <p><%= t('gender.gender'+@admin.gender.to_s) %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.email') %>:</h4>
+
+      <p><%= @admin.email %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.phone') %>:</h4>
+
+      <p><%= @admin.phone %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.address') %>:</h4>
+
+      <p><%= @admin.address %></p>
+    </li>
+  </ul>
+</div>

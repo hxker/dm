@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  devise_for :users, controllers: {sessions: "users/sessions"}
   root to: 'home#index'
 
-  # get 'forget_password'  => 'accounts/forget_password'
-
+  devise_for :users, controllers: {sessions: 'users/sessions'}
 
   resources :accounts, only: [:new, :create, :destroy] do
     collection do
@@ -20,6 +17,29 @@ Rails.application.routes.draw do
       post :register_nickname_exists
     end
   end
+
+  # -----------------------------------------------------------
+  # Admin
+  # -----------------------------------------------------------
+
+  get '/admin/' => 'admin#index'
+
+  namespace :admin do |admin|
+
+    resources :accounts, only: [:new, :index, :create, :destroy] do
+      collection do
+        get :change_password
+        post :change_password_post
+      end
+    end
+
+    resources :admins
+
+  end
+
+  # -----------------------------------------------------------
+  # -----------------------------------------------------------
+
 
   if Rails.env.development?
     match '*path', via: :all, to: 'pages#error_404'

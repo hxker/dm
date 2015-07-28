@@ -1,0 +1,61 @@
+<h1 class="page-header">
+  <%= t('activerecord.models.admin') %> 列表
+  <small class="pull-right">
+    <a href="<%= new_admin_admin_path %>" class="btn btn-default">
+      <i class="glyphicon glyphicon-plus"></i></a>
+    <a href="#" class="btn btn-default btn-search-toggle">
+      <i class="glyphicon glyphicon-search"></i></a>
+
+  </small>
+</h1>
+
+
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('simple_form.labels.defaults.job_number') %></th>
+    <th><%= t('simple_form.labels.defaults.name') %></th>
+    <th><%= t('simple_form.labels.defaults.permissions') %></th>
+    <th><%= t('simple_form.labels.defaults.position') %></th>
+    <th><%= t('simple_form.labels.defaults.age') %></th>
+    <th><%= t('simple_form.labels.defaults.gender') %></th>
+    <th><%= t('simple_form.labels.defaults.email') %></th>
+    <th><%= t('simple_form.labels.defaults.phone') %></th>
+    <th><%= t('simple_form.labels.defaults.address') %></th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @admins.each do |employee| %>
+      <tr>
+        <td><%= employee.id %></td>
+        <td><%= employee.job_number %></td>
+        <td><%= employee.name %></td>
+        <td>
+          <%= show_permissions(employee) %>
+        </td>
+        <td><%= employee.position %></td>
+        <td><%= employee.age %></td>
+        <td><%= t('gender.gender'+employee.gender.to_s) %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.phone %></td>
+        <td><%= employee.address %></td>
+        <td>
+          <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-default' do %>
+              <i class="glyphicon glyphicon-eye-open"></i>
+          <% end %>
+          <%= link_to edit_admin_admin_path(employee), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="glyphicon glyphicon-edit"></i>
+          <% end %>
+          <%= link_to [:admin, employee], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

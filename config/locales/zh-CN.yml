@@ -208,12 +208,8 @@ zh-CN:
     gender1: '男'
     gender2: '女'
   activerecord:
-    errors:
-      models:
-        attributes:
-             password:
-                     blank: '123'
     models:
       user: '用户'
+      admin: '管理员'
 
 

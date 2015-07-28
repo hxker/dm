@@ -1,0 +1,42 @@
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.admin') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @admin]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :job_number %>
+          <%= f.input :password %>
+          <%= f.input :name %>
+
+          <label class="control-label">权限</label>
+
+          <div class="well">
+            <%
+               permissions = @admin.permissions.try(:split, ',')
+               Admin::PERMISSIONS.each do |id, name|
+            %>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="admin[permissions][]" value="<%= id %>" <%= permissions.try(:include?, id.to_s) ? 'checked' : '' %>> <%= name %>
+                  </label>
+                </div>
+            <%
+               end
+            %>
+          </div>
+          <!--<%= f.input :permissions, :collection => Admin::PERMISSIONS, :label_method => :last, :value_method => :first, :as => :check_boxes, prompt: 1 %>-->
+          <%= f.input :position %>
+          <%= f.input :age %>
+          <%= f.input :gender, collection: Admin::GENDER.map { |key, val| [t('gender.'+key.to_s), val] } %>
+          <%= f.input :email %>
+          <%= f.input :phone %>
+          <%= f.input :address %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>

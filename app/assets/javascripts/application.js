@@ -21,5 +21,5 @@
 //= require bootstrap-star-rating
 //= require notify
 
-//= require turbolinks
+//= //require turbolinks
 //= require_tree .

@@ -13,7 +13,7 @@ zh-CN:
     failure:
       already_authenticated: "您已经登录." # You are already signed in.
       inactive: "您的账号还没有被激活." # Your account is not activated yet.
-      invalid: "%{authentication_keys}或密码错误." # Invalid %{authentication_keys} or password.
+      invalid: "账号或密码错误." # Invalid %{authentication_keys} or password.
       locked: "您的账号已经被锁定.请联系网站管理员" # Your account is locked.
       last_attempt: "在账户被锁定之前你还有1次尝试机会." # You have one more attempt before your account is locked
       not_found_in_database: "%{authentication_keys}或密码错误." # Invalid %{authentication_keys} or password.

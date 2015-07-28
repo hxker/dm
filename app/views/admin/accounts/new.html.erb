@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div>
+        <div class="flash-message">
+          <div class="alert alert-danger">
+            <% if flash[:error] %>
+                <p>
+                  <%= flash[:error] %>
+                </p>
+            <% else %>
+                请先登录。
+            <% end %>
+          </div>
+        </div>
+        <form class="form-passport" action="<%= admin_accounts_path %>" role="form" method="post">
+          <div class="form-group">
+            <label for="job_number" class="sr-only">工号</label>
+            <input type="tel" class="form-control" id="job_number" value="<%= cookies[:job_number] %>" name="job_number" placeholder="工号" required="">
+          </div>
+          <div class="form-group">
+            <label for="password" class="sr-only">密 码</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码" required="">
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="form-group">
+            <button class="btn btn-success btn-lg btn-block" type="submit">立即登录</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
