@@ -21,7 +21,9 @@
   </script>
   <div class="navbar-container" id="navbar-container">
     <div class="navbar-header pull-left">
-      <a href="#" class="navbar-brand"><small><i class="icon-leaf"></i>豆姆文化</small></a>
+      <a href="#" class="navbar-brand">
+        <small><i class="icon-leaf"></i>豆姆文化</small>
+      </a>
     </div>
     <div class="navbar-header pull-right" role="navigation">
       <ul class="nav ace-nav">
@@ -86,7 +88,102 @@
       } catch (e) {
       }
   </script>
-  <%= yield %>
+  <div class="main-container-inner">
+    <a class="menu-toggler" id="menu-toggler" href="#">
+      <span class="menu-text"></span>
+    </a>
+
+    <div class="sidebar" id="sidebar">
+      <script type="text/javascript">
+          try {
+              ace.settings.check('sidebar', 'fixed')
+          } catch (e) {
+          }
+      </script>
+      <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+          <button class="btn btn-success">
+            <i class="icon-signal"></i>
+          </button>
+
+          <button class="btn btn-info">
+            <i class="icon-pencil"></i>
+          </button>
+
+          <button class="btn btn-warning">
+            <i class="icon-group"></i>
+          </button>
+
+          <button class="btn btn-danger">
+            <i class="icon-cogs"></i>
+          </button>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+          <span class="btn btn-success"></span>
+
+          <span class="btn btn-info"></span>
+
+          <span class="btn btn-warning"></span>
+
+          <span class="btn btn-danger"></span>
+        </div>
+      </div><!-- #sidebar-shortcuts -->
+      <ul class="nav nav-list">
+        <li class="<%= params[:controller] == 'admin' ? 'active':'' %>">
+          <a href="<%= admin_path %>">
+            <i class="icon-dashboard"></i>
+            <span class="menu-text"> 首页 </span>
+          </a>
+        </li>
+        <li class="<%= params[:controller] == 'admin/admins' ? 'active open':'' %>">
+          <a href="#" class="dropdown-toggle">
+            <i class="icon-desktop"></i>
+            <span class="menu-text"> 管理 </span>
+            <b class="arrow icon-angle-down"></b>
+          </a>
+          <ul class="submenu">
+            <li class="<%= params[:controller] == 'admin/admins' ? 'active':'' %>">
+              <a href="<%= admin_admins_path %>">
+                <i class="icon-double-angle-right"></i>
+                管理员
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.nav-list -->
+      <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+      </div>
+      <script type="text/javascript">
+          try {
+              ace.settings.check('sidebar', 'collapsed')
+          } catch (e) {
+          }
+      </script>
+    </div>
+    <div class="main-content">
+      <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
+        </script>
+        <ul class="breadcrumb">
+          <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/admin">首页</a>
+          </li>
+        </ul>
+        <!-- .breadcrumb -->
+      </div>
+      <div class="page-content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/admin/js/jquery-2.0.3.min.js"></script>
