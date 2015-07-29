@@ -41,5 +41,4 @@ gem 'spring'#,        group: :development
 gem 'mysql2'
 gem 'devise'
 gem 'therubyracer'
-gem 'simple_form'
 
