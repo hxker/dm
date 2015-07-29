@@ -80,7 +80,6 @@
     </div>
   </div>
 </div>
-
 <div class="main-container" id="main-container">
   <script type="text/javascript">
       try {
@@ -128,22 +127,23 @@
 
           <span class="btn btn-danger"></span>
         </div>
-      </div><!-- #sidebar-shortcuts -->
+      </div>
+      <!-- #sidebar-shortcuts -->
       <ul class="nav nav-list">
-        <li class="<%= params[:controller] == 'admin' ? 'active':'' %>">
+        <li class="<%= params[:controller] == 'admin' ? 'active' : '' %>">
           <a href="<%= admin_path %>">
             <i class="icon-dashboard"></i>
             <span class="menu-text"> 首页 </span>
           </a>
         </li>
-        <li class="<%= params[:controller] == 'admin/admins' ? 'active open':'' %>">
+        <li class="<%= params[:controller] == 'admin/admins' ? 'active open' : '' %>">
           <a href="#" class="dropdown-toggle">
             <i class="icon-desktop"></i>
             <span class="menu-text"> 管理 </span>
             <b class="arrow icon-angle-down"></b>
           </a>
           <ul class="submenu">
-            <li class="<%= params[:controller] == 'admin/admins' ? 'active':'' %>">
+            <li class="<%= params[:controller] == 'admin/admins' ? 'active' : '' %>">
               <a href="<%= admin_admins_path %>">
                 <i class="icon-double-angle-right"></i>
                 管理员
@@ -185,12 +185,13 @@
     </div>
   </div>
 </div>
-
 <script src="/admin/js/jquery-2.0.3.min.js"></script>
 <script src="/admin/js/bootstrap.js"></script>
 <script src="/admin/js/ace-elements.min.js"></script>
 <script src="/admin/js/ace-extra.min.js"></script>
 <script src="/admin/js/ace.min.js"></script>
 <script src="/admin/js/jquery_ujs.js"></script>
+<script src="/admin/js/jquery.cookie.js"></script>
+<script src="/admin/js/admin-layout.js"></script>
 </body>
 </html>
