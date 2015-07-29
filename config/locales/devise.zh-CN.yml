@@ -19,7 +19,7 @@ zh-CN:
       not_found_in_database: "%{authentication_keys}或密码错误." # Invalid %{authentication_keys} or password.
       timeout: "您的登录时间已经过期,在操作之前请重新登录." # Your session expired. Please sign in again to continue.
       unauthenticated: "您在进行下一步操作之前请登录或注册." # You need to sign in or sign up before continuing.
-      unconfirmed: "您在进行下一步操作之前必须验证您的邮箱." # You have to confirm your email address before continuing.
+      unconfirmed: "账户未激活 请前往注册邮箱激活账户." # You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
         subject: "请激活您的邮箱" # Confirmation instructions

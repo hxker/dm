@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+
+#  activerecord:
+#      errors:
+#       models:
+#         user:
+#         attributes:
+#          nickname:
+#          blank: '请输入昵称'
+

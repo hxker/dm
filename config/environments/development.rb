@@ -20,7 +20,7 @@ Rails.application.configure do
   config.host_url = "http://localhost:3000/"
   config.staticfile_server_url = "http://localhost:3000/"
   config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.default :from => '"Dou Mu" <robodou@robodou.cn>'
+  ActionMailer::Base.default :from => 'DouMu<robodou@robodou.cn>'
 
   config.action_mailer.smtp_settings = {
 
