@@ -1,61 +1,121 @@
-<h1 class="page-header">
-  <%= t('activerecord.models.admin') %> 列表
-  <small class="pull-right">
-    <a href="<%= new_admin_admin_path %>" class="btn btn-default">
-      <i class="glyphicon glyphicon-plus"></i></a>
-    <a href="#" class="btn btn-default btn-search-toggle">
-      <i class="glyphicon glyphicon-search"></i></a>
+<div class="main-container-inner">
+  <a class="menu-toggler" id="menu-toggler" href="#">
+    <span class="menu-text"></span>
+  </a>
+  <div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <ul class="nav nav-list">
+      <li>
+        <a href="<%= admin_path %>">
+          <i class="icon-dashboard"></i>
+          <span class="menu-text"> 首页 </span>
+        </a>
+      </li>
+      <li  class="active open">
+        <a href="#" class="dropdown-toggle">
+          <i class="icon-desktop"></i>
+          <span class="menu-text"> 管理 </span>
+          <b class="arrow icon-angle-down"></b>
+        </a>
+        <ul class="submenu">
+          <li class="active">
+            <a href="<%= admin_admins_path %>">
+              <i class="icon-double-angle-right"></i>
+              管理员
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="sidebar-collapse" id="sidebar-collapse">
+      <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+    </div>
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'collapsed')
+        } catch (e) {
+        }
+    </script>
+  </div>
+  <div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+      <script type="text/javascript">
+          try {
+              ace.settings.check('breadcrumbs', 'fixed')
+          } catch (e) {
+          }
+      </script>
+      <ul class="breadcrumb">
+        <li>
+          <i class="icon-home home-icon"></i>
+          <a href="/admin">首页</a>
+        </li>
+        <li class="active">管理员列表</li>
+      </ul>
+    </div>
+    <div class="page-content">
+      <h1 class="page-header">
+        <%= t('activerecord.models.admin') %> 列表
+        <small class="pull-right">
+          <a href="<%= new_admin_admin_path %>" class="btn btn-default">
+            <i class="glyphicon glyphicon-plus"></i></a>
+          <a href="#" class="btn btn-default btn-search-toggle">
+            <i class="glyphicon glyphicon-search"></i></a>
+        </small>
+      </h1>
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th><%= t('simple_form.labels.defaults.job_number') %></th>
+          <th><%= t('simple_form.labels.defaults.name') %></th>
+          <th><%= t('simple_form.labels.defaults.permissions') %></th>
+          <th><%= t('simple_form.labels.defaults.position') %></th>
+          <th><%= t('simple_form.labels.defaults.age') %></th>
+          <th><%= t('simple_form.labels.defaults.gender') %></th>
+          <th><%= t('simple_form.labels.defaults.email') %></th>
+          <th><%= t('simple_form.labels.defaults.phone') %></th>
+          <th><%= t('simple_form.labels.defaults.address') %></th>
+          <th>操作</th>
+        </tr>
+        </thead>
 
-  </small>
-</h1>
-
-
-
-<table class="table table-bordered table-hover table-striped">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th><%= t('simple_form.labels.defaults.job_number') %></th>
-    <th><%= t('simple_form.labels.defaults.name') %></th>
-    <th><%= t('simple_form.labels.defaults.permissions') %></th>
-    <th><%= t('simple_form.labels.defaults.position') %></th>
-    <th><%= t('simple_form.labels.defaults.age') %></th>
-    <th><%= t('simple_form.labels.defaults.gender') %></th>
-    <th><%= t('simple_form.labels.defaults.email') %></th>
-    <th><%= t('simple_form.labels.defaults.phone') %></th>
-    <th><%= t('simple_form.labels.defaults.address') %></th>
-    <th>操作</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @admins.each do |employee| %>
-      <tr>
-        <td><%= employee.id %></td>
-        <td><%= employee.job_number %></td>
-        <td><%= employee.name %></td>
-        <td>
-          <%= show_permissions(employee) %>
-        </td>
-        <td><%= employee.position %></td>
-        <td><%= employee.age %></td>
-        <td><%= t('gender.gender'+employee.gender.to_s) %></td>
-        <td><%= employee.email %></td>
-        <td><%= employee.phone %></td>
-        <td><%= employee.address %></td>
-        <td>
-          <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-default' do %>
-              <i class="glyphicon glyphicon-eye-open"></i>
-          <% end %>
-          <%= link_to edit_admin_admin_path(employee), title: '编辑', class: 'btn btn-xs btn-info' do %>
-              <i class="glyphicon glyphicon-edit"></i>
-          <% end %>
-          <%= link_to [:admin, employee], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
-              <i class="glyphicon glyphicon-trash"></i>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+        <tbody>
+        <% @admins.each do |employee| %>
+            <tr>
+              <td><%= employee.id %></td>
+              <td><%= employee.job_number %></td>
+              <td><%= employee.name %></td>
+              <td>
+                <%= show_permissions(employee) %>
+              </td>
+              <td><%= employee.position %></td>
+              <td><%= employee.age %></td>
+              <td><%= t('gender.gender'+employee.gender.to_s) %></td>
+              <td><%= employee.email %></td>
+              <td><%= employee.phone %></td>
+              <td><%= employee.address %></td>
+              <td>
+                <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-default' do %>
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                <% end %>
+                <%= link_to edit_admin_admin_path(employee), title: '编辑', class: 'btn btn-xs btn-info' do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+                <%= link_to [:admin, employee], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 

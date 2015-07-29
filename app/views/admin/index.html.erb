@@ -1,32 +1,86 @@
-<h1 class="page-header">
-  工号：<%= @current_admin.job_number %>
-  <small class="pull-right">
-    <%= show_permissions(@current_admin) %>
-  </small>
-</h1>
+<div class="main-container-inner">
+  <a class="menu-toggler" id="menu-toggler" href="#">
+    <span class="menu-text"></span>
+  </a>
+  <div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'fixed')
+        } catch (e) {
+        }
+    </script>
 
-<div class="row">
-
-
-</div>
-<br>
-<div class="row">
-  <div class="col-md-4">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        用户信息
-      </div>
-      <div class="panel-body">
-        <ul>
-          <li>用户总数： <span><%= @all_user_num %></span></li>
-
+    <ul class="nav nav-list">
+      <li class="active">
+        <a href="<%= admin_path %>">
+          <i class="icon-dashboard"></i>
+          <span class="menu-text"> 首页 </span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <i class="icon-desktop"></i>
+          <span class="menu-text"> 管理 </span>
+          <b class="arrow icon-angle-down"></b>
+        </a>
+        <ul class="submenu">
+          <li>
+            <a href="<%= admin_admins_path %>">
+              <i class="icon-double-angle-right"></i>
+              管理员
+            </a>
+          </li>
         </ul>
-      </div>
+      </li>
+    </ul>
+    <!-- /.nav-list -->
+    <div class="sidebar-collapse" id="sidebar-collapse">
+      <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+    </div>
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'collapsed')
+        } catch (e) {
+        }
+    </script>
+  </div>
+  <div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+      <script type="text/javascript">
+          try {
+              ace.settings.check('breadcrumbs', 'fixed')
+          } catch (e) {
+          }
+      </script>
+      <ul class="breadcrumb">
+        <li>
+          <i class="icon-home home-icon"></i>
+          <a href="/admin">首页</a>
+        </li>
+      </ul>
+      <!-- .breadcrumb -->
+    </div>
+    <div class="page-content">
+      <h1 class="page-header">
+        工号：<%= @current_admin.job_number %>
+        <small class="pull-right">
+          <%= show_permissions(@current_admin) %>
+        </small>
+      </h1>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              用户信息
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>用户总数： <span><%= @all_user_num %></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
-
-
-
-
-
+</div>
 </div>
