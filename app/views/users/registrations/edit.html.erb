@@ -6,8 +6,8 @@
 
   <div class="row">
     <div class="col-md-4 col-sm-6">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
-          <%= devise_error_messages! %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+          <!--<%= devise_error_messages! %>-->
 
           <div class="field form-group">
             <% if current_user.email.present? %>
@@ -30,16 +30,37 @@
 
           <div class="field form-group">
             <label class="control-label" for="user_current_password">原密码</label><br/>
+            <% if resource.errors[:current_password].present? %>
+                <ul>
+                  <% resource.errors[:current_password].each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+            <% end %>
             <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
           </div>
 
           <div class="field form-group">
             <label class="control-label" for="user_password">新密码</label><br/>
+            <% if resource.errors[:password].present? %>
+                <ul>
+                  <% resource.errors[:password].each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+            <% end %>
             <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
           </div>
 
           <div class="field form-group">
             <label class="control-label" for="user_password_confirmation">确认新密码</label><br/>
+            <% if resource.errors[:password_confirmation].present? %>
+                <ul>
+                  <% resource.errors[:password_confirmation].each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+            <% end %>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
           </div>
 

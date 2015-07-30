@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
          :lockable, :timeoutable, :authentication_keys => [:login]
 
   # validates :username, length: {in: 4..20}
+  validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 10}
+  validate :validate_email_mobile
+
+  def validate_email_mobile
+    if email.blank? && mobile.blank?
+      errors[:email] << '邮箱不能为空'
+    end
+  end
 
   attr_accessor :login
 
