@@ -211,5 +211,6 @@ zh-CN:
     models:
       user: '用户'
       admin: '管理员'
+      competition: '赛事'
 
 

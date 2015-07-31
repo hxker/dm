@@ -1,0 +1,48 @@
+<h1 class="page-header">
+  比赛列表
+  <small class="pull-right">
+    <a href="<%= new_admin_competition_path %>" class="btn btn-primary" title="新增赛事">
+      <i class="icon-plus icon-only"></i></a>
+  </small>
+</h1>
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>赛事名称</th>
+    <th>赛事描述</th>
+    <th>发布人</th>
+    <th>赛事状态</th>
+    <th>开始时间</th>
+    <th>结束时间</th>
+    <th>发布时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @competitions.each do |comp| %>
+      <tr>
+        <td><%= comp.id %></td>
+        <td><%= comp.name %></td>
+        <td><%= comp.desc %></td>
+        <td><%= comp.organizers %></td>
+        <td><%= comp.state %></td>
+        <td><%= comp.begin_time.try(:strftime, '%Y-%m-%d') %></td>
+        <td><%= comp.end_time.try(:strftime, '%Y-%m-%d') %></td>
+        <td><%= comp.created_at.try(:strftime, '%Y-%m-%d') %></td>
+        <td>
+          <%= link_to [:admin, comp], title: '查看', class: 'btn btn-xs btn-success' do %>
+              <i class="icon-eye-open icon-only"></i>
+          <% end %>
+          <%= link_to edit_admin_competition_path(comp), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit icon-only"></i>
+          <% end %>
+          <%= link_to [:admin, comp], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash icon-only"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

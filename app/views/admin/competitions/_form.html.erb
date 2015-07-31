@@ -1,0 +1,81 @@
+<%= simple_form_for([:admin, @competition]) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :name, label: '赛事名称' %>
+      <%= f.input :desc, label: '赛事描述' %>
+      <%= f.input :organizers, label: '发布人' %>
+      <%= f.input :state, collection: Competition::STATES, prompt: 1, label: '赛事状态' %>
+      <div class="row">
+        <div class="form-group datetime optional col-md-6" data-date-merge>
+          <label class="datetime optional control-label" for="competition_sign_in_begin_time">报名开始时间</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <span>日期</span>
+              <input data-date-merge-date value="<%= @competition.sign_in_begin_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+            </div>
+            <div class="col-md-6 bootstrap-timepicker">
+              <span>时间</span>
+              <input data-date-merge-time value="<%= @competition.sign_in_begin_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+            </div>
+          </div>
+          <input data-date-merge-result type="hidden" name="competition[sign_in_begin_time]" value="<%= @competition.sign_in_begin_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+        </div>
+        <div class="form-group datetime optional col-md-6" data-date-merge>
+          <label class="datetime optional control-label">报名结束时间</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <span>日期</span>
+              <input data-date-merge-date value="<%= @competition.sign_in_end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+            </div>
+            <div class="col-md-6 bootstrap-timepicker">
+              <span>时间</span>
+              <input data-date-merge-time value="<%= @competition.sign_in_end_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+            </div>
+          </div>
+          <input data-date-merge-result type="hidden" name="competition[sign_in_end_time]" value="<%= @competition.sign_in_end_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+        </div>
+        <div class="form-group datetime optional col-md-6" data-date-merge>
+          <label class="datetime optional control-label">比赛开始时间</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <span>日期</span>
+              <input data-date-merge-date value="<%= @competition.begin_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+            </div>
+            <div class="col-md-6 bootstrap-timepicker">
+              <span>时间</span>
+              <input data-date-merge-time value="<%= @competition.begin_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+            </div>
+          </div>
+          <input data-date-merge-result type="hidden" name="competition[begin_time]" value="<%= @competition.begin_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+        </div>
+        <div class="form-group datetime optional col-md-6" data-date-merge>
+          <label class="datetime optional control-label">比赛结束时间</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <span>日期</span>
+              <input data-date-merge-date value="<%= @competition.end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+            </div>
+            <div class="col-md-6 bootstrap-timepicker">
+              <span>时间</span>
+              <input data-date-merge-time value="<%= @competition.end_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+            </div>
+          </div>
+          <input data-date-merge-result type="hidden" name="competition[end_time]" value="<%= @competition.end_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button data-control="formFormat" type="submit" class="btn btn-success">
+        <i class="icon-ok"></i>
+        提交
+      </button>
+      <a href="<%= admin_competitions_path %>" class="btn btn-warning">
+        <i class="icon-ban-circle"></i>
+        取消
+      </a>
+    </div>
+<% end %>

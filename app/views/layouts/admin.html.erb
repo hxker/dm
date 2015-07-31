@@ -6,12 +6,18 @@
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="/admin/css/bootstrap.css"/>
   <link rel="stylesheet" href="/admin/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/admin/css/jquery.gritter.css"/>
   <link rel="stylesheet" href="/admin/css/ace.min.css"/>
   <link rel="stylesheet" href="/admin/css/ace-rtl.min.css"/>
   <link rel="stylesheet" href="/admin/css/ace-skins.min.css"/>
   <link rel="stylesheet" href="/admin/css/fixed.css"/>
+  <link rel="stylesheet" href="/admin/css/datepicker.css" />
+  <link rel="stylesheet" href="/admin/css/bootstrap-timepicker.css" />
 </head>
 <body>
+<% if notice.present? %>
+    <div id="notice"><%= notice %></div>
+<% end %>
 <div class="navbar navbar-default" id="navbar">
   <script type="text/javascript">
       try {
@@ -137,7 +143,7 @@
             <span class="menu-text"> 首页 </span>
           </a>
         </li>
-        <li class="<%= params[:controller] == 'admin/admins' ? 'active open' : '' %>">
+        <li class="active open">
           <a href="#" class="dropdown-toggle">
             <i class="icon-desktop"></i>
             <span class="menu-text"> 管理 </span>
@@ -148,6 +154,12 @@
               <a href="<%= admin_admins_path %>">
                 <i class="icon-double-angle-right"></i>
                 管理员
+              </a>
+            </li>
+            <li class="<%= params[:controller] == 'admin/competitions' ? 'active' : '' %>">
+              <a href="<%= admin_competitions_path %>">
+                <i class="icon-double-angle-right"></i>
+                比赛
               </a>
             </li>
           </ul>
@@ -193,6 +205,9 @@
 <script src="/admin/js/ace.min.js"></script>
 <script src="/admin/js/jquery_ujs.js"></script>
 <script src="/admin/js/jquery.cookie.js"></script>
+<script src="/admin/js/jquery.gritter.min.js"></script>
 <script src="/admin/js/admin-layout.js"></script>
+<script src="/admin/js/bootstrap-datepicker.min.js"></script>
+<script src="/admin/js/bootstrap-timepicker.min.js"></script>
 </body>
 </html>
