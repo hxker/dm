@@ -137,6 +137,12 @@
             <span class="menu-text"> 首页 </span>
           </a>
         </li>
+        <li class="<%= params[:controller] == 'admin/users' ? 'active' : '' %>">
+          <a href="<%= admin_users_path %>">
+            <i class="icon-group"></i>
+            <span class="menu-text"> 用户 </span>
+          </a>
+        </li>
         <li class="<%= params[:controller] == 'admin/admins' ? 'active open' : '' %>">
           <a href="#" class="dropdown-toggle">
             <i class="icon-desktop"></i>

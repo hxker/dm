@@ -18,6 +18,18 @@ Rails.application.routes.draw do
     end
   end
 
+
+  # -----------------------------------------------------------
+  # User
+  # -----------------------------------------------------------
+
+  get 'user' => redirect('/user/preview')
+
+  match 'user/preview' => 'user#preview', as: 'user_preview', via: [:get, :post]
+  match 'user/passwd' => 'user#passwd', as: 'user_passwd', via: [:get, :post]
+  match 'user/mobile' => 'user#mobile', as: 'user_mobile', via: [:get, :post]
+
+
   # -----------------------------------------------------------
   # Admin
   # -----------------------------------------------------------
@@ -34,6 +46,7 @@ Rails.application.routes.draw do
     end
 
     resources :admins
+    resources :users
 
   end
 
