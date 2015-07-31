@@ -3,8 +3,7 @@
   <small class="pull-right">
     <a href="<%= new_admin_admin_path %>" class="btn btn-default">
       <i class="glyphicon glyphicon-plus"></i></a>
-    <a href="#" class="btn btn-default btn-search-toggle">
-      <i class="glyphicon glyphicon-search"></i></a>
+
   </small>
 </h1>
 <table class="table table-bordered table-hover table-striped">
@@ -40,14 +39,14 @@
         <td><%= employee.phone %></td>
         <td><%= employee.address %></td>
         <td>
-          <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-default' do %>
-              <i class="glyphicon glyphicon-eye-open"></i>
+          <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-warn' do %>
+              <i class="icon-eye-open bigger-120"></i>
           <% end %>
           <%= link_to edit_admin_admin_path(employee), title: '编辑', class: 'btn btn-xs btn-info' do %>
-              <i class="glyphicon glyphicon-edit"></i>
+              <i class="icon-edit bigger-120"></i>
           <% end %>
           <%= link_to [:admin, employee], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
-              <i class="glyphicon glyphicon-trash"></i>
+              <i class="icon-trash bigger-120"></i>
           <% end %>
         </td>
       </tr>

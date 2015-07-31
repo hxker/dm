@@ -4,7 +4,7 @@ class SMSService
 
   TYPE_CODE_REGISTER = 'REGISTER'
   TYPE_CODE_RESET_PASSWORD = 'RESET_PASSWORD'
-  TYPE_CODE_RESET_USERNAME = 'RESET_USERNAME'
+  TYPE_CODE_RESET_MOBILE = 'RESET_MOBILE'
 
   #接口变量定义
   URL = 'http://smsapi.c123.cn/OpenPlatform/OpenApi'; #接口地址
@@ -57,7 +57,7 @@ class SMSService
     user = User.find_by(mobile: @mobile)
     if user.blank? and type == TYPE_CODE_RESET_PASSWORD
       return [FALSE, '用户不存在']
-    elsif user.present? and (type == TYPE_CODE_REGISTER || type == TYPE_CODE_RESET_USERNAME)
+    elsif user.present? and (type == TYPE_CODE_REGISTER || type == TYPE_CODE_RESET_MOBILE)
       return [FALSE, '手机号码已被使用']
     end
     code = get_mobile_code # 获取随机码
@@ -76,7 +76,7 @@ class SMSService
     status = FALSE
     status = send_code_for_register(code) if type == TYPE_CODE_REGISTER
     status = send_code_for_reset_password(code) if type == TYPE_CODE_RESET_PASSWORD
-    status = send_code_for_reset_mobile(code) if type == TYPE_CODE_RESET_USERNAME
+    status = send_code_for_reset_mobile(code) if type == TYPE_CODE_RESET_MOBILE
     if status
       [TRUE, '验证码发送成功']
     else
@@ -121,26 +121,6 @@ class SMSService
     end
   end
 
-  #发送注册信息
-  def send_register_message(password)
-    send("您的注册账户为：#{@mobile} ，初始密码为：#{password} ，请尽快登录 [壹车养护] 官方网站，修改初始密码。")
-  end
-
-  #发送充值信息
-  def send_recharge_message(amount)
-    send("感谢您在壹车养护成功充值：#{amount} 元。")
-  end
-
-  #发送消费信息
-  def send_spending_message(amount)
-    send("感谢您在壹车养护成功消费：#{amount} 元，如不是本人操作，请及时联系客服。")
-  end
-
-  #发送支付成功
-  def send_pay_message(order_number, total_price)
-    message = "用户：#{@mobile}，您的订单：#{order_number} 金额：#{total_price}支付成功。"
-    send(message)
-  end
 
   # 私有方法
   private
@@ -171,9 +151,9 @@ class SMSService
     send(message)
   end
 
-  #发送验证码 － 修改用户名
+  #发送验证码 － 修改手机号
   def send_code_for_reset_mobile(code)
-    message = "您正通过手机修改在豆姆的账户名称，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
+    message = "您正通过手机修改在豆姆的账户的手机号，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
     send(message)
   end
 end

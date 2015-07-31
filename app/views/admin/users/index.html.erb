@@ -1,0 +1,52 @@
+<h1 class="page-header">
+  <%= t('activerecord.models.user') %>列表
+  <small class="pull-right">
+    <a href="<%= new_admin_user_path %>" class="btn btn-default">
+      <i class="icon-plus icon-only"></i></a>
+
+  </small>
+</h1>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('simple_form.labels.defaults.nickname') %></th>
+    <th><%= t('simple_form.labels.defaults.mobile') %></th>
+    <th><%= t('simple_form.labels.defaults.email') %></th>
+    <th><%= t('simple_form.labels.defaults.username') %></th>
+    <th><%= t('simple_form.labels.defaults.sign_in_count') %></th>
+    <th><%= t('simple_form.labels.defaults.current_sign_in_at') %></th>
+
+
+    <th>操作</th>
+  </tr>
+  </thead>
+
+
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.nickname %></td>
+        <td><%= user.mobile %></td>
+        <td><%= user.email %></td>
+        <td><%= user.username %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.current_sign_in_at.try(:strftime, '%Y-%m-%d %H:%I:%S') %></td>
+        <td><%= link_to [:admin, user], title: '查看', class: 'btn btn-xs btn-warn' do %>
+              <i class="icon-eye-open bigger-120"></i>
+          <% end %>
+          <%= link_to edit_admin_user_path(user), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit bigger-120"></i>
+          <% end %>
+          <%= link_to [:admin, user], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash bigger-120"></i>
+          <% end %>
+
+          </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
