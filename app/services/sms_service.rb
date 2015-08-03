@@ -5,6 +5,7 @@ class SMSService
   TYPE_CODE_REGISTER = 'REGISTER'
   TYPE_CODE_RESET_PASSWORD = 'RESET_PASSWORD'
   TYPE_CODE_RESET_MOBILE = 'RESET_MOBILE'
+  TYPE_CODE_ADD_MOBILE = 'ADD_MOBILE'
 
   #接口变量定义
   URL = 'http://smsapi.c123.cn/OpenPlatform/OpenApi'; #接口地址
@@ -57,7 +58,7 @@ class SMSService
     user = User.find_by(mobile: @mobile)
     if user.blank? and type == TYPE_CODE_RESET_PASSWORD
       return [FALSE, '用户不存在']
-    elsif user.present? and (type == TYPE_CODE_REGISTER || type == TYPE_CODE_RESET_MOBILE)
+    elsif user.present? and (type == TYPE_CODE_REGISTER || type == TYPE_CODE_RESET_MOBILE || type == TYPE_CODE_ADD_MOBILE)
       return [FALSE, '手机号码已被使用']
     end
     code = get_mobile_code # 获取随机码
@@ -77,6 +78,7 @@ class SMSService
     status = send_code_for_register(code) if type == TYPE_CODE_REGISTER
     status = send_code_for_reset_password(code) if type == TYPE_CODE_RESET_PASSWORD
     status = send_code_for_reset_mobile(code) if type == TYPE_CODE_RESET_MOBILE
+    status = send_code_for_add_mobile(code) if type == TYPE_CODE_ADD_MOBILE
     if status
       [TRUE, '验证码发送成功']
     else
@@ -153,7 +155,13 @@ class SMSService
 
   #发送验证码 － 修改手机号
   def send_code_for_reset_mobile(code)
-    message = "您正通过手机修改在豆姆的账户的手机号，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
+    message = "您正通过手机修改在豆姆账户的手机号，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
+    send(message)
+  end
+
+  #发送验证码 － 添加手机号
+  def send_code_for_add_mobile(code)
+    message = "您正通过手机为您的豆姆账户添加手机号信息，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
     send(message)
   end
 end

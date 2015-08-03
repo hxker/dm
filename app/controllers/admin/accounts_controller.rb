@@ -4,7 +4,6 @@ class Admin::AccountsController < AdminController
   layout 'bootstrap'
 
   def new
-    # @category = Category.new
   end
 
   def index
@@ -46,15 +45,42 @@ class Admin::AccountsController < AdminController
   end
 
   def change_password_post
-    if @current_admin && @current_admin.authenticate(params[:password]) && (@current_admin.password = params[:new_password]; @current_admin.save)
-      session[:employee_id] = nil
-      flash[:error] = '密码已成功修改，请重新登录'
+    status, message = self.change_password_method(@current_admin, params[:password], params[:new_password], params[:confirm_password])
+
+    if status
+      session[:admin_id] = nil
+      flash[:success] = message
       redirect_to action: :new
     else
-      flash[:error] = '密码修改过程出错'
+      flash[:error] = message
       redirect_to action: :change_password
     end
   end
+
+  def change_password_method(current_admin, old_password, new_password, confirm_password)
+    unless current_admin.present?
+      return [FALSE, '用户不存在']
+    end
+    unless old_password.present?
+      return [FALSE, '原密码不能为空']
+    end
+    unless new_password.length >= 6 && new_password.length <= 20
+      return [FALSE, '请输入6-20位新密码']
+    end
+    unless new_password == confirm_password
+      return [FALSE, '新密码两次输入不一致']
+    end
+    unless current_admin.authenticate(old_password)
+      return [FALSE, '原密码不正确']
+    end
+
+    if current_admin.authenticate(old_password) && (current_admin.password = new_password; current_admin.save)
+      [TRUE, '密码已成功修改，请重新登录']
+    else
+      [FALSE, '密码修改过程出错']
+    end
+  end
+
 
   private
 

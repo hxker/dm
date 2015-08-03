@@ -1,8 +1,8 @@
 <h1 class="page-header">
   <%= t('activerecord.models.admin') %> 列表
   <small class="pull-right">
-    <a href="<%= new_admin_admin_path %>" class="btn btn-default">
-      <i class="glyphicon glyphicon-plus"></i></a>
+    <a href="<%= new_admin_admin_path %>" class="btn btn-default" title="添加管理员">
+      <i class="icon-only icon-plus"></i></a>
 
   </small>
 </h1>
@@ -53,3 +53,7 @@
   <% end %>
   </tbody>
 </table>
+
+<nav>
+  <%= paginate @admins %>
+</nav>

@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="/admin/css/ace-rtl.min.css"/>
   <link rel="stylesheet" href="/admin/css/ace-skins.min.css"/>
   <link rel="stylesheet" href="/admin/css/fixed.css"/>
-  <link rel="stylesheet" href="/admin/css/datepicker.css" />
-  <link rel="stylesheet" href="/admin/css/bootstrap-timepicker.css" />
+  <link rel="stylesheet" href="/admin/css/datepicker.css"/>
+  <link rel="stylesheet" href="/admin/css/bootstrap-timepicker.css"/>
 </head>
 <body>
 <% if notice.present? %>
@@ -56,15 +56,15 @@
           <a data-toggle="dropdown" href="#" class="dropdown-toggle">
             <span class="user-info">
                 <small>欢迎登录</small>
-                管理员
+              <%= @current_admin.job_number %><%= " - #{ @current_admin.name }" if @current_admin.name.present? %>
             </span>
             <i class="icon-caret-down"></i>
           </a>
           <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
             <li>
-              <a href="#">
+              <a href="<%= change_password_admin_accounts_path %>">
                 <i class="icon-cog"></i>
-                设置
+                修改密码
               </a>
             </li>
             <li class="divider"></li>
@@ -145,10 +145,23 @@
         </li>
         <li class="<%= params[:controller] == 'admin/users' ? 'active' : '' %>">
           <a href="<%= admin_users_path %>">
-            <i class="icon-group"></i>
+            <i class="icon-user"></i>
             <span class="menu-text"> 用户 </span>
           </a>
         </li>
+        <li class="<%= params[:controller] == 'admin/admins' ? 'active' : '' %>">
+          <a href="<%= admin_admins_path %>">
+            <i class="icon-gear"></i>
+            <span class="menu-text"> 管理员 </span>
+          </a>
+        </li>
+        <li class="<%= params[:controller] == 'admin/competitions' ? 'active' : '' %>">
+          <a href="<%= admin_competitions_path %>">
+            <i class="icon-group"></i>
+            <span class="menu-text"> 比赛 </span>
+          </a>
+        </li>
+
         <li class="<%= params[:controller] == 'admin/admins' ? 'active open' : '' %>">
         <li class="active open">
           <a href="#" class="dropdown-toggle">
@@ -205,16 +218,16 @@
     </div>
   </div>
 </div>
-<script src="/admin/js/jquery-2.0.3.min.js"></script>
-<script src="/admin/js/bootstrap.js"></script>
-<script src="/admin/js/ace-elements.min.js"></script>
-<script src="/admin/js/ace-extra.min.js"></script>
-<script src="/admin/js/ace.min.js"></script>
-<script src="/admin/js/jquery_ujs.js"></script>
-<script src="/admin/js/jquery.cookie.js"></script>
-<script src="/admin/js/jquery.gritter.min.js"></script>
-<script src="/admin/js/admin-layout.js"></script>
-<script src="/admin/js/bootstrap-datepicker.min.js"></script>
-<script src="/admin/js/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap.js"></script>
+<script type="text/javascript" src="/admin/js/ace-elements.min.js"></script>
+<script type="text/javascript" src="/admin/js/ace-extra.min.js"></script>
+<script type="text/javascript" src="/admin/js/ace.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery_ujs.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.gritter.min.js"></script>
+<script type="text/javascript" src="/admin/js/admin-layout.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap-timepicker.min.js"></script>
 </body>
 </html>

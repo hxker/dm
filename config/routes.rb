@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   match 'user/preview' => 'user#preview', as: 'user_preview', via: [:get, :post]
   match 'user/passwd' => 'user#passwd', as: 'user_passwd', via: [:get, :post]
   match 'user/mobile' => 'user#mobile', as: 'user_mobile', via: [:get, :post]
+  match 'user/add_mobile' => 'user#add_mobile', as: 'user_add_mobile', via: [:get, :post]
 
 
   # -----------------------------------------------------------

@@ -9,8 +9,11 @@ class Admin::AdminsController < AdminController
   # GET /admin/admins.json
   def index
 
-    @admins = Admin.all #.page(params[:page]).per(params[:per])
-
+    if params[:field].present? && params[:keyword].present?
+      @admins = Admin.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+    else
+      @admins = Admin.all.page(params[:page]).per(params[:per])
+    end
   end
 
   # GET /admin/admins/1

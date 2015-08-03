@@ -1,7 +1,12 @@
 class Admin::CompetitionsController < AdminController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
+
   def index
-    @competitions = Competition.all
+    if params[:field].present? && params[:keyword].present?
+      @competitions = Competition.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+    else
+      @competitions = Competition.all.page(params[:page]).per(1)
+    end
   end
 
   def new
@@ -53,7 +58,7 @@ class Admin::CompetitionsController < AdminController
   end
 
   def competition_params
-    params.require(:competition).permit(:name,:desc,:organizers,:state,:sign_in_begin_time,:sign_in_end_time,:begin_time,:end_time)
+    params.require(:competition).permit(:name, :desc, :organizers, :state, :sign_in_begin_time, :sign_in_end_time, :begin_time, :end_time)
   end
 end
 

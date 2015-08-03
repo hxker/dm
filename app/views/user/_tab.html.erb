@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li <%= 'class=active' if action_name == 'preview' %>>
+    <a href="<%= user_preview_path %>"><span class="hidden-xs">信息</span>概览</a>
+  </li>
+
+  <li <%= 'class=active' if action_name == 'passwd' %>>
+    <a href="<%= user_passwd_path %>"><span class="hidden-xs">修改</span>密码</a>
+  </li>
+  <% if current_user.mobile.present? %>
+      <li <%= 'class=active' if action_name == 'mobile' %>>
+        <a href="<%= user_mobile_path %>"><span class="hidden-xs">修改</span>手机号</a>
+      </li>
+  <% else %>
+      <li <%= 'class=active' if action_name == 'add_mobile' %>>
+        <a href="<%= user_add_mobile_path %>"><span class="hidden-xs">添加</span>手机号</a>
+      </li>
+  <% end %>
+</ul>
+<br>

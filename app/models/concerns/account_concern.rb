@@ -44,57 +44,7 @@ module AccountConcern
     end
   end
 
-  def change_password(old_password, new_password)
-    unless self.present?
-      return [FALSE, '用户不存在']
-    end
-    unless old_password.present? and new_password.present?
-      return [FALSE, '密码不能为空']
-    end
-    if self.try(:authenticate, old_password)
-      self.password = new_password
-      if self.save
-        [TRUE, '密码已成功修改，请重新登录。']
-      else
-        [FALSE, '密码修改过程出错']
-      end
-    else
-      [FALSE, '原密码不正确']
-    end
-  end
 
-  # 修改用户名
-  def change_username(old_username, new_username, password, mobile_code)
-    user = User.find_by_username(old_username)
-    unless user.present?
-      return [FALSE, '原用户不存在，请重新登录']
-    end
-    unless password.present?
-      return [FALSE, '密码不能为空']
-    end
-    unless user.try(:authenticate, password)
-      return [FALSE, '密码不正确']
-    end
-    unless new_username.present?
-      return [FALSE,'新手机号不能为空']
-    end
-    unless mobile_code.present?
-      return [FALSE,'验证码不能为空']
-    end
-    status, message = SMSService.new(new_username).validate?(mobile_code, SMSService::TYPE_CODE_RESET_USERNAME)
-    unless status
-      return [FALSE, message]
-    end
-    if user.try(:authenticate, password)
-      user.username = new_username
-      user.nickname = new_username[0..2].to_s + '****' + new_username[7..10].to_s
-      if user.save
-        [TRUE, '手机号已成功修改，请重新登录。']
-      else
-        [FALSE, '手机号修改过程出错']
-      end
-    end
-  end
 
   def reset_password(new_password, mobile_code, not_validate_code = false)
     unless self.present?

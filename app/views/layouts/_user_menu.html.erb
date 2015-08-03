@@ -1,0 +1,12 @@
+<% if current_user %>
+    <li>
+      <a href="<%= user_preview_path %>">我的账户<span class="visible-xs pull-right">[ <%= current_user.nickname %>
+        ]</span></a>
+    </li>
+    <li class="nav-divider visible-xs"></li>
+    <li class="divider hidden-xs"></li>
+    <li>
+      <a href="#">我的收藏</a>
+    </li>
+
+<% end %>

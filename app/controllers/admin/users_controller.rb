@@ -4,7 +4,11 @@ class Admin::UsersController < AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @users = User.all
+    if params[:field].present? && params[:keyword].present?
+      @users = User.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+    else
+      @users = User.all.page(params[:page]).per(params[:per])
+    end
   end
 
   # GET /admin/users/1
