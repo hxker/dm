@@ -19,12 +19,6 @@
     <div id="notice"><%= notice %></div>
 <% end %>
 <div class="navbar navbar-default" id="navbar">
-  <script type="text/javascript">
-      try {
-          ace.settings.check('navbar', 'fixed')
-      } catch (e) {
-      }
-  </script>
   <div class="navbar-container" id="navbar-container">
     <div class="navbar-header pull-left">
       <a href="#" class="navbar-brand">
@@ -88,12 +82,6 @@
   </div>
 </div>
 <div class="main-container" id="main-container">
-  <script type="text/javascript">
-      try {
-          ace.settings.check('main-container', 'fixed')
-      } catch (e) {
-      }
-  </script>
   <div class="main-container-inner">
     <a class="menu-toggler" id="menu-toggler" href="#">
       <span class="menu-text"></span>
@@ -157,32 +145,9 @@
         </li>
         <li class="<%= params[:controller] == 'admin/competitions' ? 'active' : '' %>">
           <a href="<%= admin_competitions_path %>">
-            <i class="icon-group"></i>
+            <i class="icon-flag-alt"></i>
             <span class="menu-text"> 比赛 </span>
           </a>
-        </li>
-
-        <li class="<%= params[:controller] == 'admin/admins' ? 'active open' : '' %>">
-        <li class="active open">
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-desktop"></i>
-            <span class="menu-text"> 管理 </span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li class="<%= params[:controller] == 'admin/admins' ? 'active' : '' %>">
-              <a href="<%= admin_admins_path %>">
-                <i class="icon-double-angle-right"></i>
-                管理员
-              </a>
-            </li>
-            <li class="<%= params[:controller] == 'admin/competitions' ? 'active' : '' %>">
-              <a href="<%= admin_competitions_path %>">
-                <i class="icon-double-angle-right"></i>
-                比赛
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
       <!-- /.nav-list -->
@@ -198,12 +163,6 @@
     </div>
     <div class="main-content">
       <div class="breadcrumbs" id="breadcrumbs">
-        <script type="text/javascript">
-            try {
-                ace.settings.check('breadcrumbs', 'fixed')
-            } catch (e) {
-            }
-        </script>
         <ul class="breadcrumb">
           <li>
             <i class="icon-home home-icon"></i>

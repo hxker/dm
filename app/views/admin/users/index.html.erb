@@ -3,34 +3,36 @@
   <small class="pull-right">
     <a href="<%= new_admin_user_path %>" class="btn btn-default">
       <i class="icon-plus icon-only"></i></a>
-
     <a href="#" class="btn btn-default btn-search-toggle">
       <i class="icon-search icon-only"></i>
     </a>
   </small>
 </h1>
-
-
-<div class="panel panel-info form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'show' %>">
-  <div class="panel-heading">
-    搜索
+<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'show' %>">
+  <div class="widget-header widget-header-small">
+    <h5 class="lighter">搜索</h5>
   </div>
-  <div class="panel-body">
-    <form class="form" role="form" method="get">
-
-      <div class="form-group col-md-3">
-        <select name="field" class="form-control">
-          <option value="nickname" <%= params[:field] == 'nickname' ? 'selected=selected' : '' %>><%= t('simple_form.labels.defaults.nickname') %></option>
-          <option value="mobile" <%= params[:field] == 'mobile' ? 'selected=selected' : '' %>><%= t('simple_form.labels.defaults.mobile') %></option>
-          <option value="email" <%= params[:field] == 'email' ? 'selected=selected' : '' %>><%= t('simple_form.labels.defaults.email') %></option>
-          <option value="username" <%= params[:field] == 'username' ? 'selected=selected' : '' %>><%= t('simple_form.labels.defaults.username') %></option>
-          <option value="id" <%= params[:field] == 'id' ? 'selected=selected' : '' %>>ID</option>
-        </select>
-      </div>
-      <div class="form-group col-md-9">
-        <input name="keyword" class="form-control input" value="<%= params[:keyword] %>" type="text" placeholder="输入关键字，按回车键提交">
-      </div>
-    </form>
+  <div class="widget-body">
+    <div class="widget-main">
+      <form class="form" role="form" method="get">
+        <div class="input-group" data-search="field">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <span data-search-text><%= t('simple_form.labels.defaults.nickname') %></span>
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li data-search-option="nickname" ><a><%= t('simple_form.labels.defaults.nickname') %></a></li>
+              <li data-search-option="mobile" ><a><%= t('simple_form.labels.defaults.mobile') %></a></li>
+              <li data-search-option="email" ><a><%= t('simple_form.labels.defaults.email') %></a></li>
+              <li data-search-option="username" ><a><%= t('simple_form.labels.defaults.username') %></a></li>
+              <li data-search-option="id" ><a>ID</a></li>
+            </ul>
+          </div>
+          <input type="hidden" name="field" value="<%= params[:field] %>"/>
+          <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
