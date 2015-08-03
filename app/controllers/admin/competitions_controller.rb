@@ -5,7 +5,7 @@ class Admin::CompetitionsController < AdminController
     if params[:field].present? && params[:keyword].present?
       @competitions = Competition.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
     else
-      @competitions = Competition.all.page(params[:page]).per(1)
+      @competitions = Competition.all.page(params[:page]).per(params[:per])
     end
   end
 
