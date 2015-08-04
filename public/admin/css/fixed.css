@@ -4,3 +4,11 @@
 #notice{
     display: none;
 }
+.admin-search-field{
+    width:90px;
+    display: -mox-inline-box;
+    display: inline-block;
+}
+.dropdown-width{
+    min-width:128px
+}

@@ -1,14 +1,14 @@
 <h1 class="page-header">
   <%= t('activerecord.models.user') %>列表
   <small class="pull-right">
-    <a href="<%= new_admin_user_path %>" class="btn btn-default">
-      <i class="icon-plus icon-only"></i></a>
-    <a href="#" class="btn btn-default btn-search-toggle">
+    <!--<a href="<%= new_admin_user_path %>" class="btn btn-default" title="">-->
+      <!--<i class="icon-plus icon-only"></i></a>-->
+    <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
       <i class="icon-search icon-only"></i>
     </a>
   </small>
 </h1>
-<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'show' %>">
+<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'hide' %>">
   <div class="widget-header widget-header-small">
     <h5 class="lighter">搜索</h5>
   </div>
@@ -18,14 +18,14 @@
         <div class="input-group" data-search="field">
           <div class="input-group-btn">
             <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-              <span data-search-text><%= t('simple_form.labels.defaults.nickname') %></span>
+              <span data-search-text class="admin-search-field"><%= t('simple_form.labels.defaults.nickname') %></span>
               <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li data-search-option="nickname" ><a><%= t('simple_form.labels.defaults.nickname') %></a></li>
-              <li data-search-option="mobile" ><a><%= t('simple_form.labels.defaults.mobile') %></a></li>
-              <li data-search-option="email" ><a><%= t('simple_form.labels.defaults.email') %></a></li>
-              <li data-search-option="username" ><a><%= t('simple_form.labels.defaults.username') %></a></li>
-              <li data-search-option="id" ><a>ID</a></li>
+            <ul class="dropdown-width dropdown-menu">
+              <li data-search-option="nickname"><a><%= t('simple_form.labels.defaults.nickname') %></a></li>
+              <li data-search-option="mobile"><a><%= t('simple_form.labels.defaults.mobile') %></a></li>
+              <li data-search-option="email"><a><%= t('simple_form.labels.defaults.email') %></a></li>
+              <li data-search-option="username"><a><%= t('simple_form.labels.defaults.username') %></a></li>
+              <li data-search-option="id"><a>ID</a></li>
             </ul>
           </div>
           <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'nickname' %>"/>

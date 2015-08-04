@@ -55,8 +55,8 @@ Rails.application.routes.draw do
   # -----------------------------------------------------------
   # -----------------------------------------------------------
 
-
-  if Rails.env.production?
+  if Rails.env.development?
+  # if Rails.env.production?
     match '*path', via: :all, to: 'pages#error_404'
   end
   # The priority is based upon order of creation: first created -> highest priority.

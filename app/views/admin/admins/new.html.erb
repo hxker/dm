@@ -1,8 +1,9 @@
 <h1 class="page-header">
-    新增 <%= t('activerecord.models.admin') %>
-    <small class="pull-right">
-        <%= link_to '列表', admin_admins_path %>
-    </small>
+  新增<%= t('activerecord.models.admin') %>
+  <small class="pull-right">
+    <a href="<%= admin_admins_path %>" class="btn btn-default" title="管理员列表">
+      <i class="icon-list icon-only"></i></a>
+  </small>
 </h1>
 
 <%= render 'form' %>

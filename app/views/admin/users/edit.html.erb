@@ -1,8 +1,10 @@
 <h1 class="page-header">
   编辑 <%= t('activerecord.models.user') %>
   <small class="pull-right">
-    <%= link_to '显示', [:admin, @user] %> |
-    <%= link_to '列表', admin_users_path %>
+    <a href="<%= admin_user_path(@user) %>" title="显示该用户" class="btn btn-default">
+      <i class="icon-eye-open icon-only"></i></a>
+    <a href="<%= admin_users_path %>" title="用户列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
   </small>
 </h1>
 
