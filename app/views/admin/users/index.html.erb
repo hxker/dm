@@ -28,7 +28,7 @@
               <li data-search-option="id" ><a>ID</a></li>
             </ul>
           </div>
-          <input type="hidden" name="field" value="<%= params[:field].present? ? 'params[:field]':'nickname' %>"/>
+          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'nickname' %>"/>
           <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
         </div>
       </form>
