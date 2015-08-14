@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="page-header">
+    创意列表
+    <small>
+      <%= link_to '新增创意', new_creative_activity_path, 'data-no-turbolink' => true, :class => 'btn btn-default' %>
+
+    </small>
+  </h1>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <% @creative_activities.each do |comp| %>
+            <div class="col-xs-12" data-competition-id="<%= comp.id %>">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <h4 class="name">
+                      <%= link_to comp do %>
+                          <%= comp.name %>
+                      <% end %>
+                      <%= link_to comp, method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+                          删除
+                      <% end %>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <nav>
+        <%= paginate @creative_activities %>
+      </nav>
+    </div>
+  </div>
+
+</div>

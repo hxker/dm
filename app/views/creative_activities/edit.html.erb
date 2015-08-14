@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="page-header">
+    编辑<%= t('activerecord.models.creative_activity') %>
+    <small class="pull-right">
+      <%= link_to @creative_activity, title: '显示', class: 'btn btn-default' do %>
+          查看
+      <% end %>
+
+      <a href="<%= creative_activities_path %>" title="列表" class="btn btn-default">
+        列表</a>
+    </small>
+  </h1>
+  <!--<script type="text/javascript" src="/assets/kindeditor/kindeditor.js"></script>-->
+
+
+  <%= render 'form' %>
+
+
+</div>
