@@ -14,7 +14,11 @@
       <h1 class="page-header">
         <%= @creative_activity.name %>
       </h1>
-
+      <% if @creative_activity.cover? %>
+          <div class="form-group">
+            <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+          </div>
+      <% end %>
       <p>描述：<%= @creative_activity.description.html_safe %></p>
 
 
