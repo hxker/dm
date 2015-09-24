@@ -10,7 +10,11 @@
 
       <%= render 'user/tab' %>
       <div class="panel panel-default">
-
+        <div class="panel-body">
+          <%= link_to user_profile_path do %>
+              <%= image_tag(current_user.avatar_url(:middle), class: 'img-thumbnail') %>
+          <% end %>
+        </div>
         <ul class="list-group">
 
           <li class="list-group-item">

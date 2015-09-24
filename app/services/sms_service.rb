@@ -6,13 +6,17 @@ class SMSService
   TYPE_CODE_RESET_PASSWORD = 'RESET_PASSWORD'
   TYPE_CODE_RESET_MOBILE = 'RESET_MOBILE'
   TYPE_CODE_ADD_MOBILE = 'ADD_MOBILE'
+  TYPE_CODE_RESET_TEAM_CODE = 'RESET_TEAM_CODE'
 
   #接口变量定义
   URL = 'http://smsapi.c123.cn/OpenPlatform/OpenApi'; #接口地址
-  ACCOUNT = '1001@500989090001'; #用户账号
-  AUTH_KEY = '2ECE5DD2D47A37F0E457B9B16A7A133E'; #认证密钥
+  #ACCOUNT = '1001@500989090001'; #用户账号
+  #AUTH_KEY = '2ECE5DD2D47A37F0E457B9B16A7A133E'; #认证密钥
+  ACCOUNT = '1001@501188570001' #用户账号
+  AUTH_KEY = '0308FC91AD80D3A657C04015BF21D912' #认证密钥
   SEND_TYPE = 'sendOnce'; #发送类型 ，可以有sendOnce短信发送，sendBatch一对一发送，sendParam	动态参数短信接口
-  CHANNEL_ID = '1574'; #通道组编号
+  # CHANNEL_ID = '1574'; #通道组编号
+  CHANNEL_ID = '52'; #通道组编号
   SIGNATURE_ID = ''; #签名编号 ,可以为空时，使用系统默认的编号
   SEND_TIME = ''; #发送时间,可以为空表示立即发送,yyyyMMddHHmmss 如:20130721182038
   WAIT_MINUTE = 2; # 发送间隔
@@ -79,6 +83,7 @@ class SMSService
     status = send_code_for_reset_password(code) if type == TYPE_CODE_RESET_PASSWORD
     status = send_code_for_reset_mobile(code) if type == TYPE_CODE_RESET_MOBILE
     status = send_code_for_add_mobile(code) if type == TYPE_CODE_ADD_MOBILE
+    status = send_code_for_reset_team_code(code) if type == TYPE_CODE_RESET_TEAM_CODE
     if status
       [TRUE, '验证码发送成功']
     else
@@ -88,9 +93,9 @@ class SMSService
 
   # 检测手机验证码
   def validate?(code, type)
-    unless code.length == 4
-      return [FALSE, '验证码只能为4位']
-    end
+    # unless code.length == 4
+    #   return [FALSE, '验证码只能为4位']
+    # end
     unless Regular.is_mobile?(@mobile)
       return [FALSE, '手机号码格式错误']
     end
@@ -117,7 +122,7 @@ class SMSService
       row.destroy
       [TRUE, '验证码成功通过验证']
     else
-      row.times = row.failed_attempts.to_i + 1
+      row.failed_attempts = row.failed_attempts.to_i + 1
       row.save
       [FALSE, '验证码错误']
     end
@@ -162,6 +167,12 @@ class SMSService
   #发送验证码 － 添加手机号
   def send_code_for_add_mobile(code)
     message = "您正通过手机为您的豆姆账户添加手机号信息，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
+    send(message)
+  end
+
+  #发送验证码 － 重置队伍密钥
+  def send_code_for_reset_team_code(code)
+    message = "您正通过手机重置您在豆姆组建队伍的密钥，验证码为：#{code}，#{EFFECTIVE_TIME}分钟内有效，请尽快完成验证。"
     send(message)
   end
 end

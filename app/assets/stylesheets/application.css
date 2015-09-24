@@ -20,3 +20,6 @@
  *= require_tree .
  *= require_self
  */
+.login-dialog .modal-dialog {
+    width: 400px;
+}

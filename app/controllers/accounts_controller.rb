@@ -86,6 +86,19 @@ class AccountsController < ApplicationController
     end
   end
 
+  def validate_captcha
+    if request.method == 'POST'
+      if captcha_valid? params[:captcha]
+        result = [true, '校验码正确']
+      else
+        result = [false, '校验码输入错误']
+      end
+    else
+      result = [false, '非法请求']
+    end
+    render json: result
+  end
+
   private
 
   def redirect_to_url

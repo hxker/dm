@@ -101,7 +101,7 @@ zh-CN:
       accepted: 必须是可被接受的
       blank: 必填项不能为空
       present: 必须是空白
-      confirmation: 与确认值不匹配
+      confirmation: 确认值不匹配
       empty: 不能留空
       equal_to: 必须等于 %{count}
       even: 必须为双数
@@ -207,11 +207,33 @@ zh-CN:
     gender: ''
     gender1: '男'
     gender2: '女'
+  kind:
+    mark: '评分'
+    confrontation: '对抗'
+    kind1: '评分'
+    kind2: '对抗'
+  category:
+    other: '指导/主办/协办方'
+    support: '赞助方'
+    undertake: '承办方'
+    category: ''
+    category1: '指导/主办/协办方'
+    category2: '赞助方'
+    category3: '承办方'
   activerecord:
     models:
       user: '用户'
       admin: '管理员'
-      competition: '赛事'
+      competition: '比赛'
+      event: '比赛项目'
+      organizer: '单位'
+      creative_activity: '创意活动'
+      team: '队伍'
+      score: '成绩'
+      schedule: '赛程名'
+      role: '角色'
+      news: '新闻'
+      news_type: '新闻类型'
   views:
     pagination:
         first: "首页"
@@ -228,3 +250,7 @@ zh-CN:
               other: "Displaying <b>all %{count}</b> %{entry_name}"
           more_pages:
             display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+  status:
+     status0: '报名中'
+     status1: '报名截止'
+     status2: '比赛结束'

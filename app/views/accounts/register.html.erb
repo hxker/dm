@@ -2,13 +2,36 @@
   <h2 class="page-header">
     用户注册
   </h2>
-
+<style type="text/css">
+  input[name='captcha']{
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+      color: #555;
+      display: block;
+      font-size: 14px;
+      height: 34px;
+      line-height: 1.42857;
+      padding: 6px 12px;
+      transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+      width: 45%;
+  }
+</style>
   <div class="row">
     <div class="col-md-4 col-sm-6">
       <%= simple_form_for(@sing_up, url: register_post_accounts_path, method: :post) do |f| %>
           <div class="pull-right">没有手机？请用<a href="/users/sign_up">邮箱注册</a><br/>
           </div>
-          <%= f.input :mobile, as: :tel, autofocus: true, placeholder: '请输入手机号', wrapper_html: {class: ''} %>
+          <%= f.input :mobile, as: :tel, placeholder: '请输入手机号', wrapper_html: {class: ''} %>
+          <div class="field form-group">
+            <label for="captcha" class="control-label">校验码：</label>
+            <div class="clearfix"></div>
+            <p class="pull-right" id="captcha-plus"><%= captcha_tag %> <span class="btn refresh-captcha" >换一张</span></p>
+
+            <%= text_field_tag :captcha %>
+          </div>
           <div class="row">
             <%= f.input :mobile_code, as: :tel, placeholder: '请输入验证码', wrapper_html: {class: 'col-md-6'} %>
             <div class="form-group tel required sing_up_mobile_code col-md-6">

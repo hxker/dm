@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require kindeditor/kindeditor.js
 //= require bootstrap
 //= require bootstrap-select
 //= require bootstrap-dialog

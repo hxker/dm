@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 hidden-xs">
+      <%= render 'user/menu' %>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+      <h1 class="page-header">
+        我的账户
+      </h1>
+
+      <%= render 'user/tab' %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= simple_form_for(current_user, html: {id: 'form_change_avatar', multipart: true}, url: user_update_avatar_path, method: :post) do |f| %>
+              <div class="form-inputs">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <p>
+                        <%= image_tag(current_user.avatar_url(:middle), class: 'img-thumbnail') %>
+                      </p>
+                      <% if current_user.avatar? %>
+                          <%= link_to '删除头像', user_remove_avatar_path, data: {method: :post, confirm: '确认删除头像吗？'}, class: 'btn btn-danger' %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="form-group">
+                      <label for="user_avatar">选择头像</label>
+                      <%= f.file_field :avatar %>
+                      <p class="help-block">格式：jpg jpeg gif png，尺寸：400x400</p>
+                    </div>
+                    <%= f.hidden_field :avatar_cache %>
+                    <%= f.input :nickname %>
+                    <div class="form-actions">
+                      <%= f.submit class: 'btn btn-primary', value: '更新个人信息' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <hr>
+          <h3 class="sub-header">详细信息</h3>
+          <%= simple_form_for(@user_profile, html: {id: 'form_change_profile', multipart: true}, url: user_profile_path, method: :post) do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-inputs">
+                    <%= f.input :username %>
+                    <%= f.input :gender, collection: UserProfile::GENDER.map { |key, val| [t('gender.'+key.to_s), val] } %>
+                    <%= f.input :age %>
+                    <%= f.input :school %>
+                    <%= f.input :grade %>
+                    <%= f.input :birthday, as: :date, html5: true %>
+                    <%= f.input :address %>
+                  </div>
+                  <div class="form-actions">
+                    <%= f.submit class: 'btn btn-primary', value: '更新详细信息' %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

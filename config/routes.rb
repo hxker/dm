@@ -1,13 +1,38 @@
 Rails.application.routes.draw do
 
-  root to: 'home#index'
+  # resources :apply_roles do
+  #   collection do
+  #     post :apply_role
+  #   end
+  # end
 
-  devise_for :users, controllers: {sessions: 'users/sessions'}
+  root to: 'home#index'
+  get 'competition' => 'competitions#index'
+  get 'competitions/team/:id' => 'competitions#team'
+  # get 'competitions/apply_in/:id' => 'competitions#apply_in'
+  resources :competitions, only: [:index, :show] do
+    collection do
+      # post :valid_apply
+      post :valid_create_team
+      post :add_user_apply_info
+      get :apply_in
+      post :reduce_team_amount
+      post :valid_team_code
+      post :send_email_code
+      post :reset_team_code_by_mobile
+      post :reset_team_code_by_email
+    end
+  end
+  resources :creative_activities
+
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+  captcha_route
 
   resources :accounts, only: [:new, :create, :destroy] do
     collection do
       get :register
       post :register_post
+      post :validate_captcha
       get :forget_password
       get :reset_password
       post :reset_password_post
@@ -26,9 +51,19 @@ Rails.application.routes.draw do
   get 'user' => redirect('/user/preview')
 
   match 'user/preview' => 'user#preview', as: 'user_preview', via: [:get, :post]
+  match 'user/profile' => 'user#profile', as: 'user_profile', via: [:get, :post]
+  match 'user/update_avatar' => 'user#update_avatar', as: 'user_update_avatar', via: [:post]
+  match 'user/remove_avatar' => 'user#remove_avatar', as: 'user_remove_avatar', via: [:post]
   match 'user/passwd' => 'user#passwd', as: 'user_passwd', via: [:get, :post]
   match 'user/mobile' => 'user#mobile', as: 'user_mobile', via: [:get, :post]
   match 'user/add_mobile' => 'user#add_mobile', as: 'user_add_mobile', via: [:get, :post]
+  match 'user/notification' => 'user#notification', as: 'user_notification', via: [:get, :post]
+
+  namespace :user do |u|
+
+    resources :likes, only: [:index, :create, :destroy]
+
+  end
 
 
   # -----------------------------------------------------------
@@ -48,15 +83,54 @@ Rails.application.routes.draw do
 
     resources :admins
     resources :competitions
+    resources :events do
+      collection do
+        get :teams
+        get :scores
+        get :add_score
+        post :add_score
+        get :edit_score
+        post :edit_score
+        post :create_team
+        post :add_team_player
+        post :delete_team_player
+        post :delete_team
+      end
+    end
     resources :users
+    resources :organizers
+    resources :teams
+    resources :creative_activities do
+      collection do
+        post :add_expert_score
+        post :edit_expert_score
+        post :audit
+      end
+    end
+    resources :scores do
+      collection do
+        post :get_teams
+      end
+    end
+    resources :news
+    resources :news_types
+    resources :schedules
+    resources :referees
+    resources :roles
 
   end
 
   # -----------------------------------------------------------
   # -----------------------------------------------------------
 
+  namespace :kindeditor do
+    post '/upload' => 'assets#create'
+    get '/filemanager' => 'assets#list'
+  end
+
+
   if Rails.env.development?
-  # if Rails.env.production?
+    # if Rails.env.production?
     match '*path', via: :all, to: 'pages#error_404'
   end
   # The priority is based upon order of creation: first created -> highest priority.

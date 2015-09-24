@@ -1,10 +1,68 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
 
+  before_action do
+    @channel = '/channel'
+    if params[:user_id].present?
+      @channel += '/' + params[:user_id]
+    end
+  end
+
+  before_action do
+    $chats ||= {}
+    $chats[@channel] ||= []
+  end
+
+
   # 个人信息概览
   def preview
 
   end
+
+  # 修改个人信息
+  def profile
+    # 获取Profile
+    @user_profile = current_user.user_profile ||= current_user.build_user_profile
+    if request.method == 'POST'
+      # 过滤Profile参数
+      profile_params = params.require(:user_profile).permit(:username, :age, :school, :grade, :gender, :birthday, :address)
+      @user_profile.username = profile_params[:username]
+      @user_profile.school = profile_params[:school]
+      @user_profile.grade = profile_params[:grade]
+      @user_profile.age = profile_params[:age]
+      @user_profile.gender = profile_params[:gender]
+      @user_profile.birthday = profile_params[:birthday]
+      @user_profile.address = profile_params[:address]
+      if @user_profile.save
+        flash[:success] = '详细信息更新成功'
+      else
+        flash[:error] = '详细信息更新失败'
+      end
+      redirect_to user_profile_path
+    end
+  end
+
+  # 更新头像和 nickname
+  def update_avatar
+    if current_user.update_attributes(params.require(:user).permit(:nickname, :avatar))
+      flash[:success] = '个人信息更新成功'
+    else
+      flash[:error] = '个人信息更新失败'
+    end
+    redirect_to user_profile_path
+  end
+
+  # 头像删除
+  def remove_avatar
+    if current_user.avatar?
+      current_user.remove_avatar!
+      current_user.avatar = nil
+      current_user.save
+      flash[:success] = '头像已成功删除'
+    end
+    redirect_to user_profile_path
+  end
+
 
   # 修改密码请求
   def passwd
@@ -38,8 +96,6 @@ class UserController < ApplicationController
     end
 
     unless new_password.length <= 20 && new_password.length >= 6
-      puts new_password.length
-      puts '1qw'
       return [FALSE, '新密码只能为6-20位']
     end
 
@@ -167,5 +223,10 @@ class UserController < ApplicationController
       end
     end
   end
+
+  def notification
+    @notifications = Notification.where(user_id: current_user.id)
+  end
+
 
 end

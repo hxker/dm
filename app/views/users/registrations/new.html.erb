@@ -2,7 +2,7 @@
   <h2 class="page-header">
     用户注册
   </h2>
-  <style>
+  <style type="text/css">
       .email-notice {
           position: relative;
       }
@@ -11,6 +11,22 @@
           background: rgba(0, 0, 0, 0) url("/img/wrong.jpg") no-repeat scroll 5px 0;
           color: #777;
           padding: 2px 0 2px 30px;
+      }
+
+      input[name='captcha'] {
+          background-color: #fff;
+          background-image: none;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+          color: #555;
+          display: block;
+          font-size: 14px;
+          height: 34px;
+          line-height: 1.42857;
+          padding: 6px 12px;
+          transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+          width: 45%;
       }
   </style>
   <div class="row">
@@ -30,7 +46,7 @@
                   <% end %>
                 </ul>
             <% end %>
-            <%= f.email_field :email, placeholder: '请输入邮箱', autofocus: true, class: 'form-control register-email bb' %>
+            <%= f.email_field :email, placeholder: '请输入邮箱', class: 'form-control register-email' %>
             <!--<span id="require-email" class="require-error " style="right: 8px;bottom: 8px;position: absolute;color: darkred">必填</span>-->
           </div>
           <div class="email-exists hidden"><span id="" class="error" style=""></span><br/><br/></div>
@@ -73,6 +89,24 @@
             <% end %>
             <%= f.password_field :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
           </div>
+
+
+          <div class="field form-group">
+            <% if request.post? %>
+                <p>
+                  <% unless valid_captcha?(params[:captcha]) %>
+                      校验码不正确
+                  <% end %>
+                </p>
+            <% end %>
+            <label for="captcha" class="control-label">校验码：</label>
+
+            <div class="clearfix"></div>
+            <p class="pull-right" id="captcha-plus"><%= captcha_tag %> <span class="btn refresh-captcha">换一张</span></p>
+
+            <%= text_field_tag :captcha %>
+          </div>
+
 
           <div class="actions form-group form-group-lg">
             <%= f.submit class: 'btn btn-primary btn-block', value: '立即注册' %>

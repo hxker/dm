@@ -9,7 +9,7 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field form-group">
             <label for="user_login" class="control-label">账号:</label><br/>
-            <%= f.text_field :login, autofocus: true, class: 'form-control', placeholder: '邮箱/手机号/昵称' %>
+            <%= f.text_field :login, class: 'form-control', placeholder: '邮箱/手机号/昵称' %>
           </div>
 
           <div class="field form-group">
@@ -25,9 +25,7 @@
                 <div class="pull-right">
                   <a href="<%= forget_password_accounts_path %>">忘记密码?</a> &nbsp;<a href="<%= new_user_registration_path %>">注册</a>
                 </div>
-
               </div>
-
           <% end -%>
 
           <div class="actions form-group form-group-lg">
