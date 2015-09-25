@@ -1,0 +1,126 @@
+#nav {
+    width: 100%;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    box-shadow: 0 3px 3px #0867BF;
+}
+#nav.nav-v2{
+    background: #ffffff;
+    box-shadow: 0 3px 3px #d0d0d0;
+}
+
+#nav .logo, #nav .logo-orange {
+    width: 109px;
+    height: 34px;
+    margin-top: 15px;
+}
+
+#nav .logo {
+    background: url("../images/logo.png");
+}
+
+#nav .logo-orange {
+    background: url("../images/logo-orange.png");
+}
+
+#nav .nav-menu {
+    color: #ffffff;
+    font-size: 18px;
+}
+#nav .login-menu{
+    margin-top: 11px;
+}
+
+.nav-menu .items {
+    display: block;
+    overflow: hidden;
+    float: left;
+}
+
+.nav-menu .items .item {
+    float: left;
+    margin: 10px 25px;
+}
+
+.nav-menu .items .item a {
+    display: block;
+    color: #ffffff;
+    transition: all .4s;
+    text-align: center;
+    padding: 8px;
+}
+.nav-v2 .nav-menu .items .item a{
+    color: #666666;
+}
+
+.nav-menu .items .item.active a {
+    color: #FEBF00;
+    border-bottom: 2px solid #FEBF00;
+}
+
+.nav-menu .items .item a:hover {
+    color: #FEBF00;
+    border-bottom: 2px solid #FEBF00;
+}
+
+.btn-register {
+    display: block;
+    float: left;
+    width: 58px;
+    height: 28px;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #FEBF00;
+    outline: none;
+    border: 1px solid #FEBF00;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: 5px;
+    text-align: center;
+    line-height: 28px;
+}
+
+.btn-login {
+    display: block;
+    float: left;
+    width: 58px;
+    height: 28px;
+    color: #FEBF00;
+    font-size: 12px;
+    border-radius: 4px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #FEBF00;
+    cursor: pointer;
+    margin-top: 5px;
+    text-align: center;
+    line-height: 28px;
+}
+
+#footer {
+    height: 137px;
+    line-height: 137px;
+    background: #000;
+    color: #e2e2e2;
+    font-size: 14px;
+}
+
+#footer .contact-item {
+    float: left;
+    margin-right: 55px;
+}
+
+#footer .contact-item .fa {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+#footer .address .fa {
+    font-size: 20px;
+    margin-right: 20px;
+}

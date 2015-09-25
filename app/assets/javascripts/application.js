@@ -20,6 +20,7 @@
 //= require bootstrap-fileinput
 //= require bootstrap-star-rating
 //= require notify
+//= require swiper.min
 
 //= //require turbolinks
 //= require_tree .

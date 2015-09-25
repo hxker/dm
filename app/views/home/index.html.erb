@@ -1,2 +1,431 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>豆姆文化</title>
+  <meta charset="utf-8">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <style>
+      .nav-li li:hover {
+          background-color: lightseagreen;
+      }
+  </style>
+</head>
+<body>
+<div class="floor" id="homepage">
+  <div id="banner" class="container-layer">
+    <div class="banner-items">
+      <ul class="items">
+        <li class="item active">
+          <a href="">
+            <div id="banner-bk-01" class="banner-item">
+              <div class="banner-item-text">
+                <p class="text-center t-72">2015 年</p>
+
+                <p class="text-center t-50">Robodou机器人大赛</p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div id="nav">
+      <div class="container">
+        <a href="/" class="logo col-l"></a>
+
+        <div class="nav-menu col-r">
+          <ul class="items">
+            <li class="item">
+              <a href="/">首页</a>
+            </li>
+            <li class="item">
+              <a href="">比赛</a>
+            </li>
+            <li class="item">
+              <a href="">新闻</a>
+            </li>
+            <li class="item">
+              <a href="">论坛</a>
+            </li>
+            <li class="item">
+              <a href="">关于</a>
+            </li>
+            <li class="item">
+              <a href="">联系</a>
+            </li>
+          </ul>
+          <div class="login-menu col-r">
+            <a href="<%= new_user_registration_path %>" class="robodou-btn btn-register">注册</a>
+            <a href="<%= new_user_session_path %>" class="robodou-btn btn-login">登录</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="competitions" class="">
+    <div class="container">
+
+      <div class="com-item">
+        <div class="com-pic">
+          <img src="images/competion01.png" alt=""/>
+        </div>
+        <div class="com-dec">
+          <div class="dec-title">
+            少年科技组
+          </div>
+          <div class="dec-main">
+            这是少年科技组的文案,相关介绍等等
+          </div>
+          <button class="robodou-btn btn-sign-in">报名</button>
+        </div>
+      </div>
+      <div class="com-item">
+        <div class="com-pic">
+          <img src="images/competion01.png" alt=""/>
+        </div>
+        <div class="com-dec">
+          <div class="dec-title">
+            少年科技组
+          </div>
+          <div class="dec-main">
+            这是少年科技组的文案,相关介绍等等
+          </div>
+          <button class="robodou-btn btn-sign-in">报名</button>
+        </div>
+      </div>
+
+      <div class="com-item">
+        <div class="com-pic">
+          <img src="images/competion01.png" alt=""/>
+        </div>
+        <div class="com-dec">
+          <div class="dec-title">
+            少年科技组
+          </div>
+          <div class="dec-main">
+            这是少年科技组的文案,相关介绍等等
+          </div>
+          <button class="robodou-btn btn-sign-in">报名</button>
+        </div>
+      </div>
+
+      <div class="com-item">
+        <div class="com-pic">
+          <img src="images/competion01.png" alt=""/>
+        </div>
+        <div class="com-dec">
+          <div class="dec-title">
+            少年科技组
+          </div>
+          <div class="dec-main">
+            这是少年科技组的文案,相关介绍等等
+          </div>
+          <button class="robodou-btn btn-sign-in">报名</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dynamic">
+    <div class="container">
+      <div class="dy-title">
+        <p>豆姆动态</p>
+        <a href="">更多&gt;&gt;</a>
+      </div>
+      <div class="dy-main">
+        <div class="dy-slider col-l">
+          <div class="bottom-info">
+            2015年度robodou机器人大赛
+          </div>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide dy-slider01"></div>
+              <div class="swiper-slide dy-slider01"></div>
+              <div class="swiper-slide dy-slider01"></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+        <div class="dy-video col-r">
+          <div class="video-btn">
+            <i class="fa fa-play"></i>
+          </div>
+          <div class="bottom-info">
+            2015年度robodou机器人大赛
+          </div>
+        </div>
+      </div>
+      <div class="dy-list">
+        <div class="list-item">
+          <div class="dy-item-pic">
+            <img src="images/news.jpg" alt=""/>
+          </div>
+          <div class="dy-item-main">
+            <div class="dy-item-title">
+              新闻标题
+              <span>2015-9-18</span>
+            </div>
+            <div class="dy-item-content">
+              执行团队有着长期从事在机器人教育和竞赛活动的经验。执行团队有着长期从事在机器人教育和竞赛活动的经验。为学校提供线上以及线下的机器人教学整体解决方案。为学校提供线上以及线下的机器人教学整体解决方案。
+            </div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="dy-item-pic">
+            <img src="images/news.jpg" alt=""/>
+          </div>
+          <div class="dy-item-main">
+            <div class="dy-item-title">
+              新闻标题
+              <span>2015-9-18</span>
+            </div>
+            <div class="dy-item-content">
+              执行团队有着长期从事在机器人教育和竞赛活动的经验。执行团队有着长期从事在机器人教育和竞赛活动的经验。为学校提供线上以及线下的机器人教学整体解决方案。为学校提供线上以及线下的机器人教学整体解决方案。
+            </div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="dy-item-pic">
+            <img src="images/news.jpg" alt=""/>
+          </div>
+          <div class="dy-item-main">
+            <div class="dy-item-title">
+              新闻标题
+              <span>2015-9-18</span>
+            </div>
+            <div class="dy-item-content">
+              执行团队有着长期从事在机器人教育和竞赛活动的经验。执行团队有着长期从事在机器人教育和竞赛活动的经验。为学校提供线上以及线下的机器人教学整体解决方案。为学校提供线上以及线下的机器人教学整体解决方案。
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dy-more">
+        <button class="btn-more-dy">
+          &nbsp;翻阅更多动态
+          <i class="fa fa-play"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="works">
+    <div class="container">
+      <div class="works-title">
+        <img src="images/competion-logo.png" alt=""/>
+        <a class="t-14" href="">更多</a>
+      </div>
+      <div class="works-content">
+        <div class="works-items">
+          <div class="work-item">
+            <div class="work-pic">
+              <img src="images/work-item01.jpg" alt=""/>
+            </div>
+            <div class="work-content t-14">
+              <div class="work-title pull-down-10">
+                <i class="fa fa-play"></i>
+                绿豆蛙卖萌机器人
+              </div>
+              <div class="work-author">
+                Nbot
+                <a class="work-vote col-r">
+                  <i class="fa fa-heart-o t-16"></i>
+                  365
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-pic">
+              <img src="images/work-item01.jpg" alt=""/>
+            </div>
+            <div class="work-content t-14">
+              <div class="work-title pull-down-10">
+                <i class="fa fa-play"></i>
+                绿豆蛙卖萌机器人
+              </div>
+              <div class="work-author">
+                Nbot
+                <a class="work-vote col-r">
+                  <i class="fa fa-heart-o t-16"></i>
+                  365
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-pic">
+              <img src="images/work-item01.jpg" alt=""/>
+            </div>
+            <div class="work-content t-14">
+              <div class="work-title pull-down-10">
+                <i class="fa fa-play"></i>
+                绿豆蛙卖萌机器人
+              </div>
+              <div class="work-author">
+                Nbot
+                <a class="work-vote col-r">
+                  <i class="fa fa-heart-o t-16"></i>
+                  365
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-pic">
+              <img src="images/work-item01.jpg" alt=""/>
+            </div>
+            <div class="work-content t-14">
+              <div class="work-title pull-down-10">
+                <i class="fa fa-play"></i>
+                绿豆蛙卖萌机器人
+              </div>
+              <div class="work-author">
+                Nbot
+                <a class="work-vote col-r">
+                  <i class="fa fa-heart-o t-16"></i>
+                  365
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-pic">
+              <img src="images/work-item01.jpg" alt=""/>
+            </div>
+            <div class="work-content t-14">
+              <div class="work-title pull-down-10">
+                <i class="fa fa-play"></i>
+                绿豆蛙卖萌机器人
+              </div>
+              <div class="work-author">
+                Nbot
+                <a class="work-vote col-r">
+                  <i class="fa fa-heart-o t-16"></i>
+                  365
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="works-more">
+        <button class="btn-more-dy">
+          &nbsp;翻阅更多作品
+          <i class="fa fa-play"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="introduction" class="container-layer">
+    <div class="container">
+      <div class="dec text-center">
+        <p class="t-30 pull-down-40">DOME</p>
+
+        <p class="t-18">我们是机器人教育和比赛活动的专业团队。</p>
+
+        <p class="t-18">以兴趣爱好为切入点，致力于真正培养学生综合素质能力和专业水平，为未来中国机器人市场培养自己新一代的人才。</p>
+      </div>
+      <div class="tabs">
+        <div class="swiper-container">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide text-center">
+              <div class="tabs-title t-22 ">产品与服务</div>
+              <p class="t-18">我们是机器人教育和比赛活动的专业团队。</p>
+
+              <p class="t-18">这里可以简单介绍产品和服务，帮助用户大致了解我们自身。</p>
+            </div>
+            <div class="swiper-slide">
+              <div class="tabs-title t-22 text-center">合作伙伴</div>
+              <div class="friend"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tabs-title t-22 text-center">核心团队</div>
+              <div class="team">
+                <div class="item">
+                  <div class="team-pic">
+                    <img src="images/team01.jpg" alt=""/>
+                  </div>
+                  <div class="team-name">
+                    Keven
+                  </div>
+                  <div class="team-job">
+                    设计总监
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="team-pic">
+                    <img src="images/team01.jpg" alt=""/>
+                  </div>
+                  <div class="team-name">
+                    Keven
+                  </div>
+                  <div class="team-job">
+                    设计总监
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="team-pic">
+                    <img src="images/team01.jpg" alt=""/>
+                  </div>
+                  <div class="team-name">
+                    Keven
+                  </div>
+                  <div class="team-job">
+                    设计总监
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination swiper-pagination-black"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" class="container-layer">
+    <div class="container">
+      <div class="contact col-l">
+        <div class="contact-item">
+          <i class="fa fa-qq"></i>
+          1234567
+        </div>
+        <div class="contact-item">
+          <i class="fa fa-weixin"></i>
+          987654321
+        </div>
+        <div class="contact-item">
+          <i class="fa fa-phone"></i>
+          0210-112663536
+        </div>
+      </div>
+      <div class="address col-r">
+        <i class="fa fa-map-marker"></i>
+        上海市 徐汇区 钦州北路68号B3栋101
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 5000
+    })
+</script>
+</body>
+</html>

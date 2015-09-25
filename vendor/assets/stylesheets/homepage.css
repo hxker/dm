@@ -1,0 +1,453 @@
+.floor {
+}
+
+#banner {
+    height: 564px;
+    position: relative;
+}
+
+.banner-items {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 564px;
+    width: 100%;
+}
+
+.banner-item {
+    color: #FFFFFF;
+}
+
+.banner-item-text {
+    padding-top: 164px;
+}
+
+#banner-bk-01 {
+    height: 564px;
+    width: 100%;
+    background: url("../images/banner.jpg") center center no-repeat;
+}
+
+#competitions {
+    width: 100%;
+    height: 149px;
+    position: relative;
+    z-index: 2;
+    left: 0;
+    top: -136px;
+}
+
+#competitions .com-item {
+    position: absolute;
+    width: 275px;
+    transition: all .4s;
+    top: 0;
+}
+
+#competitions .com-item:nth-of-type(1) {
+    left: 0;
+}
+
+#competitions .com-item:nth-of-type(2) {
+    left: 275px;
+}
+
+#competitions .com-item:nth-of-type(3) {
+    left: 550px;
+}
+
+#competitions .com-item:nth-of-type(4) {
+    left: 825px;
+}
+
+#competitions .com-item:hover {
+    margin: -10px -20px 0;
+    width: 315px;
+    box-shadow: 0 0 10px #383838;
+    z-index: 2;
+}
+
+#competitions .com-item:hover .com-pic img {
+    width: 315px;
+    height: 136px;
+    transition: width .4s;
+}
+
+#competitions .com-pic {
+    height: 136px;
+}
+
+#competitions .com-pic img {
+    width: 275px;
+    height: 136px;
+    transition: width .4s;
+}
+
+#competitions .dec-title {
+    color: #0190EE;
+    font-size: 18px;
+}
+
+#competitions .dec-main {
+    font-size: 14px;
+    height: 34px;
+    margin: 10px 0;
+    line-height: 17px;
+    overflow: hidden;
+    text-align: left;
+}
+
+#competitions .com-dec {
+    background: url("../images/competions-bk.jpg");
+    height: 109px;
+    padding: 20px;
+    text-align: center;
+    transition: padding .4s;
+}
+
+#competitions .com-item:hover .com-dec {
+    background: #ffffff;
+    padding: 20px 40px 40px;
+}
+
+#competitions .btn-sign-in {
+    color: #FEBF00;
+    border: 1px solid #FEBF00;
+    border-radius: 15px;
+    height: 30px;
+    padding: 0 15px;
+    cursor: pointer;
+    margin: 0 auto;
+    background: transparent;
+    display: inline-block;
+    transition: color .4s, background-color .4s;
+}
+
+#competitions .btn-sign-in:hover {
+    color: #ffffff;
+    background: #FEBF00;
+}
+
+#dynamic {
+    margin: 40px 0 0;
+}
+
+#dynamic .dy-title {
+    height: 40px;
+    border-left: 3px solid #FEBF00;
+    background: url("../images/dy-title-bk.jpg") bottom repeat-x;
+    padding-left: 15px;
+    line-height: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#dynamic .dy-title p {
+    font-size: 18px;
+}
+
+#dynamic .dy-title a {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+#dynamic .dy-main {
+    overflow: hidden;
+}
+
+#dynamic .dy-video {
+    width: 547px;
+    height: 318px;
+    background: url("../images/dy-video-bk.jpg");
+    position: relative;
+    overflow: hidden;
+}
+
+#dynamic .dy-slider {
+    width: 547px;
+    height: 318px;
+    margin-right: 6px;
+    position: relative;
+}
+
+.dy-video .video-btn {
+    margin: 110px auto;
+    width: 90px;
+    height: 90px;
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    line-height: 90px;
+    font-size: 60px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px #000;
+    transition: all .4s;
+}
+
+#dynamic .dy-video:hover .video-btn {
+    margin: 80px auto;
+}
+
+#dynamic .swiper-container {
+    width: 547px;
+    height: 318px;
+}
+
+#dynamic .dy-slider01 {
+    background: url("../images/dy-video-bk.jpg");
+}
+
+.dy-video .video-btn:hover {
+    background: transparent;
+    box-shadow: 0 0 10px #fff;
+}
+
+.bottom-info {
+    text-align: center;
+    color: transparent;
+    font-size: 18px;
+    line-height: 63px;
+    position: absolute;
+    bottom: -63px;
+    width: 547px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all .4s;
+}
+
+.floor {
+    background: #f4f4f4;
+}
+
+#dynamic .dy-video:hover .bottom-info {
+    bottom: 0;
+    color: #ffffff;
+}
+
+#dynamic .dy-slider:hover .bottom-info {
+    bottom: 0;
+    color: #ffffff;
+}
+
+#dynamic .dy-list {
+    margin-top: 28px;
+    position: relative;
+}
+
+#dynamic .list-item {
+    overflow: hidden;
+    padding: 20px 10px;
+    border-bottom: 1px solid #c2c2c2;
+    transition: all .4s;
+    position: absolute;
+    left: 0;
+}
+
+#dynamic .list-item:nth-of-type(1) {
+    top: 0;
+}
+
+#dynamic .list-item:nth-of-type(2) {
+    top: 131px;
+}
+
+#dynamic .list-item:nth-of-type(3) {
+    top: 262px;
+}
+
+#dynamic .list-item:hover {
+    margin: -10px -20px;
+    padding: 30px 30px;
+    box-shadow: 0 0 40px #888;
+    z-index: 3;
+    border: none;
+    background: #ffffff;
+}
+
+#dynamic .dy-list .dy-item-pic {
+    height: 90px;
+    width: 130px;
+    float: left;
+}
+
+#dynamic .dy-list .dy-item-main {
+    margin-left: 130px;
+    padding-left: 15px;
+}
+
+#dynamic .dy-list .dy-item-title {
+    color: #0190EE;
+    font-size: 18px;
+    line-height: 36px;
+}
+
+#dynamic .dy-list .dy-item-title span {
+    color: #9d9d9d;
+    font-size: 12px;
+    float: right;
+}
+
+#dynamic .dy-list .dy-item-content {
+    height: 40px;
+    padding: 7px 0;
+    line-height: 20px;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+#dynamic .dy-more {
+    margin-top: 421px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+}
+
+.btn-more-dy {
+    display: inline-block;
+    width: 148px;
+    height: 30px;
+    border: 1px solid #FEBF00;
+    color: #FEBF00;
+    background: transparent;
+    transition: all .4s;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.btn-more-dy:hover {
+    background: #FEBF00;
+    color: #ffffff;
+}
+
+#works {
+    padding-top: 32px;
+    background: #fff;
+}
+
+#works .works-title {
+    height: 40px;
+    border-left: 3px solid #FEBF00;
+    background: url("../images/dy-title-bk.jpg") bottom repeat-x;
+    padding-left: 15px;
+    line-height: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#works .works-title a {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    font-size: 14px;
+}
+
+#works .work-items {
+    overflow: hidden;
+}
+
+#works .work-item {
+    float: left;
+    width: 216px;
+    margin-left: 5px;
+}
+
+#works .work-item:first-child {
+    margin-left: 0;
+}
+
+#works .work-item:hover {
+    box-shadow: 0 0 20px #d4d4d4;
+}
+
+#works .work-item:hover .work-content {
+    background-color: #fff;
+}
+
+#works .work-item:hover .work-vote .fa {
+    color: #e60315;
+}
+
+#works .work-pic {
+    width: 216px;
+    height: 216px;
+}
+
+#works .work-content {
+    background: #eeeeee;
+    padding: 15px 20px;
+    position: relative;
+    transition: background-color .4s;
+}
+
+#works .work-title .fa {
+    margin-right: 4px;
+}
+
+#works .work-author {
+    text-indent: 18px;
+}
+
+#works .work-vote {
+    cursor: pointer;
+}
+
+#works .works-more {
+    line-height: 100px;
+    text-align: center;
+}
+
+#introduction {
+    background: url("../images/intro-bk.jpg");
+    height: 707px;
+}
+
+#introduction .dec {
+    padding: 100px 0 70px;
+    border-bottom: dashed 1px #000000;
+}
+
+#introduction .tabs {
+    position: relative;
+}
+
+#introduction .swiper-container {
+    width: 1100px;
+    height: 400px;
+}
+
+#introduction .tabs-title {
+    margin: 65px 0;
+}
+
+#introduction .friend {
+    background: url("../images/friend.png") no-repeat center center;
+    height: 107px;
+}
+
+#introduction .team {
+
+}
+
+#introduction .team .item {
+    float: left;
+    width: 152px;
+    font-size: 14px;
+    text-align: center;
+    margin: -40px 105px 0;
+}
+
+#introduction .team .item .team-pic {
+    width: 152px;
+    height: 140px;
+    overflow: hidden;
+}
+
+#introduction .team .item .team-name {
+    width: 100px;
+    margin: 10px auto;
+    border-bottom: 1px solid #555555;
+    padding: 10px 0;
+}
