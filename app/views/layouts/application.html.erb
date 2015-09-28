@@ -8,5 +8,24 @@
 </head>
 <body>
 <%= yield %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 5000
+    })
+</script>
 </body>
 </html>
