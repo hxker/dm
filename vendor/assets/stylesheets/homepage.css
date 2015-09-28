@@ -1,4 +1,5 @@
 .floor {
+    background-color: #f4f4f4;
 }
 
 #banner {
@@ -344,6 +345,9 @@
     right: 20px;
     top: 0;
     font-size: 14px;
+}
+#works .works-title img{
+    vertical-align: baseline;
 }
 
 #works .work-items {

@@ -42,14 +42,14 @@
         注册
       </div>
       <div class="passport-content">
+        <div class="t-14 text-right pull-down-10">没有邮箱？请用<a class="blue" href="/accounts/register">手机</a>注册</div>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <!--<%= devise_error_messages! %>-->
 
             <div class="field form-group email-notice">
               <label for="user_email" class="control-label">邮箱</label>
 
-              <div class="pull-right">没有邮箱？请用<a href="/accounts/register">手机注册</a><br/>
-              </div>
+
               <% if resource.errors[:email].present? %>
                   <ul>
                     <% resource.errors[:email].each do |msg| %>
@@ -124,7 +124,7 @@
             </div>
         <% end %>
         <p class="clearfix text-right">
-          <a href="<%= new_user_session_path %>">使用已有账户登录</a>
+          <a class="blue" href="<%= new_user_session_path %>">使用已有账户登录</a>
         </p>
       </div>
     </div>
