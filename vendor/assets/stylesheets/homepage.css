@@ -116,6 +116,7 @@
     border: 1px solid #FEBF00;
     border-radius: 15px;
     height: 30px;
+    line-height: 30px;
     padding: 0 15px;
     cursor: pointer;
     margin: 0 auto;
@@ -309,6 +310,7 @@
     display: inline-block;
     width: 148px;
     height: 30px;
+    line-height: 30px;
     border: 1px solid #FEBF00;
     color: #FEBF00;
     background: transparent;
@@ -401,7 +403,6 @@
 
 #introduction {
     background: url("../images/intro-bk.jpg");
-    height: 707px;
 }
 
 #introduction .dec {

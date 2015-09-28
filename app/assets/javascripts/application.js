@@ -21,6 +21,7 @@
 //= require bootstrap-star-rating
 //= require notify
 //= require swiper.min
+//= require base
 
 //= //require turbolinks
 //= require_tree .

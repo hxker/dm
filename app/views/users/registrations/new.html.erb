@@ -1,127 +1,168 @@
-<div class="container">
-  <h2 class="page-header">
-    用户注册
-  </h2>
-  <style type="text/css">
-      .email-notice {
-          position: relative;
-      }
+<div class="floor" id="register">
+  <div id="nav" class="nav-v2 container-layer">
+    <div class="container">
+      <a href="/" class="logo-orange col-l"></a>
 
-      .error {
-          background: rgba(0, 0, 0, 0) url("/img/wrong.jpg") no-repeat scroll 5px 0;
-          color: #777;
-          padding: 2px 0 2px 30px;
-      }
-
-      input[name='captcha'] {
-          background-color: #fff;
-          background-image: none;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-          color: #555;
-          display: block;
-          font-size: 14px;
-          height: 34px;
-          line-height: 1.42857;
-          padding: 6px 12px;
-          transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-          width: 45%;
-      }
-  </style>
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <!--<%= devise_error_messages! %>-->
-
-          <div class="field form-group email-notice">
-            <label for="user_email" class="control-label">邮箱</label>
-
-            <div class="pull-right">没有邮箱？请用<a href="/accounts/register">手机注册</a><br/>
-            </div>
-            <% if resource.errors[:email].present? %>
-                <ul>
-                  <% resource.errors[:email].each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <%= f.email_field :email, placeholder: '请输入邮箱', class: 'form-control register-email' %>
-            <!--<span id="require-email" class="require-error " style="right: 8px;bottom: 8px;position: absolute;color: darkred">必填</span>-->
-          </div>
-          <div class="email-exists hidden"><span id="" class="error" style=""></span><br/><br/></div>
-          <!--<%= f.input :nickname, as: :tel, placeholder: '请输入昵称', wrapper_html: {class: ''} %>-->
-
-          <div class="field form-group">
-            <label for="user_nickname" class="control-label">昵称</label>
-            <% if resource.errors[:nickname].present? %>
-                <ul>
-                  <% resource.errors[:nickname].each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <%= f.text_field :nickname, placeholder: '请输入昵称', class: 'form-control' %>
-          </div>
-
-          <div class="field form-group">
-            <label for="user_password" class="control-label">密码</label>
-            <% if resource.errors[:password].present? %>
-                <ul>
-                  <% resource.errors[:password].each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <%= f.password_field :password, placeholder: '请输入密码（6-20位）', autocomplete: "off", class: 'form-control' %>
-          </div>
-
-          <div class="field form-group">
-
-            <label for="user_password_confirmation" class="control-label">确认密码</label>
-            <br/>
-            <% if resource.errors[:password_confirmation].present? %>
-                <ul>
-                  <% resource.errors[:password_confirmation].each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <%= f.password_field :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
-          </div>
-
-
-          <div class="field form-group">
-            <% if request.post? %>
-                <p>
-                  <% unless valid_captcha?(params[:captcha]) %>
-                      校验码不正确
-                  <% end %>
-                </p>
-            <% end %>
-            <label for="captcha" class="control-label">校验码：</label>
-
-            <div class="clearfix"></div>
-            <p class="pull-right" id="captcha-plus"><%= captcha_tag %> <span class="btn refresh-captcha">换一张</span></p>
-
-            <%= text_field_tag :captcha %>
-          </div>
-
-
-          <div class="actions form-group form-group-lg">
-            <%= f.submit class: 'btn btn-primary btn-block', value: '立即注册' %>
-          </div>
-      <% end %>
-      <p class="clearfix text-right">
-        <a href="<%= new_user_session_path %>">使用已有账户登录</a>
-      </p>
+      <div class="nav-menu col-r">
+        <ul class="items">
+          <li class="item">
+            <a href="/">首页</a>
+          </li>
+          <li class="item">
+            <a href="">比赛</a>
+          </li>
+          <li class="item">
+            <a href="">新闻</a>
+          </li>
+          <li class="item">
+            <a href="">论坛</a>
+          </li>
+          <li class="item">
+            <a href="">关于</a>
+          </li>
+          <li class="item">
+            <a href="">联系</a>
+          </li>
+        </ul>
+        <div class="login-menu col-r">
+          <% if user_signed_in? %>
+              <%= current_user.nickname %>
+              <%= link_to '退出', destroy_user_session_path, method: :delete, :class => '' %>
+          <% else %>
+              <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
+              <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+  <div id="register-content" class="">
+    <div class="passport">
+      <div class="passport-title t-22 text-center">
+        注册
+      </div>
+      <div class="passport-content">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <!--<%= devise_error_messages! %>-->
 
+            <div class="field form-group email-notice">
+              <label for="user_email" class="control-label">邮箱</label>
+
+              <div class="pull-right">没有邮箱？请用<a href="/accounts/register">手机注册</a><br/>
+              </div>
+              <% if resource.errors[:email].present? %>
+                  <ul>
+                    <% resource.errors[:email].each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <%= f.email_field :email, placeholder: '请输入邮箱', class: 'form-control register-email' %>
+              <!--<span id="require-email" class="require-error " style="right: 8px;bottom: 8px;position: absolute;color: darkred">必填</span>-->
+            </div>
+            <div class="email-exists hidden"><span id="" class="error" style=""></span><br/><br/></div>
+            <!--<%= f.input :nickname, as: :tel, placeholder: '请输入昵称', wrapper_html: {class: ''} %>-->
+
+            <div class="field form-group">
+              <label for="user_nickname" class="control-label">昵称</label>
+              <% if resource.errors[:nickname].present? %>
+                  <ul>
+                    <% resource.errors[:nickname].each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <%= f.text_field :nickname, placeholder: '请输入昵称', class: 'form-control' %>
+            </div>
+
+            <div class="field form-group">
+              <label for="user_password" class="control-label">密码</label>
+              <% if resource.errors[:password].present? %>
+                  <ul>
+                    <% resource.errors[:password].each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <%= f.password_field :password, placeholder: '请输入密码（6-20位）', autocomplete: "off", class: 'form-control' %>
+            </div>
+
+            <div class="field form-group">
+
+              <label for="user_password_confirmation" class="control-label">确认密码</label>
+              <% if resource.errors[:password_confirmation].present? %>
+                  <ul>
+                    <% resource.errors[:password_confirmation].each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <%= f.password_field :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
+            </div>
+
+
+            <div class="field form-group">
+              <% if request.post? %>
+                  <p>
+                    <% unless valid_captcha?(params[:captcha]) %>
+                        校验码不正确
+                    <% end %>
+                  </p>
+              <% end %>
+              <label for="captcha" class="control-label">校验码：</label>
+
+              <div class="clearfix"></div>
+              <p class="pull-right" id="captcha-plus"><%= captcha_tag %> <span class="btn refresh-captcha">换一张</span>
+              </p>
+
+              <%= text_field_tag :captcha %>
+            </div>
+
+
+            <div class="actions form-group form-group-lg">
+              <%= f.submit class: 'btn-confirm-register', value: '立即注册' %>
+            </div>
+        <% end %>
+        <p class="clearfix text-right">
+          <a href="<%= new_user_session_path %>">使用已有账户登录</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!--<%= render "users/shared/links" %>-->
 </div>
-
-
-
-
-
-<!--<%= render "users/shared/links" %>-->
+</div>
+<div id="footer" class="container-layer">
+  <div class="container">
+    <div class="contact col-l">
+      <div class="contact-item">
+        <i class="fa fa-qq"></i>
+        1234567
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-weixin"></i>
+        987654321
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-phone"></i>
+        0210-112663536
+      </div>
+    </div>
+    <div class="address col-r">
+      <i class="fa fa-map-marker"></i>
+      上海市 徐汇区 钦州北路68号B3栋101
+    </div>
+  </div>
+</div>
+</div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>

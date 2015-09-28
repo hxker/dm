@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>豆姆文化</title>
-  <meta charset="utf-8">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <style>
-      .nav-li li:hover {
-          background-color: lightseagreen;
-      }
-  </style>
-</head>
-<body>
 <div class="floor" id="homepage">
   <div id="banner" class="container-layer">
     <div class="banner-items">
@@ -21,8 +7,7 @@
             <div id="banner-bk-01" class="banner-item">
               <div class="banner-item-text">
                 <p class="text-center t-72">2015 年</p>
-
-                <p class="text-center t-50">Robodou机器人大赛</p>
+                <p class="text-center t-50">Robodou 机器人大赛</p>
               </div>
             </div>
           </a>
@@ -30,7 +15,7 @@
       </ul>
     </div>
     <div id="nav">
-      <div class="container">
+      <div class="container-content">
         <a href="/" class="logo col-l"></a>
 
         <div class="nav-menu col-r">
@@ -55,15 +40,20 @@
             </li>
           </ul>
           <div class="login-menu col-r">
-            <a href="<%= new_user_registration_path %>" class="robodou-btn btn-register">注册</a>
-            <a href="<%= new_user_session_path %>" class="robodou-btn btn-login">登录</a>
+            <% if user_signed_in? %>
+                <%= current_user.nickname %>
+                <%= link_to '退出', destroy_user_session_path, method: :delete, :class => '' %>
+            <% else %>
+                <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
+                <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div id="competitions" class="">
-    <div class="container">
+    <div class="container-content">
 
       <div class="com-item">
         <div class="com-pic">
@@ -126,7 +116,7 @@
     </div>
   </div>
   <div id="dynamic">
-    <div class="container">
+    <div class="container-content">
       <div class="dy-title">
         <p>豆姆动态</p>
         <a href="">更多&gt;&gt;</a>
@@ -208,7 +198,7 @@
     </div>
   </div>
   <div id="works">
-    <div class="container">
+    <div class="container-content">
       <div class="works-title">
         <img src="images/competion-logo.png" alt=""/>
         <a class="t-14" href="">更多</a>
@@ -316,7 +306,7 @@
     </div>
   </div>
   <div id="introduction" class="container-layer">
-    <div class="container">
+    <div class="container-content">
       <div class="dec text-center">
         <p class="t-30 pull-down-40">DOME</p>
 
@@ -386,7 +376,7 @@
     </div>
   </div>
   <div id="footer" class="container-layer">
-    <div class="container">
+    <div class="container-content">
       <div class="contact col-l">
         <div class="contact-item">
           <i class="fa fa-qq"></i>
@@ -427,5 +417,3 @@
         autoplay: 5000
     })
 </script>
-</body>
-</html>

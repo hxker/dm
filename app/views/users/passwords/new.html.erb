@@ -1,30 +1,68 @@
-<div class="container">
-  <h2 class="page-header">
-    重置密码
-  </h2>
+<div class="floor" id="register">
+  <div id="nav" class="nav-v2 container-layer">
+    <div class="container">
+      <a href="/" class="logo-orange col-l"></a>
 
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
-
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-          <%= devise_error_messages! %>
-
-          <div class="field form-group">
-            <label for="user_email" class="control-label">邮箱:</label><br/>
-            <%= f.email_field :email, autofocus: true, placeholder: '请输入邮箱', class: 'form-control' %>
-          </div>
-
-          <div class="actions">
-            <%= f.submit class: 'btn btn-primary btn-block', value: '发送重置邮件' %>
-          </div>
-      <% end %>
-
+      <div class="nav-menu col-r">
+        <ul class="items">
+          <li class="item">
+            <a href="/">首页</a>
+          </li>
+          <li class="item">
+            <a href="">比赛</a>
+          </li>
+          <li class="item">
+            <a href="">新闻</a>
+          </li>
+          <li class="item">
+            <a href="">论坛</a>
+          </li>
+          <li class="item">
+            <a href="">关于</a>
+          </li>
+          <li class="item">
+            <a href="">联系</a>
+          </li>
+        </ul>
+        <div class="login-menu col-r">
+          <% if user_signed_in? %>
+              <%= current_user.nickname %>
+              <%= link_to '退出', destroy_user_session_path, method: :delete, :class => '' %>
+          <% else %>
+              <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
+              <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+  <div id="register-content" class="">
+    <div class="passport">
+      <div class="passport-title t-22 text-center">
+        重置密码
+      </div>
+      <div class="passport-content">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
+            <%= devise_error_messages! %>
 
+            <div class="field form-group">
+              <label for="user_email" class="control-label">邮箱:</label><br/>
+              <%= f.email_field :email, autofocus: true, placeholder: '请输入邮箱', class: 'form-control' %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit class: 'btn-forget-send', value: '发送重置邮件' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-<!--<%= render "users/shared/links" %>-->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>

@@ -1,78 +1,103 @@
-<div class="container">
-  <h2 class="page-header">
-    登录
-  </h2>
 
-  <style type="text/css">
+<div class="floor" id="register">
+  <div id="nav" class="nav-v2 container-layer">
+    <div class="container">
+      <a href="/" class="logo-orange col-l"></a>
 
-      input[name='captcha'] {
-          background-color: #fff;
-          background-image: none;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-          color: #555;
-          display: block;
-          font-size: 14px;
-          height: 34px;
-          line-height: 1.42857;
-          padding: 6px 12px;
-          transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-          width: 45%;
-      }
-  </style>
-
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
-
-      <%= form_for(@resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field form-group">
-            <label for="user_login" class="control-label">账号:</label><br/>
-            <%= f.text_field :login, class: 'form-control', placeholder: '邮箱/手机号/昵称' %>
-          </div>
-
-          <div class="field form-group">
-            <label for="user_password" class="control-label">密码:</label><br/>
-            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-          </div>
-
-          <% if session[:fail_times].present? && session[:fail_times]> 10 %>
-              <div class="field form-group">
-                <% if request.post? and session[:fail_times] > 11 %>
-                    <p>
-                      <% unless valid_captcha?(params[:captcha]) %>
-                          校验码不正确
-                      <% end %>
-                    </p>
-                <% end %>
-                <label for="captcha" class="control-label">校验码：</label>
-
-                <div class="clearfix"></div>
-                <p class="pull-right" id="captcha-plus"><%= captcha_tag %> <span class="btn refresh-captcha">换一张</span>
-                </p>
-
-                <%= text_field_tag :captcha %>
-              </div>
+      <div class="nav-menu col-r">
+        <ul class="items">
+          <li class="item">
+            <a href="/">首页</a>
+          </li>
+          <li class="item">
+            <a href="">比赛</a>
+          </li>
+          <li class="item">
+            <a href="">新闻</a>
+          </li>
+          <li class="item">
+            <a href="">论坛</a>
+          </li>
+          <li class="item">
+            <a href="">关于</a>
+          </li>
+          <li class="item">
+            <a href="">联系</a>
+          </li>
+        </ul>
+        <div class="login-menu col-r">
+          <% if user_signed_in? %>
+              <%= current_user.nickname %>
+              <%= link_to '退出', destroy_user_session_path, method: :delete, :class => '' %>
+          <% else %>
+              <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
+              <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
           <% end %>
-
-          <% if devise_mapping.rememberable? -%>
-              <div class="field">
-                <%= f.check_box :remember_me %>
-                <label for="user_remember_me">记住我</label>
-
-                <div class="pull-right">
-                  <a href="<%= forget_password_accounts_path %>">忘记密码?</a> &nbsp;<a href="<%= new_user_registration_path %>">注册</a>
-                </div>
-              </div>
-          <% end -%>
-
-          <div class="actions form-group form-group-lg">
-            <%= f.submit class: 'btn btn-primary btn-block', value: '登录豆姆' %>
-          </div>
-
-
-      <% end %>
+        </div>
+      </div>
     </div>
   </div>
+  <div id="register-content" class="">
+    <div class="passport">
+      <div class="passport-title t-22 text-center">
+        登录
+      </div>
+      <div class="passport-content">
+        <%= form_for(@resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field form-group">
+              <label for="user_login" class="control-label">账号:</label><br/>
+              <%= f.text_field :login, class: 'form-control', placeholder: '邮箱/手机号/昵称' %>
+            </div>
 
+            <div class="field form-group">
+              <label for="user_password" class="control-label">密码:</label><br/>
+              <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: '请输入密码' %>
+            </div>
+
+            <% if session[:fail_times].present? && session[:fail_times]> 10 %>
+                <div class="field form-group">
+                  <% if request.post? and session[:fail_times] > 11 %>
+                      <p>
+                        <% unless valid_captcha?(params[:captcha]) %>
+                            校验码不正确
+                        <% end %>
+                      </p>
+                  <% end %>
+                  <label for="captcha" class="control-label">校验码：</label>
+
+                  <div class="clearfix"></div>
+                  <p class="pull-right" id="captcha-plus"><%= captcha_tag %>
+                    <span class="btn refresh-captcha">换一张</span>
+                  </p>
+
+                  <%= text_field_tag :captcha %>
+                </div>
+            <% end %>
+
+            <% if devise_mapping.rememberable? -%>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <label for="user_remember_me">记住我</label>
+
+                  <div class="pull-right">
+                    <a href="<%= forget_password_accounts_path %>">忘记密码?</a> &nbsp;<a href="<%= new_user_registration_path %>">注册</a>
+                  </div>
+                </div>
+            <% end -%>
+
+            <div class="actions form-group form-group-lg">
+              <%= f.submit class: 'btn-login-page', value: '登录豆姆' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% if flash.present? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        $.notify("<%= f[1] %>", "<%= f[0] %>");
+        <% end %>
+    </script>
+<% end %>
