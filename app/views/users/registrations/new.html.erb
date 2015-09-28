@@ -27,7 +27,9 @@
         <div class="login-menu col-r">
           <% if user_signed_in? %>
               <%= current_user.nickname %>
-              <%= link_to '退出', destroy_user_session_path, method: :delete, :class => '' %>
+              <%= link_to destroy_user_session_path, method: :delete, data: {confirm: '确认退出登录吗?'}, title: '退出登录', :class => '' do %>
+                  退出
+              <% end %>
           <% else %>
               <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
               <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
@@ -44,20 +46,11 @@
       <div class="passport-content">
         <div class="t-14 text-right pull-down-10">没有邮箱？请用<a class="blue" href="/accounts/register">手机</a>注册</div>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <!--<%= devise_error_messages! %>-->
 
             <div class="field form-group email-notice">
               <label for="user_email" class="control-label">邮箱</label>
 
-
-              <% if resource.errors[:email].present? %>
-                  <ul>
-                    <% resource.errors[:email].each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-              <% end %>
-              <%= f.email_field :email, placeholder: '请输入邮箱', class: 'form-control register-email' %>
+              <%= f.input :email, placeholder: '请输入邮箱', class: 'form-control register-email' %>
               <!--<span id="require-email" class="require-error " style="right: 8px;bottom: 8px;position: absolute;color: darkred">必填</span>-->
             </div>
             <div class="email-exists hidden"><span id="" class="error" style=""></span><br/><br/></div>
@@ -65,45 +58,25 @@
 
             <div class="field form-group">
               <label for="user_nickname" class="control-label">昵称</label>
-              <% if resource.errors[:nickname].present? %>
-                  <ul>
-                    <% resource.errors[:nickname].each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-              <% end %>
-              <%= f.text_field :nickname, placeholder: '请输入昵称', class: 'form-control' %>
+              <%= f.input :nickname, placeholder: '请输入昵称', class: 'form-control' %>
             </div>
 
             <div class="field form-group">
               <label for="user_password" class="control-label">密码</label>
-              <% if resource.errors[:password].present? %>
-                  <ul>
-                    <% resource.errors[:password].each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-              <% end %>
-              <%= f.password_field :password, placeholder: '请输入密码（6-20位）', autocomplete: "off", class: 'form-control' %>
+
+              <%= f.input :password, placeholder: '请输入密码（6-20位）', autocomplete: "off", class: 'form-control' %>
             </div>
 
             <div class="field form-group">
 
               <label for="user_password_confirmation" class="control-label">确认密码</label>
-              <% if resource.errors[:password_confirmation].present? %>
-                  <ul>
-                    <% resource.errors[:password_confirmation].each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-              <% end %>
-              <%= f.password_field :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
+              <%= f.input :password_confirmation, placeholder: '请输入确认密码', autocomplete: "off", class: 'form-control' %>
             </div>
 
 
             <div class="field form-group">
               <% if request.post? %>
-                  <p>
+                  <p style="color: darkred">
                     <% unless valid_captcha?(params[:captcha]) %>
                         校验码不正确
                     <% end %>
