@@ -95,11 +95,4 @@
     </div>
   </div>
 </div>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<% if flash.present? %>
-    <script type="text/javascript">
-        <% flash.each do |f| %>
-        $.notify("<%= f[1] %>", "<%= f[0] %>");
-        <% end %>
-    </script>
-<% end %>
+
