@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates :nickname, presence: true, uniqueness: true, length: 2..10, format: {with: /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/i, message: '昵称只能包含汉子、数字、字母、下划线'}
   validates :password, length: 6..20, format: {with: /\A[\x21-\x7e]+\Z/i, message: '密码只包含数字、字母、特殊字符'}
   validate :validate_email_mobile
-  after_create :create_uuid
+  # after_create :create_uuid
 
   def validate_email_mobile
     if email.blank? && mobile.blank?
@@ -34,10 +34,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_uuid
-    self.uuid = SecureRandom.uuid
-    self.save
-  end
+  # def create_uuid
+  #   self.uuid = SecureRandom.uuid
+  #   self.save
+  # end
 
   attr_accessor :login
   attr_accessor :mobile_code
