@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'introduction/index'
   # resources :apply_roles do
   #   collection do
   #     post :apply_role
