@@ -6,9 +6,10 @@
     z-index: 2;
     top: 0;
     left: 0;
-    box-shadow: 0 3px 3px #0867BF;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
-#nav.nav-v2{
+
+#nav.nav-v2 {
     background: #ffffff;
     box-shadow: 0 3px 3px #d0d0d0;
 }
@@ -31,7 +32,8 @@
     color: #ffffff;
     font-size: 18px;
 }
-#nav .login-menu{
+
+#nav .login-menu {
     margin-top: 11px;
     line-height: 36px;
 }
@@ -54,7 +56,8 @@
     text-align: center;
     padding: 8px;
 }
-.nav-v2 .nav-menu .items .item a{
+
+.nav-v2 .nav-menu .items .item a {
     color: #666666;
 }
 

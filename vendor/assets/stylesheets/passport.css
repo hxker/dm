@@ -1,5 +1,5 @@
 .floor {
-    background: #f4f4f4 url("../images/passport-bk.jpg") no-repeat;
+    background: url("../images/passport-bk.jpg") no-repeat;
 }
 
 #register-content {
