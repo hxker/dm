@@ -69,6 +69,11 @@ ul {
     position: relative;
     margin: 0 auto;
 }
+.container-content:after{
+    content: "";
+    display: block;
+    clear: both;
+}
 
 .container-layer {
     width: 100%;

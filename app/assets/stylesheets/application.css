@@ -23,6 +23,7 @@
  *= require base
  *= require homepage
  *= require passport
+ *= require competition
  *= require_tree .
  *= require_self
  */

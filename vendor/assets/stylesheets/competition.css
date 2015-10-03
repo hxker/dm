@@ -1,0 +1,182 @@
+#competition {
+    background: #FFFFFF;
+}
+
+#competition-banner {
+    background: url("../images/competition-banner-bk.jpg") center center;
+    height: 320px;
+}
+
+#time-line {
+    background: url("../images/time-line.png") center bottom no-repeat;
+    height: 184px;
+    padding: 53px 0 0;
+}
+
+/*#time-line .time-point{*/
+/*background: url("../images/tp.png") center no-repeat;*/
+/*width: 53px;*/
+/*height: 53px;*/
+/*position: absolute;*/
+/*top: 53px;*/
+/*font-size: 18px;*/
+/*text-align: center;*/
+/*color: #666666;*/
+/*line-height: 42px;*/
+/*padding: 10px 5px;*/
+/*}*/
+/*#time-line .time-point.active{*/
+/*background-image: url("../images/tp-a.png");*/
+/*}*/
+/*#time-line .time-point.line-half{*/
+/*line-height: 21px;*/
+/*}*/
+/*#time-line .time-line-line{*/
+/*background: url("../images/time-line-line.png") center;*/
+/*height: 9px;*/
+/*width: 1124px;*/
+/*top: 135px;*/
+/*position: absolute;*/
+/*}*/
+#competition-items {
+    margin: 40px 0;
+    height: 200px;
+}
+
+#competition-items .item {
+    width: 220px;
+    position: absolute;
+    top: 0;
+    height: 192px;
+    transition: all .4s;
+    z-index: 1;
+    background: #FFFFFF;
+}
+
+#competition-items .item:hover {
+    width: 230px;
+    height: 210px;
+    margin: -10px -5px;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(200, 200, 200, 0.7);
+}
+
+#competition-items .item:nth-of-type(1) {
+    left: 0;
+    background: #FFFFFF url("../images/competition-item-first.png") no-repeat;
+}
+
+#competition-items .item:nth-of-type(1) p:first-child {
+    margin-top: 30px;
+    transition: all .4s;
+}
+
+#competition-items .item:nth-of-type(1):hover p:first-child {
+    margin-top: 40px;
+}
+
+#competition-items .item:nth-of-type(2) {
+    left: 220px;
+}
+
+#competition-items .item:nth-of-type(3) {
+    left: 440px;
+}
+
+#competition-items .item:nth-of-type(4) {
+    left: 660px;
+}
+
+#competition-items .item:nth-of-type(5) {
+    left: 880px;
+}
+
+#competition-items .item .item-pic {
+    height: 136px;
+}
+
+#competition-items .item .item-pic img {
+    width: 220px;
+    height: 136px;
+    transition: width .4s;
+}
+
+#competition-items .item:hover .item-pic img {
+    width: 230px;
+}
+
+#competition-items .item:hover .item-text {
+    background: #FFFFFF;
+    padding: 23px 0;
+}
+
+#competition-items .item-text {
+    padding: 13px 0;
+    font-size: 22px;
+    color: #009bfd;
+    text-align: center;
+    background: url("../images/competions-bk.jpg");
+    transition: all .4s;
+}
+
+#competition-intro {
+
+}
+
+#competition-intro .left {
+    width: 500px;
+    height: 462px;
+    background: url("../images/competition-intro-logo.jpg") no-repeat center;
+}
+
+#competition-intro .right {
+    width: 600px;
+}
+
+#competition-organization {
+
+}
+
+#competition-organization .left {
+    width: 600px;
+}
+
+#competition-organization .right {
+    width: 500px;
+    background: url("../images/organization-pic.png") no-repeat center;
+    height: 424px;
+}
+
+#competition-organization .like-table{
+    overflow: hidden;
+}
+#competition-organization .like-table .item-name{
+    width: 80px;
+    display: block;
+    float: left;
+}
+#competition-organization .like-table p{
+    margin-left: 80px;
+}
+#competition-rule{
+    
+}
+#competition-rule .left{
+    width: 500px;
+    background: url("../images/rule-pic.png") no-repeat center;
+    height: 524px;
+}
+#competition-rule .right{
+    width: 600px;
+}
+#competition-awards{
+
+}
+#competition-awards .left{
+    width: 600px;
+}
+#competition-awards .right{
+    width: 500px;
+    background: url("../images/awards.png") no-repeat center;
+    height: 371px;
+}
