@@ -1,0 +1,57 @@
+<h1 class="page-header">
+  <%= @event.name %> <%= t('activerecord.models.score') %>列表
+  <small class="pull-right">
+    <a href="<%= "#{add_score_admin_events_path}?id=#{@event.id}" %>" class="btn btn-default" title="添加成绩">
+      <i class="icon-only icon-plus"></i></a>
+    <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+      <i class="icon-search icon-only"></i>
+    </a>
+  </small>
+</h1>
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('simple_form.labels.defaults.comp_name') %></th>
+    <th><%= t('simple_form.labels.defaults.kind') %></th>
+    <th><%= t('simple_form.labels.defaults.team1_id') %></th>
+    <th><%= t('simple_form.labels.defaults.th') %></th>
+    <th>分数</th>
+    <th><%= t('simple_form.labels.defaults.referee_id') %></th>
+    <th><%= t('simple_form.labels.defaults.operator') %></th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.id %></td>
+        <td><%= score.schedule.try(:name) %></td>
+        <td><%= t('kind.kind'+score.kind.to_s) %></td>
+        <td><%= score.team.name %><%= " - #{score.team.name}" if score.kind == 2 %></td>
+        <td><%= score.th %></td>
+        <td><%= score.score1 %><%= " : #{score.score2} " if score.kind == 2 %></td>
+        <td><%= score.referee_id %></td>
+        <td><%= score.admin.try(:name) %></td>
+        <td>
+          <%= link_to add_score_admin_events_path + '?sid='+ score.id.to_s+'&eid='+@event.id.to_s, title: '引用添加', class: 'btn btn-xs btn-default' do %>
+              <i class="glyphicon glyphicon-plus"></i>
+          <% end %>
+          <%= link_to "#{edit_score_admin_events_path}?id=#{score.id}", title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit icon-only"></i>
+          <% end %>
+          <%= link_to [:admin, score], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash icon-only"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+
+</table>
+
+
+<nav>
+  <%= paginate @scores %>
+</nav>

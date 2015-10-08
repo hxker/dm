@@ -1,0 +1,66 @@
+<h1 class="page-header">
+  新增成绩
+  <small class="pull-right">
+    <a href="<%= "#{scores_admin_events_path}?id=#{params[:eid]}" %>" class="btn btn-default" title="成绩列表">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+<style type="text/css">
+    .row:after {
+        clear: right;
+    }
+</style>
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.score') %></div>
+  <div class="panel-body">
+    <%= simple_form_for(@score, url: "#{add_score_admin_events_path}?id=#{params[:id].present? ? params[:id] : @score.event_id}", method: :post) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :comp_name, collection: Schedule.all, prompt: '请选择' %>
+          <%= f.input :kind, collection: Score::KIND.map { |key, val| [t('kind.'+key.to_s), val] }, prompt: 1 %>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-4"><%= f.input :th, collection: 1..11, prompt: '请选择' %></div>
+                <div class="col-xs-4"><%= f.input :team1_id, collection: Team.where(event_id: params[:id].present? ? params[:id] : @score.event_id) %></div>
+                <div class="col-xs-4"><%= f.input :team2_id, collection: Team.where(event_id: params[:id].present? ? params[:id] : @score.event_id) %></div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-4"><%= f.input :referee_id %></div>
+                <div class="col-xs-4"><%= f.input :score1 %></div>
+                <div class="col-xs-4"><%= f.input :score2 %></div>
+              </div>
+            </div>
+          </div>
+          <%= f.hidden_field :operator, value: @current_admin.id %>
+          <%= f.hidden_field :event_id, value: params[:id].present? ? params[:id] : @score.event_id %>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary add-mark-score' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var score_kind = $('#score_kind').val();
+        if (score_kind == '1') {
+            $('.score_team2_id,.score_score2').addClass('hidden');
+        } else {
+            $('.score_team2_id,.score_score2').removeClass('hidden');
+        }
+    };
+</script>
+
+
+
+
+

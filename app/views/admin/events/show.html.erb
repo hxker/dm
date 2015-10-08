@@ -1,0 +1,45 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.event') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_event_path(@event) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_events_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.event') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <%= @event.name %>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.competition_id') %>:</h4>
+
+      <%= @event.competition.name %>
+    </li>
+    <li class="list-group-item">
+      <h4>每队人数:</h4>
+
+      <%= @event.team_min_num %><%= " - #{@event.team_max_num}" if @event.team_max_num != @event.team_min_num %>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.description') %>:</h4>
+
+      <%= @event.description %>
+    </li>
+    <li class="list-group-item">
+      <h4>状态:</h4>
+
+      <%= t('status.status'+@event.status.to_s) %>
+    </li>
+  </ul>
+</div>

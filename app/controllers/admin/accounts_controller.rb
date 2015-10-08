@@ -16,7 +16,7 @@ class Admin::AccountsController < AdminController
     if emp.blank?
       flash[:error] = '工号不存在'
       render action: 'new'
-    elsif not emp.auth_permissions(['admin', 'super_admin', 'teacher'])
+    elsif not emp.auth_permissions(['admin', 'super_admin', 'teacher', 'audit', 'editor'])
       flash[:error] = '此账号没有权限登录'
       render action: 'new'
     else

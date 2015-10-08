@@ -24,7 +24,6 @@
               <li data-search-option="nickname"><a><%= t('simple_form.labels.defaults.nickname') %></a></li>
               <li data-search-option="mobile"><a><%= t('simple_form.labels.defaults.mobile') %></a></li>
               <li data-search-option="email"><a><%= t('simple_form.labels.defaults.email') %></a></li>
-              <li data-search-option="username"><a><%= t('simple_form.labels.defaults.username') %></a></li>
               <li data-search-option="id"><a>ID</a></li>
             </ul>
           </div>
@@ -61,7 +60,7 @@
         <td><%= user.nickname %></td>
         <td><%= user.mobile %></td>
         <td><%= user.email %></td>
-        <td><%= user.username %></td>
+        <td><%= user.user_profile.try(:username) %></td>
         <td><%= user.sign_in_count %></td>
         <td><%= user.current_sign_in_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
         <td><%= link_to [:admin, user], title: '查看', class: 'btn btn-xs btn-warn' do %>

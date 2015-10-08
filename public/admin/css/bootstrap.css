@@ -6094,7 +6094,7 @@ button.close {
   display: table;
   content: " ";
 }
-.clearfix:after,
+/*.clearfix:after,*/
 .dl-horizontal dd:after,
 .container:after,
 .container-fluid:after,
@@ -6107,7 +6107,7 @@ button.close {
 .navbar-header:after,
 .navbar-collapse:after,
 .pager:after,
-.panel-body:after,
+/*.panel-body:after,*/
 .modal-footer:after {
   clear: both;
 }

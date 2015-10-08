@@ -1,20 +1,38 @@
 /*修正导航条内容高度*/
-.navbar .navbar-brand{
-    height: inherit;!important;
+.navbar .navbar-brand {
+    height: inherit;
+!important;
 }
+
 /*通知栏隐藏*/
-#notice{
+#notice {
     display: none;
 }
+
 /*修正表格文字垂直居中*/
-.table tbody tr td{
-    vertical-align: middle;!important;
+.table tbody tr td {
+    vertical-align: middle;
+!important;
 }
-.admin-search-field{
-    width:90px;
+
+.admin-search-field {
+    width: 90px;
     display: -moz-inline-box;
     display: inline-block;
 }
-.dropdown-width{
-    min-width:128px;
+
+.dropdown-width {
+    min-width: 128px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.team-info{
+    width: 400px;
+}
+.team-info .team-info-input {
+    height: 30px;
+    width: 320px;
 }

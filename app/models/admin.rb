@@ -1,5 +1,6 @@
 class Admin < ActiveRecord::Base
-
+  has_many :scores
+  has_many :news
   has_secure_password
   include AccountConcern
 
@@ -11,6 +12,9 @@ class Admin < ActiveRecord::Base
   PERMISSIONS = {
       super_admin: '超级管理员',
       admin: '管理员',
+      editor: '编辑',
+      score: '成绩录入员',
+      audit: '审核员',
       teacher: '教师',
 
   }

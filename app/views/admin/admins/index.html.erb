@@ -53,28 +53,28 @@
   </thead>
 
   <tbody>
-  <% @admins.each do |employee| %>
+  <% @admins.each do |admin| %>
       <tr>
-        <td><%= employee.id %></td>
-        <td><%= employee.job_number %></td>
-        <td><%= employee.name %></td>
+        <td><%= admin.id %></td>
+        <td><%= admin.job_number %></td>
+        <td><%= admin.name %></td>
         <td>
-          <%= show_permissions(employee) %>
+          <%= show_permissions(admin) %>
         </td>
-        <td><%= employee.position %></td>
-        <td><%= employee.age %></td>
-        <td><%= t('gender.gender'+employee.gender.to_s) %></td>
-        <td><%= employee.email %></td>
-        <td><%= employee.phone %></td>
-        <td><%= employee.address %></td>
+        <td><%= admin.position %></td>
+        <td><%= admin.age %></td>
+        <td><%= t('gender.gender'+admin.gender.to_s) %></td>
+        <td><%= admin.email %></td>
+        <td><%= admin.phone %></td>
+        <td><%= admin.address %></td>
         <td>
-          <%= link_to [:admin, employee], title: '查看', class: 'btn btn-xs btn-warn' do %>
+          <%= link_to [:admin, admin], title: '查看', class: 'btn btn-xs btn-warn' do %>
               <i class="icon-eye-open bigger-120"></i>
           <% end %>
-          <%= link_to edit_admin_admin_path(employee), title: '编辑', class: 'btn btn-xs btn-info' do %>
+          <%= link_to edit_admin_admin_path(admin), title: '编辑', class: 'btn btn-xs btn-info' do %>
               <i class="icon-edit bigger-120"></i>
           <% end %>
-          <%= link_to [:admin, employee], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+          <%= link_to [:admin, admin], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
               <i class="icon-trash bigger-120"></i>
           <% end %>
         </td>

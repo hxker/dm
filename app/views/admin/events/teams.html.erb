@@ -1,0 +1,190 @@
+<h1 class="page-header">
+  <%= @event.name %>
+  <span class="hidden team-max-num"> <%= @event.team_max_num %></span>
+  <small class="pull-right">
+    <a href="#add-team-form" role="button" title="添加队伍" class="open-add-team btn btn-default" data-toggle="modal">
+      <i class="icon-plus icon-only"></i></a>
+  </small>
+</h1>
+
+
+<div id="add-team-form" class="modal" tabindex="-1">
+  <div class="modal-dialog" style="width: 360px">
+    <div class="modal-content">
+      <div class="widget-header model-header" style="height: 30px;background-color: #f7f7f7">
+        <button type="button" title="关闭" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
+        <h4 class="blue smaller">创建队伍</h4>
+      </div>
+
+      <div class="modal-body overflow-visible">
+        <div class="row team-info">
+
+          <div class="col-xs-12 col-md-10 col-sm-4">
+            <p>
+              <input type="text" placeholder='请输入队伍名称 2-6位' class="team-name-foc form-control team-info-input" name="team-name">
+            </p>
+
+            <p><input type="text" placeholder='请设置队伍验证码 4-6位' class="form-control team-info-input" name="team-code"></p>
+
+            <p><input type="text" placeholder='请输入指导教师' class="form-control team-info-input" name="team-teacher"></p>
+
+            <div class="form-group">
+              <div>
+                <select class="width-25 chosen-select" id="select-team-leader" data-placeholder="请选择队长">
+                  <option value=""></option>
+                  <% @users.each do |user| %>
+                      <option value="<%= user.id %>"><%= "#{user.user_profile.username} - #{user.nickname}" %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+
+            <!--<input class="input-large" type="hidden" id="add-player-team-id" value=""/>-->
+
+            <div class="space-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-sm" data-dismiss="modal">
+          <i class="icon-remove"></i>
+          取消
+        </button>
+
+        <button class="btn btn-sm btn-primary create-team-submit" data-id="<%= params[:id] %>" type="submit">
+          <i class="icon-ok"></i>
+          提交
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="modal-form" class="modal" tabindex="-1">
+  <div class="modal-dialog" style="width: 360px">
+    <div class="modal-content">
+      <div class="widget-header model-header" style="height: 30px;background-color: #f7f7f7">
+        <button type="button" title="关闭" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
+        <h4 class="blue smaller">请选择队员</h4>
+      </div>
+
+      <div class="modal-body overflow-visible">
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-5 col-md-6">
+            <div class="form-group">
+
+              <label>请为<strong> <span class="team-name"></span> </strong>选择队员</label>
+
+              <div>
+                <select data-placeholder="请选择队员" multiple="" class="chosen-select tag-input-style" id="window-select-team-player">
+                  <option value=""></option>
+                  <% @users.each do |user| %>
+                      <option value="<%= user.id %>" class="aa"><%= "#{user.user_profile.username} - #{user.nickname}" %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+
+            <input class="input-large" type="hidden" id="add-player-team-id" value=""/>
+
+            <div class="space-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-sm" data-dismiss="modal">
+          <i class="icon-remove"></i>
+          取消
+        </button>
+
+        <button class="btn btn-sm btn-primary add-player-submit">
+          <i class="icon-ok"></i>
+          提交
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <% if @teams.present? %>
+
+        <div class="row">
+          <% @teams.each do |team| %>
+              <div class="col-xs-12 col-sm-6 col-md-4" id="<%= "hide-team-#{team.id}" %>">
+
+                <div class="widget-box">
+                  <div class="widget-header widget-header-small">
+                    <h4 class="">
+
+                      <i class="icon-flag-alt orange"></i>
+                      <%= team.name %>
+                      <span class="badge" id="<%= team.id %>" style="font-size: 15px;padding: 1px 6px 2px 6px"><%= team.team_user_ships.count %></span>
+
+                    </h4>
+
+                    <div class="widget-toolbar action-buttons">
+                      <% if team.team_user_ships.count < @event.team_max_num %>
+                          <a href="#modal-form" role="button" class="open-add-player" data-id="<%= team.id %>" data-name="<%= team.name %>" data-toggle="modal">
+                            <i class="icon-plus" title="添加队员"></i>
+                          </a>
+                      <% end %>
+                      &nbsp;
+                      <a class="pink admin-delete-team" style="cursor: pointer" data-id="<%= team.id %>" data-name="<%= team.name %>">
+                        <i class="icon-trash"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="widget-body">
+                    <div class="widget-main padding-8">
+                      <div class="event-team profile-feed">
+                        <% team.team_user_ships.each do |te| %>
+                            <div class="profile-activity clearfix" id="<%= "hide-player-#{te.user_id}" %>">
+                              <div>
+                                <%= te.user.user_profile.username %> - <%= te.user.nickname %>
+                              </div>
+
+                              <% if te.user_id != team.user_id %>
+                                  <div class="tools action-buttons">
+                                    <a class="red delete-team-player-a" style="cursor: pointer" data-id="<%= team.id %>" data-text="<%= te.user.user_profile.username %>" data-name="<%= te.user_id %>">
+                                      <i class="icon-remove bigger-125"></i>
+                                    </a>
+                                  </div>
+                              <% else %>
+                                  <div class="tools">队长</div>
+                              <% end %>
+
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <nav>
+          <%= paginate @teams %>
+        </nav>
+    <% end %>
+
+  </div>
+</div>
+<!--<div id="dialog-confirm" class="hide">-->
+<!--<div class="alert alert-info bigger-110">-->
+<!--These items will be permanently deleted and cannot be recovered.-->
+<!--</div>-->
+
+<!--<div class="space-6"></div>-->
+<!---->
+<!--</div>-->
+<!-- #dialog-confirm -->
