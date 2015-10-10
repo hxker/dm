@@ -25,17 +25,7 @@
             <a href="">联系</a>
           </li>
         </ul>
-        <div class="login-menu col-r">
-          <% if user_signed_in? %>
-              <%= current_user.nickname %>
-              <%= link_to destroy_user_session_path, method: :delete, data: {confirm: '确认退出登录吗?'}, title: '退出登录', :class => '' do %>
-                  退出
-              <% end %>
-          <% else %>
-              <%= link_to '注册', new_user_registration_path, :class => 'robodou-btn btn-register' %>
-              <%= link_to '登录', new_user_session_path, :class => 'robodou-btn btn-login' %>
-          <% end %>
-        </div>
+
       </div>
     </div>
   </div>

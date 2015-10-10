@@ -15,7 +15,7 @@ class SingUp
   validates :mobile, presence: true, length: {is: 11}, numericality: true
   validates :password, presence: true, length: {minimum: 6, maximum: 20}
   validates :mobile_code, presence: true, length: {is: 4}
-  validates :nickname, presence: true, length: {minimum: 3, maximum: 10}
+  validates :nickname, presence: true, length: {minimum: 3, maximum: 10}, format: {with: /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/i, message: '昵称只能包含数字、字母、下划线'}
   validate :register_validation
   validate :mobile_code_validation
 

@@ -7,7 +7,7 @@ class Admin::UsersController < AdminController
     if params[:field].present? && params[:keyword].present?
       @users = User.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
     else
-      @users = User.all.page(params[:page]).per(params[:per])
+      @users = User.includes(:user_profile).all.page(params[:page]).per(params[:per])
     end
   end
 

@@ -22,19 +22,17 @@ class Users::SessionsController < Devise::SessionsController
               super
               session[:fail_times] = 0
             else
-              session[:fail_times] += 1
               flash[:error] = '密码不正确'
               @resource = resource_class.new(sign_in_params)
               @resource.login = resource_params[:login]
               render action: 'new'
             end
           else
-            session[:fail_times] += 1
             flash[:error] = '校证码不正确'
             @resource = resource_class.new
             @resource.login = resource_params[:login]
-            redirect_to action: 'new'
-            # render action: 'new'
+            # redirect_to action: 'new'
+            render action: 'new'
           end
         else
           if user.valid_password?(params[:user][:password])
@@ -61,10 +59,8 @@ class Users::SessionsController < Devise::SessionsController
     else
       flash[:error] = '请输入账户名'
       @resource = resource_class.new(sign_in_params)
-      render action: 'new'
+      redirect_to action: 'new'
     end
-    puts '0989'
-    puts session[:fail_times]
     # super
   end
 
