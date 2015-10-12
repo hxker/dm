@@ -24,6 +24,7 @@
  *= require homepage
  *= require passport
  *= require competition
+ *= require user
  *= require_tree .
  *= require_self
  */
