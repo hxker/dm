@@ -47,6 +47,8 @@ class UserController < ApplicationController
   def update_avatar
     if current_user.update_attributes(params.require(:user).permit(:nickname, :avatar))
       flash[:success] = '个人信息更新成功'
+    elsif User.where(nickname: params[:user][:nickname]).where.not(id: current_user.id).take.present?
+      flash[:error] = params[:user][:nickname]+'已被使用,请使用其他昵称!'
     else
       flash[:error] = '个人信息更新失败'
     end
