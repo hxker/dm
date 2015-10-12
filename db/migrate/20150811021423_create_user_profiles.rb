@@ -7,6 +7,7 @@ class CreateUserProfiles < ActiveRecord::Migration
       t.integer :age
       t.string :school
       t.string :grade
+      t.string :autograph # 个性签名
       t.string :address
       t.date :birthday
       t.string :address
