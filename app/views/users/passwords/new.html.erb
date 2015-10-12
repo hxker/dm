@@ -9,7 +9,7 @@
             <a href="/">首页</a>
           </li>
           <li class="item">
-            <a href="<%= introduction_index_url%>">比赛</a>
+            <a href="<%= introduction_index_path %>">比赛</a>
           </li>
           <li class="item">
             <a href="">新闻</a>
@@ -45,11 +45,18 @@
       </div>
       <div class="passport-content">
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-            <%= devise_error_messages! %>
-
             <div class="field form-group">
               <label for="user_email" class="control-label">邮箱:</label><br/>
               <%= f.email_field :email, autofocus: true, placeholder: '请输入邮箱', class: 'form-control' %>
+              <span id="" class="" style="right: 8px;bottom: 8px;position: absolute;color: darkred">
+                <% if resource.errors[:email].present? %>
+                <ul>
+                  <% resource.errors[:email].each do |msg| %>
+                      <li>该邮箱<%= msg %></li>
+                  <% end %>
+                </ul>
+                <% end %>
+              </span>
             </div>
 
             <div class="actions">

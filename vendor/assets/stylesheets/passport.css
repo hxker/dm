@@ -167,7 +167,8 @@
     width: 50%;
     display: inline-block;
 }
-.reset_password_mobile_code{
+
+.reset_password_mobile_code {
     width: 50%;
     display: inline-block;
 }
@@ -209,8 +210,13 @@ input[name='captcha'] {
     position: relative;
 }
 
-.error {
-    background: rgba(0, 0, 0, 0) url("/img/wrong.jpg") no-repeat scroll 5px 0;
-    color: #777;
-    padding: 2px 0 2px 30px;
+/*.error {*/
+/*background: rgba(0, 0, 0, 0) url("/img/wrong.jpg") no-repeat scroll 5px 0;*/
+/*color: #777;*/
+/*padding: 2px 0 2px 30px;*/
+/*}*/
+.select-forget-password {
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 95px
 }
