@@ -1,3 +1,19 @@
 <% if current_user %>
+    <li>
+      <a href="<%= user_profile_path %>">个人中心<span class="visible-xs pull-right">[ <%= current_user.nickname %> ]</span></a>
+    </li>
+    <li class="nav-divider visible-xs"></li>
+    <li class="divider hidden-xs"></li>
+    <li>
+      <a href="#">我的收藏</a>
+    </li>
+    <li class="nav-divider visible-xs"></li>
+    <li class="divider hidden-xs"></li>
 
+    <li class="nav-divider visible-xs"></li>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete, data: {confirm: '确认退出登录吗?'}, title: '退出登录', class: '' do %>
+          退出登录
+      <% end %>
+    </li>
 <% end %>
