@@ -1,33 +1,39 @@
-#user{
+#user {
     overflow: hidden;
 }
-#user-info{
+
+#user-info {
     border-radius: 5px;
     background-color: #f9f9f9;
     margin: 150px 0 60px;
     box-shadow: 0 0 3px #dddddd;
     overflow: hidden;
 }
-#user-info .menu{
+
+#user-info .menu {
     width: 240px;
     float: left;
 }
-#user-info .menu-item{
+
+#user-info .menu-item {
     padding: 15px;
     position: relative;
     border-bottom: 1px solid #e7e7e7;
 }
-#user-info .menu-item.active{
+
+#user-info .menu-item.active {
     box-shadow: 0 0 3px #ccc;
     background: #FFFFFF;
     color: #f1ba0c;
 }
-#user-info .menu-item>a{
+
+#user-info .menu-item > a {
     margin-left: 15px;
     color: inherit;
     cursor: pointer;
 }
-#user-info .menu-item.active:before{
+
+#user-info .menu-item.active:before {
     content: " ";
     width: 5px;
     background: #f1ba0c;
@@ -37,7 +43,8 @@
     left: 0;
     top: 0;
 }
-#user-info .menu-item.active:after{
+
+#user-info .menu-item.active:after {
     content: " ";
     width: 3px;
     background: #FFFFFF;
@@ -47,57 +54,72 @@
     right: -3px;
     top: 0;
 }
-#user-info .avatar{
+
+#user-info .avatar {
     position: relative;
-}
-#user-info .avatar-img{
+    border-radius: 50%;
+    overflow: hidden;
     width: 111px;
     height: 111px;
-    float: left;
+    margin:0 auto;
 }
-#user-info .avatar:after{
-    content: "修改头像";
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 109px;
-    height: 109px;
-    border: 1px solid #f1ba0c;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.2);
+#user-info .menu-item .edit-plus{
+    margin:20px 0;
+}
+#user-info .menu-item .edit-avatar,#user-info .btn-user-update{
+    border: 1px solid #FEBF00;
     color: #FFFFFF;
-    text-align: center;
-    line-height: 109px;
-    font-size: 18px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #FEBF00;
     cursor: pointer;
-    transition: opacity .3s;
+    margin: 0 auto;
+    display: block;
+    padding: 5px 12px;
+    display:inline-block;
 }
-#user-info .avatar:hover:after{
+
+#user-info .avatar-img {
+    width: 111px;
+    height: 111px;
+    display:block;
+    margin:0 auto;
+}
+#user-info #user_avatar{
+    display:none;
+}
+
+
+#user-info .avatar:hover:after {
     opacity: 1;
 }
-#user-info .username{
+
+#user-info .username {
     color: #00a1ff;
     font-size: 20px;
     line-height: 111px;
     margin-left: 15px;
 }
-#user-info .content{
+
+#user-info .content {
     margin-left: 240px;
     background: #FFFFFF;
     box-shadow: 0 0 3px #ccc;
     padding-bottom: 40px;
 }
-#user-info .content .signature,#user-info .content .secret-info{
+
+#user-info .content .signature, #user-info .content .secret-info {
     width: 780px;
     margin: 0 auto;
     border-bottom: 1px dashed #e7e7e7;
     padding: 8px 0;
 }
-#user-info .content .secret-info{
+
+#user-info .content .secret-info {
     border: none;
 }
-#user-info .content .signature .signature-label,#user-info .content .secret-info .user-label{
+
+#user-info .content .signature .signature-label, #user-info .content .secret-info .user-label {
     display: block;
     width: 80px;
     float: left;
@@ -105,11 +127,13 @@
     line-height: 100px;
     color: #555;
 }
-#user-info .content .secret-info .user-label{
+
+#user-info .content .secret-info .user-label {
     height: 50px;
     line-height: 50px;
 }
-#user-info .content .signature .signature-input,#user-info .content .secret-info .user-input{
+
+#user-info .content .signature .signature-input, #user-info .content .secret-info .user-input {
     resize: none;
     border: 1px solid #d2d2d2;
     border-radius: 5px;
@@ -121,40 +145,49 @@
     color: #aaaaaa;
     font-family: inherit;
 }
-#user-info .content .secret-info .user-input{
+
+#user-info .content .secret-info .user-input {
     height: 50px;
 }
-#user-info .content .input-row{
+
+#user-info .content .input-row {
     width: 482px;
     padding: 8px 0;
     margin: 0 auto;
 }
-#user-info .content .user-input-group{
+
+#user-info .content .user-input-group {
     height: 50px;
     width: 400px;
 }
-#user-info .gender-radio{
+
+#user-info .gender-radio {
     line-height: 50px;
     font-size: 16px;
     margin-right: 30px;
 }
-#user-info .gender-radio input{
+
+#user-info .gender-radio input {
     margin-right: 20px;
     vertical-align: middle;
 }
-#user-info .competitions{
+
+#user-info .competitions {
     width: 580px;
     margin: 0 auto;
     padding: 40px 0 50px;
 }
-#user-info .competitions .competition-item{
+
+#user-info .competitions .competition-item {
     margin-bottom: 16px;
 }
-#user-info .competitions .competition-item .item-pic{
+
+#user-info .competitions .competition-item .item-pic {
     float: left;
     height: 136px;
 }
-#user-info .competitions .competition-item .item-dec{
+
+#user-info .competitions .competition-item .item-dec {
     background: url("../images/competions-bk.jpg");
     height: 136px;
     margin-left: 220px;
@@ -162,7 +195,8 @@
     box-sizing: border-box;
     padding-top: 15px;
 }
-#user-info .btn-save-user-info{
+
+#user-info .btn-save-user-info {
     height: 50px;
     border: 1px solid #FEBF00;
     color: #FFFFFF;
@@ -174,10 +208,12 @@
     display: block;
     width: 200px;
 }
-#user-info .form-group{
+
+#user-info .form-group {
     margin-bottom: 0;
 }
-#user-info .secret-info .form-control{
+
+#user-info .secret-info .form-control {
     width: 400px;
     box-sizing: border-box;
     height: 50px;
