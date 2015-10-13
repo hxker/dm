@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="page-header">
+    比赛列表
+  </h1>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <% @competitions.each do |comp| %>
+            <div class="col-xs-12" data-competition-id="<%= comp.id %>">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <h4 class="name">
+                      <%= link_to '/competitions/'+ comp.id.to_s do %>
+                          <%= comp.name %>
+                      <% end %>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <nav>
+        <%= paginate @competitions %>
+      </nav>
+    </div>
+  </div>
+
+</div>

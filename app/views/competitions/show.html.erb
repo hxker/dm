@@ -1,0 +1,55 @@
+<div class="container">
+
+  <% if @competition.present? %>
+      <h1 class="page-header">
+        <%= @competition.name %>
+      </h1>
+
+      <p>描述：<%= @competition.description %></p>
+
+      <p>指导单位：<%= @competition.guide_units %></p>
+      <p>主办单位：<%= @competition.organizer_units %></p>
+      <p>协办单位：<%= @competition.help_units %></p>
+      <p>承办单位：<%= @competition.undertake_units %></p>
+      <p>赞助商：<%= @competition.undertake_units %></p>
+
+      <p>报名开始时间：<%= @competition.apply_start_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+
+      <p>报名结束时间：<%= @competition.apply_end_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+
+
+      <h5 class="page-header"></h5>
+
+  <% end %>
+
+
+  <% if Time.now < @competition.apply_end_time %>
+      <% if @competition.status == 0 %>
+          <%= link_to "#{apply_in_competitions_path}?id=#{@competition.id}", title: '', class: 'btn btn-default ' do %>
+              报名该比赛
+          <% end %>
+      <% else %>
+          <%= link_to "#{apply_in_competitions_path}?id=#{@competition.id}", title: '', class: 'btn btn-default ' do %>
+              查看比赛队伍
+          <% end %>
+      <% end %>
+  <% end %>
+
+
+  <div class="start-apply" style="display: none">
+
+    <div class="" style="width: 500px;margin-top: 20px">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          创建队伍后，你将担任本队队长角色
+        </div>
+        <div class="panel-body team-info">
+          <p><input type="text" placeholder='请输入队伍名称 2-6位' class="form-control" name="team-name"></p>
+
+          <p><input type="text" placeholder='请输入队伍密钥 4-6位' class="form-control" name="team-code"></p>
+          <input class="btn btn-warning form-control create-team-submit" data-id="<%= @competition.id %>" data-name="<%= current_user.id if user_signed_in? %>" type="submit" value="创建队伍">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
