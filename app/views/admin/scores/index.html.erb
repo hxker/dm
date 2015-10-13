@@ -1,0 +1,81 @@
+<h1 class="page-header">
+  <%= t('activerecord.models.score') %>列表
+  <small class="pull-right">
+    <a href="<%= new_admin_score_path %>" class="btn btn-default" title="添加成绩">
+      <i class="icon-only icon-plus"></i></a>
+    <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+      <i class="icon-search icon-only"></i>
+    </a>
+  </small>
+</h1>
+<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'hide' %>">
+  <div class="widget-header widget-header-small">
+    <h5 class="lighter">搜索</h5>
+  </div>
+  <div class="widget-body">
+    <div class="widget-main">
+      <form class="form" role="form" method="get">
+        <div class="input-group" data-search="field">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <span data-search-text class="admin-search-field"><%= t('simple_form.labels.defaults.competition_id') %></span>
+              <span class="caret"></span></button>
+            <ul class="dropdown-width dropdown-menu">
+              <li data-search-option="competition_id"><a><%= t('simple_form.labels.defaults.competition_id') %></a></li>
+              <li data-search-option="id"><a>ID</a></li>
+            </ul>
+          </div>
+          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'competition_id' %>"/>
+          <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('simple_form.labels.defaults.competition_id') %></th>
+    <th><%= t('simple_form.labels.defaults.comp_name') %></th>
+    <th><%= t('simple_form.labels.defaults.kind') %></th>
+    <th><%= t('simple_form.labels.defaults.th') %></th>
+    <th><%= t('simple_form.labels.defaults.team1_id') %></th>
+    <th><%= t('simple_form.labels.defaults.team2_id') %></th>
+    <th>分数</th>
+    <th><%= t('simple_form.labels.defaults.referee_id') %></th>
+    <th><%= t('simple_form.labels.defaults.operator') %></th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.id %></td>
+        <td><%= score.event.try(:name) %></td>
+        <td><%= score.schedule.try(:name) %></td>
+        <td><%= t('kind.kind'+score.kind.to_s) %></td>
+        <td><%= score.th %></td>
+        <td><%= score.team.name %></td>
+        <td><%= score.team.name %></td>
+        <td><%= score.score1 %><%= " : #{score.score2} " if t('kind.kind'+score.kind.to_s) ==2 %></td>
+        <td><%= score.referee_id %></td>
+        <td><%= score.admin.try(:name) %></td>
+        <td>
+          <%= link_to edit_admin_score_path(score), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit bigger-120"></i>
+          <% end %>
+          <%= link_to [:admin, score], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash bigger-120"></i>
+          <% end %></td>
+      </tr>
+  <% end %>
+  </tbody>
+
+
+</table>
+
+<nav>
+  <%= paginate @scores %>
+</nav>

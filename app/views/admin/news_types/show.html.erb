@@ -1,0 +1,25 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.news') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_news_type_path(@news_type) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_news_types_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.news_type') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <%= @news_type.name %>
+    </li>
+  </ul>
+</div>

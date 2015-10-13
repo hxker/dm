@@ -1,0 +1,48 @@
+<h1 class="page-header">
+  显示 <%= t('activerecord.models.team') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_team_path(@team) %>" title="编辑队伍" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_teams_path %>" title="队伍列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+
+
+
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.team') %>
+  </div>
+  <ul class="list-group">
+
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <p><%= @team.name %></p>
+    </li>
+    <li class="list-group-item">
+      <h4>队长:</h4>
+
+      <p><%= @team.user.user_profile.username %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.competition_id') %>:</h4>
+
+      <p><%= @team.competition.name %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.team_code') %>:</h4>
+
+      <p><%= @team.team_code %></p>
+    </li>
+
+  </ul>
+</div>

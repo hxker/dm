@@ -1,0 +1,16 @@
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.news_type') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @news_type]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :name %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>

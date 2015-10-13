@@ -1,0 +1,50 @@
+<h1>编辑成集</h1>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.score') %></div>
+  <div class="panel-body">
+
+    <%= simple_form_for([:admin, @score]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+
+          <%= f.input :kind, collection: Score::KIND.map { |key, val| [t('kind.'+key.to_s), val] }, prompt: '请选择' , :class=> 'disabled' %>
+
+          <!--<div class="form-group select optional score_team1_id">-->
+            <!--<label class="select optional control-label" for="score_team1_id">参赛队伍</label>-->
+            <!--<select id="score_team1_id" class="select optional form-control" name="score[team1_id]">-->
+              <!--<option value=""></option>-->
+            <!--</select>-->
+          <!--</div>-->
+
+          <!--<div class="form-group select optional score_team2_id">-->
+            <!--<label class="select optional control-label" for="score_team2_id">参赛队伍</label>-->
+            <!--<select id="score_team2_id" class="select optional form-control" name="score[team2_id]">-->
+              <!--<option value=""></option>-->
+            <!--</select>-->
+          <!--</div>-->
+
+          <%= f.input :score1 %>
+          <%= f.input :score2 %>
+          <%= f.hidden_field :operator %>
+
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        var score_kind = $('#score_kind').val();
+        if (score_kind == '1') {
+            $('.score_team2_id,.score_score2').addClass('hidden');
+        } else {
+            $('.score_team2_id,.score_score2').removeClass('hidden');
+        }
+    }
+</script>

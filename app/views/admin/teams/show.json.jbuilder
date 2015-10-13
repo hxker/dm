@@ -1,0 +1,1 @@
+json.extract! @team, :name, :user_id, :competition_id, :team_code, :created_at, :updated_at

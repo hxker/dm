@@ -1,0 +1,37 @@
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.score') %></div>
+  <div class="panel-body">
+
+    <%= simple_form_for([:admin, @score]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+
+          <!--<%= f.input :comp_name %>-->
+          <%= f.input :kind, collection: Score::KIND.map { |key, val| [t('kind.'+key.to_s), val] }, prompt: '请选择' %>
+          <div class="row">
+            <div class="col-xs-4"><%= f.input :team1_id, collection: Team.where(event_id: params[:event_id]) %></div>
+            <div class="col-xs-4"><%= f.input :team2_id, collection: Team.where(event_id: params[:event_id]) %></div>
+            <div class="col-xs-4"><%= f.input :th, collection: [1, 2, 3, 4, 5, 6], prompt: '请选择' %></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4"><%= f.input :score1 %></div>
+            <div class="col-xs-4"><%= f.input :score2 %></div>
+          </div>
+
+          <%= f.input :referee_id %>
+          <%= f.hidden_field :operator %>
+
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

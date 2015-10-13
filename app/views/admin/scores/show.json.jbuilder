@@ -1,0 +1,1 @@
+json.extract! @score, :competition_id, :comp_name, :kind, :th, :team1_id, :team2_id, :score1, :score2, :referee_id, :operator, :created_at, :updated_at

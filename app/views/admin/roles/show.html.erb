@@ -1,0 +1,24 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.role') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_role_path(@role) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_roles_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.role') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+      <%= @role.name %>
+    </li>
+  </ul>
+</div>
