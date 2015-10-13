@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'introduction/index'
   # resources :apply_roles do
   #   collection do
   #     post :apply_role
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'competition' => 'competitions#index'
   get 'competitions/team/:id' => 'competitions#team'
+  get 'competitions/shows' => 'competitions#shows'
   # get 'competitions/apply_in/:id' => 'competitions#apply_in'
   resources :competitions, only: [:index, :show] do
     collection do
