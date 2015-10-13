@@ -1,0 +1,1 @@
+json.extract! @schedule, :name, :created_at, :updated_at

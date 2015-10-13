@@ -1,0 +1,39 @@
+<h1 class="page-header">
+  <%= t('activerecord.models.schedule') %>列表
+  <small class="pull-right">
+    <a href="<%= new_admin_schedule_path %>" class="btn btn-default" title="添加赛程名">
+      <i class="icon-only icon-plus"></i></a>
+  </small>
+</h1>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('simple_form.labels.defaults.name') %></th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.name %></td>
+        <td><%= link_to [:admin, schedule], title: '查看', class: 'btn btn-xs btn-warn' do %>
+              <i class="icon-eye-open bigger-120"></i>
+          <% end %>
+          <%= link_to edit_admin_schedule_path(schedule), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit bigger-120"></i>
+          <% end %>
+          <%= link_to [:admin, schedule], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash bigger-120"></i>
+          <% end %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<nav>
+  <%= paginate @schedules %>
+</nav>
