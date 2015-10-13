@@ -1,0 +1,46 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.organizer') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_organizer_path(@organizer) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_organizers_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.organizer') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <%= @organizer.name %>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.category') %>:</h4>
+
+      <%= t('category.category'+@organizer.category.to_s) %>
+    </li>
+
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.responsible') %>:</h4>
+
+      <%= @organizer.responsible %>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.tel') %>:</h4>
+
+      <%= @organizer.tel %>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.address') %>:</h4>
+
+      <%= @organizer.address %>
+    </li>
+  </ul>
+</div>
