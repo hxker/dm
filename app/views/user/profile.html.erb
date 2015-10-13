@@ -116,11 +116,14 @@
                 <label class="user-label t-16">性别：</label>
                 <%= f.input :gender, collection: UserProfile::GENDER.map { |key, val| [t('gender.'+key.to_s), val] } %>
               </div>
+              <!--<div class="input-row">-->
+                <!--<label class="user-label t-16">生日：</label>-->
+                <!--<%= f.input :birthday, as: :date, html5: true %>-->
+              <!--</div>-->
               <div class="input-row">
-                <label class="user-label t-16">生日：</label>
-                <%= f.input :birthday, as: :date, html5: true %>
+                <label class="user-label t-16">年龄：</label>
+                <%= f.input :age %>
               </div>
-
               <div class="input-row">
                 <label class="user-label t-16">学校：</label>
                 <%= f.input :school %>
