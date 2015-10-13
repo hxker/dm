@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
   has_many :users, through: :team_user_ships
   has_many :scores
 
-  validates :name, presence: true, length: {in: 2..8}
+  validates :name, presence: true, length: {in: 2..6}
   validates :user_id, presence: true
   validates :event_id, presence: true
   validates :teacher, presence: true
