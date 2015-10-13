@@ -50,7 +50,7 @@
       <tr>
         <td><%= event.id %></td>
         <td><%= event.name %></td>
-        <td><%= event.competition.name %></td>
+        <td><%= event.competition.try(:name) %></td>
         <td><%= t('status.status'+event.status.to_s) %></td>
         <td><%= "#{event.team_min_num}-" if event.team_min_num != event.team_max_num %><%= event.team_max_num %></td>
         <td>

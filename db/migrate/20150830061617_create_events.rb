@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.text :description
       t.string :cover
       t.integer :status
+      t.text :against
       t.integer :team_min_num
       t.integer :team_max_num
       t.datetime :apply_start_time
