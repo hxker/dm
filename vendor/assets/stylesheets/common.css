@@ -18,7 +18,8 @@ a {
     text-decoration: none;
     color: #444;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
 }
 
@@ -67,7 +68,8 @@ ul {
     position: relative;
     margin: 0 auto;
 }
-.container-content:after{
+
+.container-content:after {
     content: "";
     display: block;
     clear: both;
@@ -187,6 +189,10 @@ ul {
     left: 50%;
 }
 
+.pull-down-0 {
+    margin-bottom: 0;
+}
+
 .pull-down-2 {
     margin-bottom: 2px;
 }
@@ -220,29 +226,29 @@ ul {
 }
 
 /*.btn {*/
-    /*border: none;*/
-    /*outline: none;*/
-    /*cursor: pointer;*/
+/*border: none;*/
+/*outline: none;*/
+/*cursor: pointer;*/
 /*}*/
 
 /*.btn-default {*/
-    /*background: #fff;*/
-    /*transition: background 0.4s, color 0.4s;*/
+/*background: #fff;*/
+/*transition: background 0.4s, color 0.4s;*/
 /*}*/
 
 /*.btn-default:hover {*/
-    /*background: #2B71B8;*/
-    /*color: #fff;*/
+/*background: #2B71B8;*/
+/*color: #fff;*/
 /*}*/
 
 /*.btn-lg {*/
-    /*padding: 11px 16px;*/
-    /*font-size: 16px;*/
+/*padding: 11px 16px;*/
+/*font-size: 16px;*/
 /*}*/
 
 /*.btn-md {*/
-    /*padding: 6px 10px;*/
-    /*font-size: 14px;*/
+/*padding: 6px 10px;*/
+/*font-size: 14px;*/
 /*}*/
 
 .abs-tl {

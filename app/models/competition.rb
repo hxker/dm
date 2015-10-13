@@ -3,7 +3,7 @@ class Competition < ActiveRecord::Base
   has_many :events
 
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
-  validates :organizer_units, presence: true
+  # validates :organizer_units, presence: true
   # validates :apply_end_time, presence: true
   # validates :apply_end_time, presence: true
   # validates :start_time, presence: true

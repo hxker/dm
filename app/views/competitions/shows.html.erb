@@ -1,142 +1,249 @@
-<div class="floor" id="competition">
-  <div id="competition-banner" class="container-layer">
-    <div id="nav">
-      <%= render 'layouts/nav_menu' %>
-    </div>
-  </div>
-  <div id="time-line" class="container-content">
-  </div>
-  <div id="competition-items">
-    <div class="container-content">
-      <div class="item">
-        <p class="blue text-center t-34">2015年</p>
-
-        <p class="blue text-center t-24 t-bold">ROBODOU</p>
-
-        <p class="blue text-center t-24 ">我爱机器人大赛</p>
-      </div>
-      <div class="item">
-        <div class="item-pic">
-          <img src="/images/competition-item01.jpg" alt=""/>
-        </div>
-        <div class="item-text">
-          少年科技组
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-pic">
-          <img src="/images/competition-item01.jpg" alt=""/>
-        </div>
-        <div class="item-text">
-          少年科技组
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-pic">
-          <img src="/images/competition-item01.jpg" alt=""/>
-        </div>
-        <div class="item-text">
-          少年科技组
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-pic">
-          <img src="/images/competition-item01.jpg" alt=""/>
-        </div>
-        <div class="item-text">
-          少年科技组
-        </div>
+<div id="competition">
+  <div class="floor">
+    <div id="competition-banner" class="container-layer">
+      <div id="nav">
+        <%= render 'layouts/nav_menu' %>
       </div>
     </div>
-  </div>
-  <div id="competition-intro" class="container-layer pull-down-40">
-    <div class="container-content">
-      <div class="col-l left"></div>
-      <div class="col-r right">
-        <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;大赛介绍</p>
-
-        <p class="t-14 pull-down-40">“我爱机器人” (I love
-          robot)活动，是面向全上海市中小学生开展的一项以科技设计与实践为导向的科普活动，是一项源于智能机器人竞赛基础进行深度开发的大型活动。分为小学组、初中组、高中组以及社区组不同等级进行比赛。</p>
-
-        <p class="t-14 pull-down-40">
-          这次机器人竞赛活动以培养中小学生的“创新和实践”能力为引导，引导广大中小学生积极关注社会热点问题，并以富有挑战的工程设计和制作任务为驱动，激励他们去亲手实践，从而唤起他们对科学技术的学习兴趣，并在实践过程中，不断树立创新意识、学习创新方法、尝试和体验创新实践。使他们成为具有较高的知识层次、较强的创新能力、掌握熟练的心智技能的新兴技术人才苗子。同时通过机器人竞赛活动可以展示各个学校在信息技术、计算机技术、创新实践等方面的教学改革与实践成果，促进各个学校之间的教学改革成果交流，普及和带动落后地区科技教育。</p>
-
-        <p class="t-14 pull-down-50">我爱机器人(I love
-          robot)活动作为一项以科技设计与实践为导向的科普活动，以推广科技教育走向整个社会，培养民族科技创新意识，提升中华民族的综合国力为宗旨，致力于将科普教育全力推广进入中小学校和社区，培养广大青少年具有国际视野和科技创新能力，促进跨区域乃至跨国界的科技和文化领域的友好交流合作，打造成具有中国品牌的全球青少年共同参与的盛大科技赛事。</p>
-      </div>
+    <div id="time-line" class="container-content">
     </div>
-  </div>
-  <div id="competition-organization" class="container-layer pull-down-50">
-    <div class="container-content">
-      <div class="col-l left">
-        <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;组织架构</p>
-        <div class="t-14 pull-down-40 like-table">
-          <span class="item-name">指导单位：</span>
-          <p>共青团上海市委员会</p>
-          <p>上海市教育委员会</p>
-          <p>上海市经济与信息委员会</p>
+    <div id="competition-items">
+      <div class="container-content">
+        <div class="item">
+          <p class="blue text-center t-34">2015年</p>
+
+          <p class="blue text-center t-24 t-bold">ROBODOU</p>
+
+          <p class="blue text-center t-24 ">我爱机器人大赛</p>
         </div>
-        <div class="t-14 pull-down-40 like-table">
-          <span class="item-name">主办单位：</span>
-          <p>青年报</p>
-          <p>豆姆文化传播（上海）有限公司</p>
+        <%= @competition %>
+        <% @events %>
+        <div class="item">
+          <div class="item-pic">
+            <img src="/images/competition-item01.jpg" alt=""/>
+          </div>
+          <div class="item-text">
+            机器人冰壶赛
+          </div>
         </div>
-        <div class="t-14 pull-down-40 like-table">
-          <span class="item-name">支持单位：</span>
-          <p>上海市机器人行业协会</p>
-          <p>上海市普陀区教育委员会</p>
-          <p>上海市奉贤区教育委员会</p>
-          <p>上海市浦东新区教育委员会</p>
-          <p>上海市徐汇区教育委员会</p>
-          <p>蓝色光标传播集团</p>
-          <p>浦东进才（北校）</p>
+        <div class="item">
+          <div class="item-pic">
+            <img src="/images/competition-item01.jpg" alt=""/>
+          </div>
+          <div class="item-text">
+            敬请期待
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-pic">
+            <img src="/images/competition-item01.jpg" alt=""/>
+          </div>
+          <div class="item-text">
+            敬请期待
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-pic">
+            <img src="/images/competition-item01.jpg" alt=""/>
+          </div>
+          <div class="item-text">
+            敬请期待
+          </div>
         </div>
       </div>
-      <div class="col-r right"></div>
     </div>
-  </div>
-  <div id="competition-rule" class="container-layer pull-down-50">
-    <div class="container-content">
-      <div class="col-l left"></div>
-      <div class="col-r right">
-        <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;赛事规则</p>
-        <p class="t-14 t-bold pull-down-5">创意类</p>
-        <p class="t-14">创意展示（小学组、初中组、高中组）</p>
-        <p class="t-14 pull-down-20">以线上上传参赛者的创意，事先设立主题内容，可以以视频、实物、绘画、文字等形式上传，由专家专业评审结合网络拉票形式，线上预热，选出一定比例的选手，在总决赛进行现场展示。</p>
+    <div class="competitions-tabs-collect">
+      <div class="active competitions-tab">
+        <div id="competition-intro" class="container-layer pull-down-40">
+          <div class="container-content">
+            <div class="col-l left"></div>
+            <div class="col-r right">
+              <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;大赛介绍</p>
 
-        <p class="t-14 t-bold pull-down-5">零基础</p>
-        <p class="t-14 pull-down-20">以类似创客的现场活动，现场组装机器人或者工程类的套件，完场现场布置的随机任务。活动分三场预赛和一场总决赛，预赛成绩排名靠前者，直接进入总决赛，进行现场比拼。</p>
+              <p class="t-14 pull-down-40">“我爱机器人” (I love
+                robot)活动，是面向全上海市中小学生开展的一项以科技设计与实践为导向的科普活动，是一项源于智能机器人竞赛基础进行深度开发的大型活动。分为小学组、初中组、高中组以及社区组不同等级进行比赛。</p>
 
-        <p class="t-14 t-bold pull-down-5">传统赛事</p>
-        <p class="t-14 pull-down-20">主题赛（难度较高，建议分初中和高中组），此次主题定为，关爱身边老人，以社区服务为起点，每队可以组3到5人为一支队伍，在预设的赛场上，由两台机器人进行任务比赛，一台为老人送餐，另一台进行垃圾收集分类，并送到指定的地点，赛场上设有难度不同的障碍或者需机器人完成的其他任务。</p>
+              <p class="t-14 pull-down-40">
+                这次机器人竞赛活动以培养中小学生的“创新和实践”能力为引导，引导广大中小学生积极关注社会热点问题，并以富有挑战的工程设计和制作任务为驱动，激励他们去亲手实践，从而唤起他们对科学技术的学习兴趣，并在实践过程中，不断树立创新意识、学习创新方法、尝试和体验创新实践。使他们成为具有较高的知识层次、较强的创新能力、掌握熟练的心智技能的新兴技术人才苗子。同时通过机器人竞赛活动可以展示各个学校在信息技术、计算机技术、创新实践等方面的教学改革与实践成果，促进各个学校之间的教学改革成果交流，普及和带动落后地区科技教育。</p>
 
-        <p class="t-14 t-bold pull-down-5">海洋搜救</p>
-        <p class="t-14 pull-down-20">每队可以由一到三人组成，在设计的场地上完成一系列的搜救任务。</p>
+              <p class="t-14 pull-down-50">我爱机器人(I love
+                robot)活动作为一项以科技设计与实践为导向的科普活动，以推广科技教育走向整个社会，培养民族科技创新意识，提升中华民族的综合国力为宗旨，致力于将科普教育全力推广进入中小学校和社区，培养广大青少年具有国际视野和科技创新能力，促进跨区域乃至跨国界的科技和文化领域的友好交流合作，打造成具有中国品牌的全球青少年共同参与的盛大科技赛事。</p>
+            </div>
+          </div>
+        </div>
+        <div id="competition-organization" class="container-layer pull-down-50">
+          <div class="container-content">
+            <div class="col-l left">
+              <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;组织架构</p>
 
-        <p class="t-14 t-bold pull-down-5">机器人冰壶</p>
-        <p class="t-14 pull-down-20">中国成功申办了2022年冬季奥运会，以此契机，结合热点，并且可以宣传一下冬季奥运会的项目，每队由一到三人组成，完成机器人冰壶项目。</p>
+              <div class="t-14 pull-down-40 like-table">
+                <span class="item-name">指导单位：</span>
+
+                <p>共青团上海市委员会</p>
+
+                <p>上海市教育委员会</p>
+
+                <p>上海市经济与信息委员会</p>
+              </div>
+              <div class="t-14 pull-down-40 like-table">
+                <span class="item-name">主办单位：</span>
+
+                <p>青年报</p>
+
+                <p>豆姆文化传播（上海）有限公司</p>
+              </div>
+              <div class="t-14 pull-down-40 like-table">
+                <span class="item-name">支持单位：</span>
+
+                <p>上海市机器人行业协会</p>
+
+                <p>上海市普陀区教育委员会</p>
+
+                <p>上海市奉贤区教育委员会</p>
+
+                <p>上海市浦东新区教育委员会</p>
+
+                <p>上海市徐汇区教育委员会</p>
+
+                <p>蓝色光标传播集团</p>
+
+                <p>浦东进才（北校）</p>
+              </div>
+            </div>
+            <div class="col-r right"></div>
+          </div>
+        </div>
+        <div id="competition-rule" class="container-layer pull-down-50">
+          <div class="container-content">
+            <div class="col-l left"></div>
+            <div class="col-r right">
+              <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;赛事规则</p>
+
+              <p class="t-14 t-bold pull-down-5">创意类</p>
+
+              <p class="t-14">创意展示（小学组、初中组、高中组）</p>
+
+              <p class="t-14 pull-down-20">以线上上传参赛者的创意，事先设立主题内容，可以以视频、实物、绘画、文字等形式上传，由专家专业评审结合网络拉票形式，线上预热，选出一定比例的选手，在总决赛进行现场展示。</p>
+
+              <p class="t-14 t-bold pull-down-5">零基础</p>
+
+              <p class="t-14 pull-down-20">以类似创客的现场活动，现场组装机器人或者工程类的套件，完场现场布置的随机任务。活动分三场预赛和一场总决赛，预赛成绩排名靠前者，直接进入总决赛，进行现场比拼。</p>
+
+              <p class="t-14 t-bold pull-down-5">传统赛事</p>
+
+              <p class="t-14 pull-down-20">主题赛（难度较高，建议分初中和高中组），此次主题定为，关爱身边老人，以社区服务为起点，每队可以组3到5人为一支队伍，在预设的赛场上，由两台机器人进行任务比赛，一台为老人送餐，另一台进行垃圾收集分类，并送到指定的地点，赛场上设有难度不同的障碍或者需机器人完成的其他任务。</p>
+
+              <p class="t-14 t-bold pull-down-5">海洋搜救</p>
+
+              <p class="t-14 pull-down-20">每队可以由一到三人组成，在设计的场地上完成一系列的搜救任务。</p>
+
+              <p class="t-14 t-bold pull-down-5">机器人冰壶</p>
+
+              <p class="t-14 pull-down-20">中国成功申办了2022年冬季奥运会，以此契机，结合热点，并且可以宣传一下冬季奥运会的项目，每队由一到三人组成，完成机器人冰壶项目。</p>
+            </div>
+          </div>
+        </div>
+        <div id="competition-awards" class="container-layer pull-down-50">
+          <div class="container-content">
+            <div class="col-l left">
+              <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;奖项设置</p>
+
+              <p class="t-14 t-bold pull-down-5">竞赛获奖</p>
+
+              <p class="t-14">创意类：3个大奖，30个提名奖</p>
+
+              <p class="t-14">零基础类：4轮前三名</p>
+
+              <p class="t-14 pull-down-20">传统比赛：每个项目的前四名（决赛有16强队伍角逐）</p>
+
+              <p class="t-14 t-bold pull-down-5">单项奖</p>
+
+              <p class="t-14 pull-down-20">最具人气奖、最佳创意奖等。</p>
+
+              <p class="t-14 t-bold pull-down-5">礼品&奖杯</p>
+
+              <p class="t-14">奖杯：定制机器人</p>
+
+              <p class="t-14">礼品：小礼品、参与者T恤、获奖者荣誉T恤</p>
+
+              <p class="t-14 pull-down-50">奖状：分为个人奖状和学校奖状</p>
+            </div>
+            <div class="col-r right"></div>
+          </div>
+        </div>
+      </div>
+      <div class="competitions-tab" data-id="1">
+        <div class="container-content">
+          <h1>机器人冰壶赛</h1>
+          <button class="btn btn-warning btn-lg user-apply-in"  data-toggle="modal" data-target="#apply_in_competition">我要报名</button>
+        </div>
       </div>
     </div>
   </div>
-  <div id="competition-awards" class="container-layer pull-down-50">
-    <div class="container-content">
-      <div class="col-l left">
-        <p class="blue t-20 pull-down-50"><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;奖项设置</p>
-        <p class="t-14 t-bold pull-down-5">竞赛获奖</p>
-        <p class="t-14">创意类：3个大奖，30个提名奖</p>
-        <p class="t-14">零基础类：4轮前三名</p>
-        <p class="t-14 pull-down-20">传统比赛：每个项目的前四名（决赛有16强队伍角逐）</p>
-
-        <p class="t-14 t-bold pull-down-5">单项奖</p>
-        <p class="t-14 pull-down-20">最具人气奖、最佳创意奖等。</p>
-
-        <p class="t-14 t-bold pull-down-5">礼品&奖杯</p>
-        <p class="t-14">奖杯：定制机器人</p>
-        <p class="t-14">礼品：小礼品、参与者T恤、获奖者荣誉T恤</p>
-        <p class="t-14 pull-down-50">奖状：分为个人奖状和学校奖状</p>
+  <!--dialog-->
+  <div id="apply_in_competition" class="modal fade">
+    <div class="apply-panel">
+      <div class="apply-menu">
+        <div class="apply-menu-sub active">
+          创建战队
+        </div>
+        <div class="apply-menu-sub">
+          加入战队
+        </div>
       </div>
-      <div class="col-r right"></div>
+      <div class="apply-content">
+        <div class="apply-content-sub active create-team">
+          <!--创建战队-->
+          <div class="upload-team-pic">
+            <label class="label-upload-team-pic" for="team-avatar"></label>
+            <input id="team-avatar" class="hide" type="file"/>
+
+            <p class="t-14 text-center pull-down-0">点击上传战队图像，最大上传800*800px</p>
+
+            <p class="t-14 text-center ">格式可以是jpg、jpeg、gif、png、bmp……</p>
+          </div>
+          <div class="input-team">
+            <input name="team-name" class="form-control pull-down-30" type="text" placeholder="请输入战队名称"/>
+            <input name="team-code" class="form-control pull-down-30" type="text" placeholder="请输入战队密码"/>
+            <input name="team-teacher" class="form-control pull-down-30" type="text" placeholder="请输入指导老师姓名"/>
+            <button id="create_team" class="btn-create-team">创建</button>
+          </div>
+        </div>
+        <div class="apply-content-sub join-team">
+          <!--加入战队-->
+          <div class="team-search">
+            <div class="input-group">
+              <input class="form-control" type="text"/><span class="input-group-addon btn-team-search"><i
+            class="fa fa-search t-32"></i></span>
+            </div>
+          </div>
+          <div class="team-list">
+            <div class="team-item">
+              <div class="team-pic">
+                <img src="/images/team-avatar-default.jpg" alt=""/>
+              </div>
+              <div class="team-dec">
+                <p class="t-16 blue">战队名称</p>
+
+                <p class="t-14">战队签名</p>
+                <button class="btn-join-team">加入战队</button>
+              </div>
+            </div>
+          </div>
+          <div class="team-pagination">
+            <div class="team-pagination-box">
+              <ul class="pagination">
+                <li><a>上一页</a></li>
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>下一页</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
+  <!--end dialog-->
 </div>
