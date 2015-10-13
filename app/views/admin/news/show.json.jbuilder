@@ -1,0 +1,1 @@
+json.extract! @news, :name, :created_at, :updated_at

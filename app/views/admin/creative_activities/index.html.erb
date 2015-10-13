@@ -1,0 +1,99 @@
+<h1 class="page-header">
+  <%= t('activerecord.models.creative_activity') %>列表
+  <small class="pull-right">
+    <a href="<%= new_admin_creative_activity_path %>" class="btn btn-default" title="添加作品">
+      <i class="icon-only icon-plus"></i></a>
+    <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+      <i class="icon-search icon-only"></i>
+    </a>
+  </small>
+</h1>
+<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'hide' %>">
+  <div class="widget-header widget-header-small">
+    <h5 class="lighter">搜索</h5>
+  </div>
+  <div class="widget-body">
+    <div class="widget-main">
+      <form class="form" role="form" method="get">
+        <div class="input-group" data-search="field">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <span data-search-text class="admin-search-field"><%= t('simple_form.labels.defaults.name') %></span>
+              <span class="caret"></span></button>
+            <ul class="dropdown-width dropdown-menu">
+              <li data-search-option="name"><a><%= t('simple_form.labels.defaults.name') %></a></li>
+              <li data-search-option="id"><a>ID</a></li>
+            </ul>
+          </div>
+          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'name' %>"/>
+          <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>作者</th>
+    <th><%= t('simple_form.labels.defaults.name') %></th>
+    <th>描述</th>
+    <th>审核状态</th>
+    <th>点赞数</th>
+    <th>专家评分</th>
+    <th>总分</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.id %></td>
+        <td><%= activity.user.nickname %></td>
+        <td><%= activity.name %></td>
+        <td><%= "#{(activity.description).at(0..20)}......" if activity.description.length > 20 %></td>
+        <td>
+          <% if activity.is_audit == 1 %>
+              <span class="btn btn-xs btn-primary switch-audit-user-activity" data-id="<%= activity.id %>">通过</span>
+          <% elsif activity.is_audit == 2 %>
+              <span class="btn btn-xs btn-danger btn-primary switch-audit-user-activity" data-id="<%= activity.id %>">未通过</span>
+          <% else %>
+              <span class="btn btn-xs btn-info audit-user-activity" data-id="<%= activity.id %>">待审核</span>
+          <% end %>
+        </td>
+        <td id="<%= "like-count#{activity.id}" %>"><%= activity.likes_count %></td>
+        <td>
+          <% if activity.expert_score.present? %>
+              <span class="btn btn-xs btn-info edit-expert-score" id="<%= "edit-expert-score#{activity.id}" %>" title="编辑分数" data-id="<%= activity.id %>"><%= activity.expert_score %></span>
+          <% else %>
+              <button class="btn btn-xs btn-warning add-expert-score" id="add-expert-score" type="button" data-id="<%= activity.id %>">评分</button>
+          <% end %>
+        </td>
+
+        <td id="<%= "last-score#{activity.id}" %>">
+          <% if activity.last_score.present? %>
+              <%= activity.last_score %>
+          <% end %>
+        </td>
+
+        <td><%= link_to [:admin, activity], title: '查看', class: 'btn btn-xs btn-warn' do %>
+              <i class="icon-eye-open bigger-120"></i>
+          <% end %>
+          <%= link_to edit_admin_creative_activity_path(activity), title: '编辑', class: 'btn btn-xs btn-info' do %>
+              <i class="icon-edit bigger-120"></i>
+          <% end %>
+          <%= link_to [:admin, activity], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+              <i class="icon-trash bigger-120"></i>
+          <% end %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<nav>
+  <%= paginate @activities %>
+</nav>
+

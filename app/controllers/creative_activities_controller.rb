@@ -10,6 +10,9 @@ class CreativeActivitiesController < ApplicationController
   # GET /creative_activities/1
   # GET /creative_activities/1.json
   def show
+    if current_user.present?
+      @user_likes = current_user.likes.pluck(:creative_activity_id)
+    end
   end
 
   # GET /creative_activities/new
@@ -71,6 +74,6 @@ class CreativeActivitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def creative_activity_params
-    params.require(:creative_activity).permit(:name, :description, :user_id, :cover)
+    params.require(:creative_activity).permit(:name, :cover, :file, :media, :description, :user_id)
   end
 end

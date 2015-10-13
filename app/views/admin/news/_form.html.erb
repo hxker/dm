@@ -1,0 +1,26 @@
+<style type="text/css">
+    textarea, input[type="text"] {
+        padding: 0 4px;
+    }
+</style>
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.news') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @new]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :name, maxlength: '100' %>
+          <%= f.input :news_type_id, collection: NewsType.all %>
+          <label class="select required control-label" for="news_content"><abbr title="必填字段">*</abbr>内容:</label>
+          <%= f.kindeditor :content, :window_onload => true, :owner_id => @new.id, :items => ['source', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'media', 'insertfile', 'baidumap', 'link', 'unlink', 'quickformat', 'preview', 'fullscreen'] %>
+          <%= f.hidden_field :admin_id, :value => @current_admin.id %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript" src="/assets/kindeditor.js"></script>

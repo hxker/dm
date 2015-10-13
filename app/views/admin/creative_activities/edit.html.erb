@@ -1,0 +1,50 @@
+<h1 class="page-header">
+  编辑<%= t('activerecord.models.creative_activity') %>
+  <small class="pull-right">
+    <a href="<%= admin_creative_activity_path(@activity) %>" title="显示该作品" class="btn btn-default">
+      <i class="icon-eye-open icon-only"></i></a>
+    <a href="<%= admin_creative_activities_path %>" title="作品列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<style type="text/css">
+    textarea, input[type="text"] {
+        padding: 0 4px;
+    }
+</style>
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.creative_activity') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @activity]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="form-group string optional creative_activity_user_id">
+            <label class="string optional control-label" for="creative_activity_user_id">作者</label>
+            <input id="creative_activity_user_id" class="string optional form-control" type="text" disabled value="<%= @activity.user.nickname %>" name="creative_activity[user_id]">
+          </div>
+          <%= f.input :name %>
+          <label class="select required control-label" for="creative_activity_description"><abbr title="必填字段">*</abbr>内容:</label>
+          <%= f.kindeditor :description, :window_onload => true, :owner_id => @activity.id, :items => ['source', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'media', 'insertfile', 'baidumap', 'link', 'unlink', 'quickformat', 'preview', 'fullscreen'] %>
+          <% if @activity.cover? %>
+              <div class="form-group">
+                <%= image_tag(@activity.cover_url(:middle), class: 'img-thumbnail') %>
+              </div>
+          <% end %>
+          <%= f.input :cover, :label => '海报' %>
+          <div class="form-group integer optional creative_activity_likes_count">
+            <label class="integer optional control-label" for="creative_activity_likes_count">点赞数</label>
+            <input id="creative_activity_likes_count" class="numeric integer optional form-control" type="number" disabled value="<%= @activity.likes_count %>" step="1" name="creative_activity[likes_count]">
+          </div>
+          <%= f.input :expert_score %>
+          <!--<%= f.input :last_score %>-->
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript" src="/assets/kindeditor.js"></script>

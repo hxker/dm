@@ -1,0 +1,1 @@
+json.extract! @organizer, :name, :responsible, :tel, :address, :created_at, :updated_at

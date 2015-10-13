@@ -1,0 +1,11 @@
+<h1 class="page-header">
+  编辑<%= t('activerecord.models.news') %>
+  <small class="pull-right">
+    <a href="<%= admin_news_path(@new) %>" title="显示该新闻" class="btn btn-default">
+      <i class="icon-eye-open icon-only"></i></a>
+    <a href="<%= admin_news_index_path %>" title="新闻列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<%= render 'form' %>

@@ -1,0 +1,37 @@
+<style type="text/css">
+    textarea, input[type="text"] {
+        padding: 0 4px;
+    }
+</style>
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.creative_activity') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @activity]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+
+          <div class="form-group integer required creative_activity_user_id">
+            <label class="integer required control-label" for="creative_activity_user_id">
+              <abbr title="必填字段">*</abbr>
+              作者
+            </label>
+            <input id="creative_activity_user_id" class="numeric integer required form-control" type="number" step="1" value="0" disabled name="creative_activity[user_id]">
+          </div>
+          <%= f.input :name %>
+          <%= f.input :cover, :label => '海报' %>
+          <label class="select required control-label" for="creative_activity_description"><abbr title="必填字段">*</abbr>内容:</label>
+          <%= f.kindeditor :description, :window_onload => true, :owner_id => @activity.id, :items => ['source', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'media', 'insertfile', 'baidumap', 'link', 'unlink', 'quickformat', 'preview', 'fullscreen'] %>
+
+          <!--<%= f.input :likes_count %>-->
+          <!--<%= f.input :expert_score %>-->
+          <!--<%= f.input :last_score %>-->
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript" src="/assets/kindeditor.js"></script>

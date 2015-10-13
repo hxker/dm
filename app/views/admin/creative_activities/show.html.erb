@@ -1,0 +1,62 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.creative_activity') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_creative_activity_path(@activity) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_creative_activities_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.creative_activity') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <%= @activity.name %>
+    </li>
+
+    <li class="list-group-item">
+      <h4>作者:</h4>
+
+      <%= @activity.user.nickname %>
+    </li>
+    <% if @activity.cover? %>
+        <li class="list-group-item">
+          <h4>海报:</h4>
+
+          <%= image_tag(@activity.cover_url(:middle)) %>
+        </li>
+    <% end %>
+    <% if @activity.description? %>
+        <li class="list-group-item">
+          <h4>描述:</h4>
+
+          <%= @activity.description.html_safe %>
+        </li>
+    <% end %>
+    <li class="list-group-item">
+      <h4>点赞数:</h4>
+
+      <%= @activity.likes_count %>
+    </li>
+    <li class="list-group-item">
+      <h4>专家评分:</h4>
+
+      <%= @activity.expert_score %>
+    </li>
+    <li class="list-group-item">
+      <h4>总分:</h4>
+
+      <%= @activity.last_score %>
+    </li>
+
+
+  </ul>
+</div>

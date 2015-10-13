@@ -1,0 +1,37 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.news') %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_news_path(@new) %>" title="编辑" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_news_index_path %>" title="列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.news') %>
+  </div>
+
+  <div class="page-header ">
+    <h2 class="center"><%= @new.name %></h2>
+
+
+  </div>
+  <div class="page-header">
+    <%= @new.content.html_safe %>
+  </div>
+
+
+  <div class="" style="">
+    <p>发布人: <%= @new.admin.name %></p>
+
+    <p>发布时间: <%= @new.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></p>
+    <p>更新时间: <%= @new.updated_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></p>
+
+
+  </div>
+</div>
