@@ -1,2 +1,60 @@
-<%= link_to 'Edit', edit_admin_competition_path(@competition) %> |
-<%= link_to 'Back', admin_competitions_path %>
+<h1 class="page-header">
+  <%= @competition.name %>
+  <small class="pull-right">
+    <a href="<%= edit_admin_competition_path(@competition) %>" title="编辑比赛" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_competitions_path %>" title="比赛列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+
+
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= t('activerecord.models.competition') %>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.name') %>:</h4>
+
+      <p><%= @competition.name %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= t('simple_form.labels.defaults.description') %>:</h4>
+
+      <p><%= @competition.description %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= '举办方:' %></h4>
+
+      <p>指导方: <%= @competition.guide_units %></p>
+
+      <p>主办方: <%= @competition.organizer_units %></p>
+
+      <p>协办方: <%= @competition.help_units %></p>
+
+      <p>承办方: <%= @competition.undertake_units %></p>
+
+      <p>赞助商: <%= @competition.support_units %></p>
+    </li>
+    <li class="list-group-item">
+      <h4><%= '报名起始时间' %>:</h4>
+
+      <p><%= @competition.apply_start_time.try(:strftime, '%Y-%m-%d %H:%M') %>
+        － <%= @competition.apply_end_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+    </li>
+
+    <li class="list-group-item">
+      <h4>比赛起始时间:</h4>
+
+      <p><%= @competition.start_time.try(:strftime, '%Y-%m-%d %H:%M') %>
+        － <%= @competition.end_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+    </li>
+
+  </ul>
+</div>

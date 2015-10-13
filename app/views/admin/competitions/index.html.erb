@@ -1,21 +1,48 @@
 <h1 class="page-header">
   比赛列表
   <small class="pull-right">
-    <a href="<%= new_admin_competition_path %>" class="btn btn-primary" title="新增赛事">
+    <a href="<%= new_admin_competition_path %>" class="btn btn-default" title="新增比赛">
       <i class="icon-plus icon-only"></i></a>
+    <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+      <i class="icon-search icon-only"></i>
+    </a>
   </small>
 </h1>
+<div class="widget-box form-search-toggle <%= params[:field].present? && params[:keyword].present? ? 'show' : 'hide' %>">
+  <div class="widget-header widget-header-small">
+    <h5 class="lighter">搜索</h5>
+  </div>
+  <div class="widget-body">
+    <div class="widget-main">
+      <form class="form" role="form" method="get">
+        <div class="input-group" data-search="field">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <span data-search-text class="admin-search-field"><%= t('simple_form.labels.defaults.name') %></span>
+              <span class="caret"></span></button>
+            <ul class="dropdown-width dropdown-menu">
+              <li data-search-option="name"><a><%= t('simple_form.labels.defaults.name') %></a></li>
+
+              <li data-search-option="id"><a>ID</a></li>
+            </ul>
+          </div>
+          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'name' %>"/>
+          <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <table class="table table-bordered table-hover table-striped">
   <thead>
   <tr>
     <th>ID</th>
     <th>赛事名称</th>
     <th>赛事描述</th>
-    <th>发布人</th>
+    <th>主办方</th>
     <th>赛事状态</th>
     <th>开始时间</th>
     <th>结束时间</th>
-    <th>发布时间</th>
     <th>操作</th>
   </tr>
   </thead>
@@ -25,12 +52,11 @@
       <tr>
         <td><%= comp.id %></td>
         <td><%= comp.name %></td>
-        <td><%= comp.desc %></td>
-        <td><%= comp.organizers %></td>
-        <td><%= comp.state %></td>
-        <td><%= comp.begin_time.try(:strftime, '%Y-%m-%d') %></td>
-        <td><%= comp.end_time.try(:strftime, '%Y-%m-%d') %></td>
-        <td><%= comp.created_at.try(:strftime, '%Y-%m-%d') %></td>
+        <td><%= comp.description %></td>
+        <td><%= comp.organizer_units %></td>
+        <td><%= t('status.status'+comp.status.to_s) %></td>
+        <td><%= comp.start_time.try(:strftime, '%Y-%m-%d %H:%M') %></td>
+        <td><%= comp.end_time.try(:strftime, '%Y-%m-%d %H:%M') %></td>
         <td>
           <%= link_to [:admin, comp], title: '查看', class: 'btn btn-xs btn-success' do %>
               <i class="icon-eye-open icon-only"></i>

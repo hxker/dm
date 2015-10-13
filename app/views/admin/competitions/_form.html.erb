@@ -1,25 +1,102 @@
 <%= simple_form_for([:admin, @competition]) do |f| %>
     <%= f.error_notification %>
+    <% if @competition.errors.any? %>
+        <div id="error_explanation">
+          <% @competition.errors[:organizer_units].each do |msg| %>
+              <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+          <% @competition.errors[:apply_start_time].each do |msg| %>
+              <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+          <% @competition.errors[:start_time].each do |msg| %>
+              <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+          <% @competition.errors[:end_time].each do |msg| %>
+              <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+        </div>
+    <% end %>
+
     <div class="form-inputs">
-      <%= f.input :name, label: '赛事名称' %>
-      <%= f.input :desc, label: '赛事描述' %>
-      <%= f.input :organizers, label: '发布人' %>
-      <%= f.input :state, collection: Competition::STATES, prompt: 1, label: '赛事状态' %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <label class="control-label">指导单位</label>
+
+      <div class="well">
+        <% organizers = @competition.guide_units.try(:split, ',')
+           Organizer.where(category: 1).select(:id, :name).each do |org| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="competition[guide_units][]" value="<%= org.name %>" <%= organizers.try(:include?, org.name.to_s) ? 'checked' : '' %>> <%= org.name %>
+              </label>
+            </div>
+        <% end %>
+      </div>
+      <label class="control-label">主办单位</label>
+
+      <div class="well">
+        <% organizers = @competition.organizer_units.try(:split, ',')
+           Organizer.where(category: 1).select(:id, :name).each do |org| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="competition[organizer_units][]" value="<%= org.name %>" <%= organizers.try(:include?, org.name.to_s) ? 'checked' : '' %>> <%= org.name %>
+              </label>
+            </div>
+        <% end %>
+      </div>
+      <label class="control-label">协办单位</label>
+
+      <div class="well">
+        <% organizers = @competition.help_units.try(:split, ',')
+           Organizer.where(category: 1).select(:id, :name).each do |org| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="competition[help_units][]" value="<%= org.name %>" <%= organizers.try(:include?, org.name.to_s) ? 'checked' : '' %>> <%= org.name %>
+              </label>
+            </div>
+        <% end %>
+      </div>
+      <label class="control-label">赞助单位</label>
+
+      <div class="well">
+        <% organizers = @competition.support_units.try(:split, ',')
+           Organizer.where(category: 2).select(:id, :name).each do |org| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="competition[support_units][]" value="<%= org.name %>" <%= organizers.try(:include?, org.name.to_s) ? 'checked' : '' %>> <%= org.name %>
+              </label>
+            </div>
+        <% end %>
+      </div>
+      <label class="control-label">承办单位</label>
+
+      <div class="well">
+        <% organizers = @competition.undertake_units.try(:split, ',')
+           Organizer.where(category: 3).select(:id, :name).each do |org| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="competition[undertake_units][]" value="<%= org.name %>" <%= organizers.try(:include?, org.name.to_s) ? 'checked' : '' %>> <%= org.name %>
+              </label>
+            </div>
+        <% end %>
+      </div>
+      <%= f.input :status, collection: Competition::STATUS, prompt: 1 %>
+      <!-- start -->
       <div class="row">
-        <div class="form-group datetime optional col-md-6" data-date-merge>
-          <label class="datetime optional control-label" for="competition_sign_in_begin_time">报名开始时间</label>
+        <div class="form-group datetime optional col-md-6 required" data-date-merge>
+          <label class="datetime optional control-label">报名开始时间</label>
 
           <div class="row">
             <div class="col-md-6">
               <span>日期</span>
-              <input data-date-merge-date value="<%= @competition.sign_in_begin_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+              <input data-date-merge-date value="<%= @competition.apply_start_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
             </div>
             <div class="col-md-6 bootstrap-timepicker">
               <span>时间</span>
-              <input data-date-merge-time value="<%= @competition.sign_in_begin_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+              <input data-date-merge-time value="<%= @competition.apply_start_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>
             </div>
           </div>
-          <input data-date-merge-result type="hidden" name="competition[sign_in_begin_time]" value="<%= @competition.sign_in_begin_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+          <input data-date-merge-result type="hidden" name="competition[apply_start_time]" value="<%= @competition.apply_start_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>
         </div>
         <div class="form-group datetime optional col-md-6" data-date-merge>
           <label class="datetime optional control-label">报名结束时间</label>
@@ -27,14 +104,14 @@
           <div class="row">
             <div class="col-md-6">
               <span>日期</span>
-              <input data-date-merge-date value="<%= @competition.sign_in_end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+              <input data-date-merge-date value="<%= @competition.apply_end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
             </div>
             <div class="col-md-6 bootstrap-timepicker">
               <span>时间</span>
-              <input data-date-merge-time value="<%= @competition.sign_in_end_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+              <input data-date-merge-time value="<%= @competition.apply_end_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>
             </div>
           </div>
-          <input data-date-merge-result type="hidden" name="competition[sign_in_end_time]" value="<%= @competition.sign_in_end_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+          <input data-date-merge-result type="hidden" name="competition[apply_end_time]" value="<%= @competition.apply_end_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>
         </div>
         <div class="form-group datetime optional col-md-6" data-date-merge>
           <label class="datetime optional control-label">比赛开始时间</label>
@@ -42,14 +119,14 @@
           <div class="row">
             <div class="col-md-6">
               <span>日期</span>
-              <input data-date-merge-date value="<%= @competition.begin_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
+              <input data-date-merge-date value="<%= @competition.start_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">
             </div>
             <div class="col-md-6 bootstrap-timepicker">
               <span>时间</span>
-              <input data-date-merge-time value="<%= @competition.begin_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
+              <input data-date-merge-time value="<%= @competition.start_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>
             </div>
           </div>
-          <input data-date-merge-result type="hidden" name="competition[begin_time]" value="<%= @competition.begin_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+          <input data-date-merge-result type="hidden" name="competition[start_time]" value="<%= @competition.start_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>
         </div>
         <div class="form-group datetime optional col-md-6" data-date-merge>
           <label class="datetime optional control-label">比赛结束时间</label>
@@ -64,17 +141,18 @@
               <input data-date-merge-time value="<%= @competition.end_time.try(:strftime, '%H:%M:%S') %>" data-control="timeForm" class="datetime optional form-control"/>
             </div>
           </div>
-          <input data-date-merge-result type="hidden" name="competition[end_time]" value="<%= @competition.end_time.try(:strftime, '%Y-%m-%d %H-%M-%S') %>"/>
+          <input data-date-merge-result type="hidden" name="competition[end_time]" value="<%= @competition.end_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>
         </div>
       </div>
+      <!-- end -->
     </div>
     <div class="form-actions">
-      <button data-control="formFormat" type="submit" class="btn btn-success">
+      <button data-control="formFormat" type="submit" class="btn btn-primary">
         <i class="icon-ok"></i>
         提交
       </button>
-      <a href="<%= admin_competitions_path %>" class="btn btn-warning">
-        <i class="icon-ban-circle"></i>
+      <a href="<%= admin_competitions_path %>" class="btn btn-default">
+        <i class="icon-remove"></i>
         取消
       </a>
     </div>
