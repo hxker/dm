@@ -10,6 +10,11 @@ class CompetitionsController < ApplicationController
     @teams = Team.where(event_id: params[:id])
   end
 
+  def shows
+    @competition = Competition.find(1)
+    @events = Event.where(competition_id: @competition.id)
+  end
+
   def apply_in
     @competition = Competition.find(params[:id])
     @events = Event.where(competition_id: params[:id])
