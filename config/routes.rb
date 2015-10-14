@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   #     post :apply_role
   #   end
   # end
+  # get 'test' => 'test#index'
 
   root to: 'home#index'
   get 'competition' => 'competitions#index'
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       post :valid_create_team
       post :add_user_apply_info
       get :apply_in
+      get :event_teams
       post :reduce_team_amount
       post :valid_team_code
       post :send_email_code
