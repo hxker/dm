@@ -22,6 +22,14 @@ class CompetitionsController < ApplicationController
     @already = TeamUserShip.where(user_id: current_user.id, event_id: params[:id]).take
   end
 
+
+  def event_teams
+    teams = Team.includes(:user).where(event_id: params[:id])#.select(:id, :cover, :user_id, :name)
+    teams_data = teams.page(params[:page]).per(params[:per]).select(:id, :cover, :user_id, :name)
+
+    render json: [teams_data, teams.count]
+  end
+
   def reset_team_code_by_mobile
     sms = SMSService.new(params[:mobile])
     status, message = sms.validate?(params[:mobile_code], SMSService::TYPE_CODE_RESET_TEAM_CODE)
