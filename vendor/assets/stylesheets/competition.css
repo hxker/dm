@@ -377,3 +377,36 @@
 #competition .competitions-tabs-collect .competitions-tab.active{
     display: block;
 }
+#check_profile {
+
+}
+
+#check_profile .panel {
+    width: 600px;
+    box-sizing: border-box;
+    padding: 30px 100px;
+    background: #ffffff;
+    margin: 100px auto;
+}
+
+#check_profile .input-row {
+    margin-bottom: 20px;
+}
+
+#check_profile .form-control {
+    box-sizing: border-box;
+    height: 48px;
+}
+
+#check_profile .btn-save-profile {
+    box-sizing: border-box;
+    width: 100%;
+    background: #f1ba0c;
+    color: #fff;
+    font-size: 18px;
+    font-family: inherit;
+    line-height: 48px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #f1ba0c;
+}

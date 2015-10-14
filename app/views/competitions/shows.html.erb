@@ -175,7 +175,13 @@
       <div class="competitions-tab" data-id="1">
         <div class="container-content">
           <h1>机器人冰壶赛</h1>
-          <button class="btn btn-warning btn-lg user-apply-in"  data-toggle="modal" data-target="#apply_in_competition">我要报名</button>
+          <% if current_user.present? %>
+              <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">我要报名</button>
+          <% else %>
+              <p class="t-18">
+                要报名比赛，请先<a class="blue" href="/competitions/login_in">登录</a>
+              </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -231,14 +237,8 @@
             </div>
           </div>
           <div class="team-pagination">
-            <div class="team-pagination-box">
-              <ul class="pagination">
-                <li><a>上一页</a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>下一页</a></li>
-              </ul>
+            <div id="page" class="team-pagination-box">
+
             </div>
           </div>
         </div>
@@ -246,4 +246,36 @@
     </div>
   </div>
   <!--end dialog-->
+  <!--check_profile dialog-->
+  <% if current_user.present? %>
+      <div id="check_profile" class="modal fade">
+        <div class="panel" style="position: relative;z-index: 100;">
+          <p class="t-22 blue text-center pull-down-30">
+            请核对个人信息
+          </p>
+
+          <div class="check_profile_group">
+
+            <form data-method="post" data-url="/competitions/add_user_apply_info">
+              <div class="input-row">
+                <input class="form-control" type="text" name="username" value="<%= current_user.user_profile.try(:username) %>" placeholder="请输入姓名"/>
+              </div>
+              <div class="input-row">
+                <input class="form-control" type="text" name="age" value="<%= current_user.user_profile.try(:age) %>" placeholder="请输入年龄"/>
+              </div>
+              <div class="input-row">
+                <input class="form-control" type="text" name="school" value="<%= current_user.user_profile.try(:school) %>" placeholder="请输入学校"/>
+              </div>
+              <div class="input-row">
+                <input class="form-control" type="text" name="grade" value="<%= current_user.user_profile.try(:grade) %>" placeholder="请输入年级和班级 例：三（1）班"/>
+              </div>
+              <div class="input-row">
+                <button class="btn-save-profile">确认信息</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <!--end check_profile dialog-->
 </div>

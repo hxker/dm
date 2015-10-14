@@ -1,7 +1,7 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
   GENDER = {male: 1, female: 2}
-  before_save :user_info_validate
+  after_commit :user_info_validate
 
 
   def user_info_validate
