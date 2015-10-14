@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, only: [:apply_in, :team]
+  before_action :authenticate_user!, only: [:apply_in, :login_in]
 
   def index
     @competitions = Competition.includes(:organizer).all.page(params[:page]).per(params[:per])
@@ -69,7 +69,8 @@ class CompetitionsController < ApplicationController
     end
   end
 
-  def team
+  def login_in
+    redirect_to action: 'shows'
   end
 
   def add_user_apply_info

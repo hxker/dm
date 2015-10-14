@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'competition' => 'competitions#index'
   get 'competitions/team/:id' => 'competitions#team'
   get 'competitions/shows' => 'competitions#shows'
+  get 'competitions/login_in' => 'competitions#login_in'
   # get 'competitions/apply_in/:id' => 'competitions#apply_in'
   resources :competitions, only: [:index, :show] do
     collection do
