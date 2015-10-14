@@ -1,18 +1,25 @@
 <h2>重新发送激活邮件</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <!--<%= devise_error_messages! %>-->
-    <%= '该激活邮件已失效，请在收到邮件后2小时内激活' %>
-<br/><br/>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+    <!--<%= devise_error_messages! %>-->
+    <% if resource.errors[:email].present? %>
+        <ul>
+          <% resource.errors[:email].each do |msg| %>
+              <li class="blue">该邮箱用户<%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+    <%= '请在收到邮件后2小时内激活' %>
+    <br/><br/>
 
-  <div class="field">
-    <label for="user_email">邮箱</label>
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
-  </div>
+    <div class="field">
+      <label for="user_email">邮箱</label>
+      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: '' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit '重新发送' %>
-  </div>
+    <div class="actions">
+      <%= f.submit '重新发送',class:'actions form-group form-group-lg' %>
+    </div>
 <% end %>
 
 <!--<%= render "users/shared/links" %>-->
