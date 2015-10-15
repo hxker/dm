@@ -24,10 +24,20 @@ class CompetitionsController < ApplicationController
 
 
   def event_teams
-    teams = Team.includes(:user).where(event_id: params[:id])#.select(:id, :cover, :user_id, :name)
-    teams_data = teams.page(params[:page]).per(params[:per]).select(:id, :cover, :user_id, :name)
-
-    render json: [teams_data, teams.count]
+    teams = Team.includes(:user).where(event_id: params[:id])
+    if params[:team_name].present?
+      result = teams.where(["name like ?", "%#{params[:team_name]}%"])
+    else
+      result = teams
+    end
+    teams_data = result.page(params[:page]).per(params[:per]).select(:id, :cover, :user_id, :name).map { |t| {
+        id: t.id,
+        name: t.name,
+        cover: ActionController::Base.helpers.asset_path(t.cover_url(:middle)),
+        team_leader: t.user.nickname,
+        team_players: t.team_user_ships.count(t.id),
+    } }
+    render json: [teams_data, result.count]
   end
 
   def reset_team_code_by_mobile
@@ -128,12 +138,12 @@ class CompetitionsController < ApplicationController
   def valid_team_code
     result = Team.find(params[:team_id])
     if result.team_code == params[:team_code]
-      team_user = TeamUserShip.where(user_id: current_user.id, team_id: params[:team_id]).take
+      team_user = TeamUserShip.where(user_id: current_user.id, event_id: result.event_id).take
       if team_user.present?
         status = false
-        message = '您已经是该队伍成员，无需加入!'
+        message = '您已经报名该项目，无需再次报名!'
       else
-        add_team_user = TeamUserShip.create!(user_id: current_user.id, team_id: params[:team_id], event_id: params[:event_id])
+        add_team_user = TeamUserShip.create!(user_id: current_user.id, team_id: params[:team_id])
         if add_team_user.save
           status = true
           message = '成功加入该队!'

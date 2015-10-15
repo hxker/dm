@@ -176,7 +176,7 @@
         <div class="container-content">
           <h1>机器人冰壶赛</h1>
           <% if current_user.present? %>
-              <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
+                  <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
           <% else %>
               <p class="t-18">
                 <a class="btn btn-warning btn-lg" href="/competitions/login_in">报名</a>
@@ -219,7 +219,7 @@
           <!--加入战队-->
           <div class="team-search">
             <div class="input-group">
-              <input class="form-control" type="text"/><span class="input-group-addon btn-team-search"><i
+              <input class="form-control" id="search-team-name" type="text"/><span id="select-team-action" class="input-group-addon btn-team-search"><i
             class="fa fa-search t-32"></i></span>
             </div>
           </div>
@@ -251,7 +251,7 @@
       <div id="check_profile" class="modal fade">
         <div class="panel" style="position: relative;z-index: 100;">
           <p class="t-22 blue text-center pull-down-30">
-            请核对个人信息
+            请确认或添加报名信息
           </p>
 
           <div class="check_profile_group">
