@@ -176,10 +176,10 @@
         <div class="container-content">
           <h1>机器人冰壶赛</h1>
           <% if current_user.present? %>
-              <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">我要报名</button>
+              <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
           <% else %>
               <p class="t-18">
-                要报名比赛，请先<a class="blue" href="/competitions/login_in">登录</a>
+                <a class="btn btn-warning btn-lg" href="/competitions/login_in">报名</a>
               </p>
           <% end %>
         </div>
