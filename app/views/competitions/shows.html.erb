@@ -176,7 +176,11 @@
         <div class="container-content">
           <h1>机器人冰壶赛</h1>
           <% if current_user.present? %>
+              <% if is_apply_event(current_user.id, 1) %><!-- 1代表event_id 循环时注意  -->
+                  您已报名该项目,<a href="#" class="blue">查看报名信息</a>
+              <% else %>
                   <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
+              <% end %>
           <% else %>
               <p class="t-18">
                 <a class="btn btn-warning btn-lg" href="/competitions/login_in">报名</a>

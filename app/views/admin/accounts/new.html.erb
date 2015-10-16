@@ -1,3 +1,18 @@
+<style>
+    input[name="captcha"] {
+        display: block;
+        width: 220px;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
@@ -21,6 +36,12 @@
           <div class="form-group">
             <label for="password" class="sr-only">密 码</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码" required="">
+          </div>
+          <div class="form-group">
+            <p class="pull-right" id="captcha-plus"><%= captcha_tag %>
+            </p>
+
+            <%= text_field_tag :captcha %>
           </div>
           <p>&nbsp;</p>
 

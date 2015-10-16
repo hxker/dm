@@ -11,24 +11,29 @@ class Admin::AccountsController < AdminController
   end
 
   def create
-    emp = Admin.find_by(job_number: params[:job_number])
-    cookies[:job_number] = params[:job_number]
-    if emp.blank?
-      flash[:error] = '工号不存在'
-      render action: 'new'
-    elsif not emp.auth_permissions(['admin', 'super_admin', 'teacher', 'audit', 'editor'])
-      flash[:error] = '此账号没有权限登录'
-      render action: 'new'
-    else
-      status, message = emp.login(params[:password], request.remote_ip)
-      if status
-        flash[:notice] = message
-        sing_in(emp)
-        redirect_to '/admin/'
-      else
-        flash[:error] = message
+    if captcha_valid? params[:captcha]
+      emp = Admin.find_by(job_number: params[:job_number])
+      cookies[:job_number] = params[:job_number]
+      if emp.blank?
+        flash[:error] = '工号不存在'
         render action: 'new'
+      elsif not emp.auth_permissions(['admin', 'super_admin', 'teacher', 'audit', 'editor'])
+        flash[:error] = '此账号没有权限登录'
+        render action: 'new'
+      else
+        status, message = emp.login(params[:password], request.remote_ip)
+        if status
+          flash[:notice] = message
+          sing_in(emp)
+          redirect_to '/admin/'
+        else
+          flash[:error] = message
+          render action: 'new'
+        end
       end
+    else
+      flash[:error] = '校验码不正确'
+      render action: 'new'
     end
   end
 

@@ -16,4 +16,13 @@ class TeamUserShip < ActiveRecord::Base
     self.event_id = self.team.event_id
     self.save
   end
+
+  def self.is_join(user_id, event_id)
+    player = TeamUserShip.where(user_id: user_id, event_id: event_id).take
+    if player.present?
+      TRUE
+    else
+      FALSE
+    end
+  end
 end
