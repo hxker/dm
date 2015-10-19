@@ -41,5 +41,15 @@
 
       <%= t('status.status'+@event.status.to_s) %>
     </li>
+    <li class="list-group-item">
+      <h4>比赛开始时间:</h4>
+
+      <%= @event.start_time.try(:strftime, '%Y-%m-%d %H:%M') %>
+    </li>
+    <li class="list-group-item">
+      <h4>比赛结束时间:</h4>
+
+      <%= @event.end_time.try(:strftime, '%Y-%m-%d %H:%M') %>
+    </li>
   </ul>
 </div>

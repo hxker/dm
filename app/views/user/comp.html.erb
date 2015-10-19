@@ -1,0 +1,64 @@
+<style type="text/css">
+    .user-comp-list {
+        padding: 5% 20% 5% 20%;
+        min-height: 300px
+    }
+
+    .user-comp-item {
+        height: 138px;
+    }
+
+    .user-comp-item:hover {
+        border-right: 2px solid deepskyblue;
+    }
+</style>
+<div class="floor" id="user">
+  <div id="nav" class="nav-v2 container-layer">
+    <%= render 'layouts/nav_menu' %>
+  </div>
+  <div class="container-content">
+    <div id="user-info">
+      <div class="menu">
+        <div class="menu-item">
+          <%= simple_form_for(current_user, html: {id: 'form_change_avatar', multipart: true}, url: user_update_avatar_path, method: :post) do |f| %>
+              <div class="avatar">
+                <%= image_tag(current_user.avatar_url(:middle), class: 'avatar-img') %>
+              </div>
+              <div class="edit-plus">
+                <%= f.file_field :avatar %>
+                <label for="">昵称：<input type="text" name="user[nickname]" value="<%= current_user.nickname %>"/></label>
+                <label class="edit-avatar" for="user_avatar">点击修改头像</label>
+                <%= f.submit class: 'btn-user-update', value: '更新个人信息' %>
+              </div>
+          <% end %>
+        </div>
+        <%= render 'user/menu' %>
+      </div>
+
+      <div class="content">
+
+        <div class="user-comp-list">
+          <% @user_events.each do |t_u| %>
+              <div class="user-comp-item">
+                <div style="float: left;height: 136px;">
+                  <img src="/images/competition-item01.jpg" alt=""/>
+                </div>
+                <div style="float: left;padding-left: 20px;">
+                  <p class="t-24">
+                    <a class="blue" href="<%= user_comp_path %>/<%= t_u.event_id %>"><%= t_u.event.name %></a></p>
+
+                  <p class="t-18">比赛时间 : <%= t_u.event.start_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+
+                  <p class="t-18">我的身份 : <%= t_u.team.user_id == current_user.id ? '队长' : '队员' %></p>
+                </div>
+              </div>
+              <br>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

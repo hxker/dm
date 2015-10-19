@@ -66,6 +66,13 @@ class UserController < ApplicationController
     redirect_to user_profile_path
   end
 
+  def comp
+    @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id)
+    if request.method == 'GET'
+      team_id = TeamUserShip.where(user_id: current_user.id, event_id: params[:id]).take
+      @user_scores = Score.where(event_id: params[:id]).where(['team1_id = :value OR team2_id = :value', {:value => team_id}])
+    end
+  end
 
   # 修改密码请求
   def passwd

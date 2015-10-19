@@ -1,6 +1,7 @@
 class TeamUserShip < ActiveRecord::Base
   belongs_to :user, foreign_key: :user_id
   belongs_to :team, foreign_key: :team_id
+  belongs_to :event, foreign_key: :event_id
   # validates_uniqueness_of :team_id, :scope => [:user_id, :event_id]
   validates_uniqueness_of :user_id, :scope => :team_id
   validates_uniqueness_of :user_id, :scope => :event_id
