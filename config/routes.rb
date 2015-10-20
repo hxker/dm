@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #     post :apply_role
   #   end
   # end
-  # get 'test' => 'test#index'
+  get 'test' => 'test#index'
 
   root to: 'home#index'
   get 'competition' => 'competitions#index'
@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   match 'user/mobile' => 'user#mobile', as: 'user_mobile', via: [:get, :post]
   match 'user/add_mobile' => 'user#add_mobile', as: 'user_add_mobile', via: [:get, :post]
   match 'user/notification' => 'user#notification', as: 'user_notification', via: [:get, :post]
+  match 'user/comp' => 'user#comp', as: 'user_comp', via: [:get, :post]
 
   namespace :user do |u|
 
