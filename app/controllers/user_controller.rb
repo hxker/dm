@@ -68,10 +68,20 @@ class UserController < ApplicationController
 
   def comp
     @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id)
-    if request.method == 'GET'
-      team_id = TeamUserShip.where(user_id: current_user.id, event_id: params[:id]).take
-      @user_scores = Score.where(event_id: params[:id]).where(['team1_id = :value OR team2_id = :value', {:value => team_id}])
-    end
+  end
+
+  def score
+    t_u = TeamUserShip.where(user_id: 1, event_id: params[:id]).select(:team_id).take
+    user_scores = Score.includes(:schedule, :team1, :team2).where(event_id: params[:id]).where(['team1_id = :value OR team2_id = :value', {:value => t_u.team_id}]).select(:team1_id, :team2_id, :score1, :score2, :th, :comp_name, :kind).map { |s| {
+        team1: s.team1.name,
+        team2: s.team2.name,
+        score1: s.score1,
+        score2: s.score2,
+        th: s.th.to_s,
+        comp_name: s.schedule.name,
+        kind: t('kind.kind'+s.kind.to_s)
+    } }
+    render json: user_scores
   end
 
   # 修改密码请求

@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :scores
   has_many :team_user_ships, through: :teams
   has_many :creative_activities
+  mount_uploader :cover, EventUploader
 
   validates :name, presence: true
   validates :competition_id, presence: true

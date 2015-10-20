@@ -16,40 +16,50 @@
           <%= f.input :competition_id, collection: Competition.all %>
           <%= f.input :description %>
           <!--<%= f.input :cover %>-->
+          <% if @event.cover? %>
+              <div class="form-group">
+                <%= image_tag(@event.cover_url(:middle), class: 'img-thumbnail') %>
+              </div>
+          <% end %>
+          <div class="form-group">
+            <label for="exampleInputFile">封面:</label>
+            <%= f.file_field :cover %>
+            <%= f.hidden_field :cover_cache %>
+          </div>
           <%= f.input :status, collection: Competition::STATUS, prompt: 1 %>
           <%= f.input :team_min_num %>
           <%= f.input :team_max_num %>
           <!-- start -->
           <div class="row">
             <!--<div class="form-group datetime optional col-md-6 required" data-date-merge>-->
-              <!--<label class="datetime optional control-label">报名开始时间</label>-->
+            <!--<label class="datetime optional control-label">报名开始时间</label>-->
 
-              <!--<div class="row">-->
-                <!--<div class="col-md-6">-->
-                  <!--<span>日期</span>-->
-                  <!--<input data-date-merge-date value="<%= @event.apply_start_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">-->
-                <!--</div>-->
-                <!--<div class="col-md-6 bootstrap-timepicker">-->
-                  <!--<span>时间</span>-->
-                  <!--<input data-date-merge-time value="<%= @event.apply_start_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<input data-date-merge-result type="hidden" name="event[apply_start_time]" value="<%= @event.apply_start_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+            <!--<span>日期</span>-->
+            <!--<input data-date-merge-date value="<%= @event.apply_start_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">-->
+            <!--</div>-->
+            <!--<div class="col-md-6 bootstrap-timepicker">-->
+            <!--<span>时间</span>-->
+            <!--<input data-date-merge-time value="<%= @event.apply_start_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<input data-date-merge-result type="hidden" name="event[apply_start_time]" value="<%= @event.apply_start_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>-->
             <!--</div>-->
             <!--<div class="form-group datetime optional col-md-6" data-date-merge>-->
-              <!--<label class="datetime optional control-label">报名结束时间</label>-->
+            <!--<label class="datetime optional control-label">报名结束时间</label>-->
 
-              <!--<div class="row">-->
-                <!--<div class="col-md-6">-->
-                  <!--<span>日期</span>-->
-                  <!--<input data-date-merge-date value="<%= @event.apply_end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">-->
-                <!--</div>-->
-                <!--<div class="col-md-6 bootstrap-timepicker">-->
-                  <!--<span>时间</span>-->
-                  <!--<input data-date-merge-time value="<%= @event.apply_end_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<input data-date-merge-result type="hidden" name="event[apply_end_time]" value="<%= @event.apply_end_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+            <!--<span>日期</span>-->
+            <!--<input data-date-merge-date value="<%= @event.apply_end_time.try(:strftime, '%Y-%m-%d') %>" data-control="dateForm" class="datetime optional form-control" data-date-format="yyyy-mm-dd">-->
+            <!--</div>-->
+            <!--<div class="col-md-6 bootstrap-timepicker">-->
+            <!--<span>时间</span>-->
+            <!--<input data-date-merge-time value="<%= @event.apply_end_time.try(:strftime, '%H:%M') %>" data-control="timeForm" class="datetime optional form-control"/>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<input data-date-merge-result type="hidden" name="event[apply_end_time]" value="<%= @event.apply_end_time.try(:strftime, '%Y-%m-%d %H:%M') %>"/>-->
             <!--</div>-->
             <div class="form-group datetime optional col-md-6" data-date-merge>
               <label class="datetime optional control-label">比赛开始时间</label>

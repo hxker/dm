@@ -29,7 +29,7 @@
         <td><%= score.id %></td>
         <td><%= score.schedule.try(:name) %></td>
         <td><%= t('kind.kind'+score.kind.to_s) %></td>
-        <td><%= score.team.name %><%= " - #{score.team.name}" if score.kind == 2 %></td>
+        <td><%= score.team1.name %><%= " - #{score.team2.name}" if score.kind == 2 %></td>
         <td><%= score.th %></td>
         <td><%= score.score1 %><%= " : #{score.score2} " if score.kind == 2 %></td>
         <td><%= score.referee_id %></td>
