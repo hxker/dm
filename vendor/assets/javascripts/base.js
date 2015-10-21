@@ -37,7 +37,6 @@ $(function () {
                         if (data[0]) {
                             alert(data[1]);
                             window.location.reload();
-
                         } else {
                             alert(data[1]);
                         }
@@ -45,6 +44,10 @@ $(function () {
                 };
                 ajaxHandle(option);
             })
+        }
+
+        if ('[data-edit]') {
+            editInput.init('[data-edit]', {});
         }
 
         if ('#check_profile') {
@@ -60,28 +63,7 @@ $(function () {
                             alert(data[1]);
                             $('#check_profile').modal('hide');
                             $('#apply_in_competition').modal('show');
-                            $('.apply-menu-sub').on('click', function () {
-                                get_teams(1, 2)
-                            });
-
-
-                            //$("#page").page({
-                            //    remote: {
-                            //        url: '/competitions/event_teams',  //请求地址
-                            //        params: { id: $('.competitions-tab.active').attr('data-id')},       //自定义请求参数
-                            //        success: function (data, pageIndex) {
-                            //            //回调函数
-                            //            //result 为 请求返回的数据，呈现数据
-                            //            console.log(data);
-                            //        },
-                            //        pageIndexName: 'page',     //请求参数，当前页数，索引从0开始
-                            //        pageSizeName: 'per',       //请求参数，每页数量
-                            //        totalName: 'total'
-                            //    },
-                            //    pageSize:9
-                            //});
-
-
+                            get_teams()
                         } else {
                             alert(data[1]);
                         }
@@ -93,23 +75,28 @@ $(function () {
     }
 );
 
-function get_teams(page, num) {
-    var data = {
-        id: $('.competitions-tab.active').attr('data-id'),
-        page: page,
-        num: num
-    };
-    var option = {
-        url: '/competitions/event_teams',
-        type: 'get',
-        data: data,
-        success: function (result) {
-            console.log(result);
-            //替换dom
-            replaceDom('.team-list', result[0]);
-        }
-    };
-    ajaxHandle(option);
+function get_teams(text) {
+    var params = {id: $('.competitions-tab.active').attr('data-id')};
+    if(text){
+        params.team_name = text;
+    }
+    $("#page").children().remove();
+    $("#page").page({
+        remote: {
+            url: '/competitions/event_teams',  //请求地址
+            params: params,       //自定义请求参数
+            callback: function (data, pageIndex) {
+                //回调函数
+                //result 为 请求返回的数据，呈现数据
+                //console.log(data);
+                replaceDom('.team-list', data[0]);
+            },
+            pageIndexName: 'page',     //请求参数，当前页数，索引从0开始
+            pageSizeName: 'per',       //请求参数，每页数量
+            totalName: '1'             //total字段名
+        },
+        pageSize: 1 //每页数量
+    });
 }
 
 function replaceDom(selector, data) {
@@ -119,16 +106,17 @@ function replaceDom(selector, data) {
     // team_leader 队长昵称
     // cover 队伍头像
     if (data.length > 0) {
+        var limit = $('#team-limit').val();
         for (var i = 0; i < data.length; i++) {
-
+            var btn = "";
+            limit > data[i].team_players ? btn = '<button data-id="' + data[i].id + '" class="btn-join-team">加入战队</button>' : btn = '<span class="label label-warning t-14">人数已满</span>';
             var _dom = '<div class="team-item">' +
                 '<div class="team-pic">' +
                 '<img src="' + data[i].cover + '" alt=""/>' +
                 '</div>' +
                 '<div class="team-dec">' +
-                '<p class="t-16 blue">' + data[i].name + ' ' + data[i].team_players + '</p>' +
-                '<p class="t-14">' + data[i].team_leader + '</p>' +
-                '<button data-id="' + data[i].id + '" class="btn-join-team">加入战队</button>' +
+                '<p class="t-16 blue">' + data[i].name + '</p>' +
+                '<p class="t-14">' + data[i].team_leader + '</p>' + btn +
                 '</div></div>';
             $(_dom).appendTo(selector);
         }
@@ -164,6 +152,7 @@ function replaceDom(selector, data) {
                                 if (data[0]) {
                                     // 申请成功提示信息
                                     alert(data[1]);
+                                    window.location.reload();
                                 }
                                 else {
                                     alert(data[1]);
@@ -187,27 +176,38 @@ function replaceDom(selector, data) {
     });
 }
 
-$('#select-team-action').on('click', function () {
-    var data = {
-        id: $('.competitions-tab.active').attr('data-id'),
-        page: 1,
-        num: 2,
-        team_name: $('#search-team-name').val()
-    };
-    var option = {
-        url: '/competitions/event_teams',
-        type: 'get',
-        data: data,
-        success: function (result) {
-            //替换dom
-            replaceDom('.team-list', result[0]);
-        }
-    };
-    ajaxHandle(option);
+$('#select-team-action').on('click', function (event) {
+    event.preventDefault();
+    get_teams($('#search-team-name').val());
 });
 function ajaxHandle(option) {
     $.ajax(option);
 }
+
+var editInput = {
+    option: {},
+    init: function (selector, option) {
+        this.option = option;
+        $.each($(selector), function (k, v) {
+            $(v).addClass('clickMe').on('click', function () {
+                option.name = $(v).attr('data-name');
+                editInput.changeInput($(v), option);
+            });
+        })
+    },
+    changeInput: function (v, option) {
+        $(v).css({display: 'none'});
+        var input = $('<input>').addClass('editInput').val($.trim($(v).text()));
+        input.insertAfter(v);
+        input.focus();
+        input.on('blur', function () {
+            var val = $(this).val();
+            $(v).text($.trim(val)).css({display: ''});
+            $('input[name="' + option.name + '"]').val($.trim(val));
+            $(this).remove();
+        })
+    }
+};
 
 
 /*   /competitions/event_teams?id=<%eventid%>&page=<%page%>    */

@@ -338,7 +338,6 @@
 #competition .team-item .team-dec {
     margin-left: 100px;
     padding: 0 15px;
-    overflow: hidden;
 }
 
 #competition .btn-join-team {
@@ -409,4 +408,10 @@
     border-radius: 4px;
     outline: none;
     border: 1px solid #f1ba0c;
+}
+#valid_team_code{
+    box-sizing: border-box;
+}
+#search-team-name{
+    box-sizing: border-box;
 }

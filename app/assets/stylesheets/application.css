@@ -25,6 +25,7 @@
  *= require passport
  *= require competition
  *= require user
+ *= require jquery.pagination
  *= require_tree .
  *= require_self
  */

@@ -22,6 +22,7 @@
 //= require notify
 //= require swiper.min
 //= require base
+//= require jquery.pagination-1.2.2
 
 //= //require turbolinks
 //= require_tree .

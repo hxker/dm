@@ -61,12 +61,15 @@
     overflow: hidden;
     width: 111px;
     height: 111px;
-    margin:0 auto;
+    float: left;
 }
-#user-info .menu-item .edit-plus{
-    margin:20px 0;
+
+#user-info .menu-item .edit-plus {
+    margin: 20px 0 0;
+    text-align: center;
 }
-#user-info .menu-item .edit-avatar,#user-info .btn-user-update{
+
+#user-info .btn-user-update {
     border: 1px solid #FEBF00;
     color: #FFFFFF;
     font-size: 12px;
@@ -76,19 +79,40 @@
     margin: 0 auto;
     display: block;
     padding: 5px 12px;
-    display:inline-block;
+    display: inline-block;
+}
+
+#user-info .menu-item .edit-avatar {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 111px;
+    height: 111px;
+    line-height: 111px;
+    text-align: center;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 10;
+    background: #aaa;
+    opacity: 0;
+    transition: opacity .3s;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+#user-info .menu-item .edit-avatar:hover {
+    opacity: 0.7;
 }
 
 #user-info .avatar-img {
     width: 111px;
     height: 111px;
-    display:block;
-    margin:0 auto;
-}
-#user-info #user_avatar{
-    display:none;
 }
 
+#user-info #user_avatar {
+    display: none;
+}
 
 #user-info .avatar:hover:after {
     opacity: 1;
@@ -96,9 +120,15 @@
 
 #user-info .username {
     color: #00a1ff;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 111px;
-    margin-left: 15px;
+    margin-left: 126px;
+    height: 111px;
+    overflow: hidden;
+}
+#user-info .username .editInput{
+    line-height: 26px;
+    width: 79px;
 }
 
 #user-info .content {
@@ -218,4 +248,8 @@
     box-sizing: border-box;
     height: 50px;
     margin-bottom: 0;
+}
+
+.clickMe {
+    display: inline-block;
 }

@@ -155,6 +155,7 @@
           <div class="competitions-tab" data-id="<%= index + 1 %>">
             <div class="container-content">
               <h1><%= event.name %></h1>
+              <input type="hidden" id="team-limit" value="<%= event.team_max_num%>"/>
               <% if current_user.present? %>
                   <% if is_apply_event(current_user.id, event.id) %>
                       您已报名该项目,<a href="#" class="blue">查看报名信息</a>
@@ -209,17 +210,7 @@
             </div>
           </div>
           <div class="team-list">
-            <div class="team-item">
-              <div class="team-pic">
-                <img src="/images/team-avatar-default.jpg" alt=""/>
-              </div>
-              <div class="team-dec">
-                <p class="t-16 blue">战队名称</p>
 
-                <p class="t-14">战队签名</p>
-                <button class="btn-join-team">加入战队</button>
-              </div>
-            </div>
           </div>
           <div class="team-pagination">
             <div id="page" class="team-pagination-box">
