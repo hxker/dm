@@ -7,6 +7,7 @@ class CreateUserProfiles < ActiveRecord::Migration
       t.integer :age
       t.string :school
       t.string :grade
+      t.string :bj # 班级
       t.string :autograph # 个性签名
       t.string :address
       t.date :birthday
@@ -16,5 +17,7 @@ class CreateUserProfiles < ActiveRecord::Migration
     end
 
     add_index :user_profiles, :user_id, unique: true
+    add_index :user_profiles, :school
+    add_index :user_profiles, :gender
   end
 end

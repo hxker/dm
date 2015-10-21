@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
   resources :creative_activities
+  resources :news
 
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   captcha_route
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
   match 'user/add_mobile' => 'user#add_mobile', as: 'user_add_mobile', via: [:get, :post]
   match 'user/notification' => 'user#notification', as: 'user_notification', via: [:get, :post]
   match 'user/comp' => 'user#comp', as: 'user_comp', via: [:get, :post]
+  get 'user/score' => 'user#score'
 
   namespace :user do |u|
 

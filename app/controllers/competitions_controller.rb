@@ -99,6 +99,7 @@ class CompetitionsController < ApplicationController
         user.age = params[:age]
         user.school = params[:school]
         user.grade = params[:grade]
+        user.bj = params[:bj]
         if user.save
           status = true
           message = '个人信息确认成功'
@@ -107,7 +108,7 @@ class CompetitionsController < ApplicationController
           message = '个人信息更新失败'
         end
       else
-        up = UserProfile.create!(user_id: current_user.id, username: params[:username], age: params[:age], school: params[:school], grade: params[:grade])
+        up = UserProfile.create!(user_id: current_user.id, username: params[:username], age: params[:age], school: params[:school], grade: params[:grade], bj: params[:bj])
         if up.save
           status = true
           message = '个人信息添加成功'
