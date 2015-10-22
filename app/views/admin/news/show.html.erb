@@ -18,9 +18,15 @@
 
   <div class="page-header ">
     <h2 class="center"><%= @new.name %></h2>
-
-
   </div>
+  <% if @new.cover.present? %>
+      <div class="form-group">
+        <%= image_tag(@new.cover_url(:middle), class: 'img-thumbnail') %>
+        <%= @new.news_type.name %>
+      </div>
+
+  <% end %>
+
   <div class="page-header">
     <%= @new.content.html_safe %>
   </div>
@@ -30,6 +36,7 @@
     <p>发布人: <%= @new.admin.name %></p>
 
     <p>发布时间: <%= @new.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></p>
+
     <p>更新时间: <%= @new.updated_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></p>
 
 

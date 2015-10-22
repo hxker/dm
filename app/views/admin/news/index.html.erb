@@ -39,6 +39,7 @@
     <th>ID</th>
     <th><%= t('simple_form.labels.defaults.name') %></th>
     <th>类型</th>
+    <th>所属比赛</th>
     <th>内容</th>
     <th>发布人</th>
     <th>发布时间</th>
@@ -53,10 +54,11 @@
         <td><%= news.id %></td>
         <td><%= news.name %></td>
         <td><%= news.news_type.try(:name) %></td>
-        <td><%= news.content %></td>
+        <td><%= news.event.name %></td>
+        <td><%= "#{(news.content).at(0..20)}......" if news.content.length > 20 %></td>
         <td><%= news.admin.try(:name) %></td>
-        <td><%= news.created_at.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td>
-        <td><%= news.updated_at.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= news.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= news.updated_at.try(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
 
         <td><%= link_to [:admin, news], title: '查看', class: 'btn btn-xs btn-warn' do %>
               <i class="icon-eye-open bigger-120"></i>

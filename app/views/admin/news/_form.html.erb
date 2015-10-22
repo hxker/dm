@@ -12,6 +12,17 @@
         <div class="form-inputs">
           <%= f.input :name, maxlength: '100' %>
           <%= f.input :news_type_id, collection: NewsType.all %>
+          <%= f.input :event_id, collection: Event.all %>
+          <% if @new.cover.present? %>
+              <div class="form-group">
+                <%= image_tag(@new.cover_url(:middle), class: 'img-thumbnail') %>
+              </div>
+          <% end %>
+          <div class="form-group">
+            <label for="exampleInputFile">封面:</label>
+            <%= f.file_field :cover %>
+            <%= f.hidden_field :cover_cache %>
+          </div>
           <label class="select required control-label" for="news_content"><abbr title="必填字段">*</abbr>内容:</label>
           <%= f.kindeditor :content, :window_onload => true, :owner_id => @new.id, :items => ['source', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'media', 'insertfile', 'baidumap', 'link', 'unlink', 'quickformat', 'preview', 'fullscreen'] %>
           <%= f.hidden_field :admin_id, :value => @current_admin.id %>
