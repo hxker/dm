@@ -59,6 +59,11 @@ ul {
     font-style: italic;
 }
 
+.text-paragraph {
+    text-indent: 2em;
+    text-align: left;
+}
+
 .fixed {
     position: fixed !important;
 }
