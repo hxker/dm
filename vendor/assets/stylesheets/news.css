@@ -363,6 +363,9 @@
 #news .new-main .content img {
     max-width: 100%;
 }
+#news .new-main .footer{
+    padding: 20px 0;
+}
 
 #news .sidebar .record {
     margin-bottom: 20px;
