@@ -6,13 +6,13 @@ $(function () {
             $('.floor').height($(window).height());
         }
 
-        if ($('#competition')) {
+        if ($('#competition').length > 0) {
             $('#competition-items').find('.item').on('click', function () {
                 $('.competitions-tab').removeClass('active').eq($(this).index()).addClass('active');
             })
         }
 
-        if ($('.apply-menu-sub')) {
+        if ($('.apply-menu-sub').length > 0) {
             $('.apply-menu-sub').on('click', function () {
                 $(this).parent().find('.apply-menu-sub').removeClass('active');
                 $(this).addClass('active');
@@ -21,7 +21,7 @@ $(function () {
             });
         }
 
-        if ('#create_team') {
+        if ($('#create_team').length > 0) {
             $('#create_team').on('click', function () {
                 var form_data = {
                     event_id: $('.competitions-tab.active').attr('data-id'),
@@ -46,11 +46,11 @@ $(function () {
             })
         }
 
-        if ('[data-edit]') {
+        if ($('[data-edit]').length > 0) {
             editInput.init('[data-edit]', {});
         }
 
-        if ('#check_profile') {
+        if ($('#check_profile').length > 0) {
             $('.btn-save-profile').on('click', function (event) {
                 event.preventDefault();
                 var form = $(this).parents('form');
@@ -72,12 +72,42 @@ $(function () {
                 ajaxHandle(option);
             })
         }
+
+        if ($('#homepage').length > 0) {
+            var homepageSwiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                autoplay: 5000
+            })
+        }
+
+        if ($('.news-banner').length > 0) {
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                paginationClickable: true,
+            });
+            $('.thumb-menu>.items>.item').on('click', function () {
+                if (!$(this).hasClass('active')) {
+                    $(this).addClass('active').siblings('.item').removeClass('active');
+                    var index = $(this).index();
+                    mySwiper.slideTo(index + 1, 400, function () {
+                    });
+                }
+            });
+        }
     }
 );
 
 function get_teams(text) {
     var params = {id: $('.competitions-tab.active').attr('data-id')};
-    if(text){
+    if (text) {
         params.team_name = text;
     }
     $("#page").children().remove();
