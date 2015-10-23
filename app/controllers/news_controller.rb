@@ -4,6 +4,7 @@ class NewsController < ApplicationController
   end
 
   def show
-
+    @new = News.find(params[:id])
+    @news = News.limit(3).all
   end
 end

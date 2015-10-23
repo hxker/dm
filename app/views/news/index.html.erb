@@ -192,18 +192,20 @@
 
 
           <% @news.each do |news| %>
-              <div class="item">
-                <div class="pic">
-                  <%= image_tag(news.cover_url(:middle)) %>
-                </div>
-                <div class="dec">
-                  <p class="t-18 blue"><%= news.name %>
-                    <span class="t-12 col-r grey"><%= news.created_at.try(:strftime, '%Y-%m-%d') %></span>
-                  </p>
+              <%= link_to news_path(news), title: '查看新闻' do %>
+                  <div class="item">
+                    <div class="pic">
+                      <%= image_tag(news.cover_url(:middle)) %>
+                    </div>
+                    <div class="dec">
+                      <p class="t-18 blue"><%= news.name %>
+                        <span class="t-12 col-r grey"><%= news.created_at.try(:strftime, '%Y-%m-%d') %></span>
+                      </p>
 
-                  <p class="t-14"><%= news.content.html_safe %></p>
-                </div>
-              </div>
+                      <p class="t-14"><%= news.content.html_safe %></p>
+                    </div>
+                  </div>
+              <% end %>
           <% end %>
 
           <nav class="text-center">
