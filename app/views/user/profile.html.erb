@@ -118,8 +118,8 @@
                 <label class="user-label t-16">性别：</label>
                 <!--<%= f.input :gender, collection: UserProfile::GENDER.map { |key, val| [t('gender.'+key.to_s), val] } %>-->
 
-                <label class="gender-radio"><input name="user_profile[gender]" value="1" type="radio" <%= 'checked="checked"' if 1==2 %> />男</label>
-                <label class="gender-radio"><input name="user_profile[gender]" value="2" type="radio" <%= 'checked="checked"' if 1==1 %> />女</label>
+                <label class="gender-radio"><input name="user_profile[gender]" value="1" type="radio" <%= 'checked="checked"' if @user_profile.gender==1 %> />男</label>
+                <label class="gender-radio"><input name="user_profile[gender]" value="2" type="radio" <%= 'checked="checked"' if @user_profile.gender==2 %> />女</label>
 
               </div>
               <!--<div class="input-row">-->
@@ -137,7 +137,7 @@
               <div class="input-row" style="overflow: hidden">
                 <div style="width: 230px;float: left;margin-right: 20px">
                   <label class="user-label t-16">年级：</label>
-                  <%= f.input :grade,collection: {一年级: 1, 二年级: 2,三年级: 3,四年级: 4,五年级: 5,六年级: 6,七年级: 7,八年级: 8,九年级: 9   ,}.map { |key, val| [key, val] } %>
+                  <%= f.input :grade, collection: {一年级: 1, 二年级: 2, 三年级: 3, 四年级: 4, 五年级: 5, 六年级: 6, 七年级: 7, 八年级: 8, 九年级: 9, }.map { |key, val| [key, val] } %>
                 </div>
                 <div style="width: 230px;float: left;">
                   <label class="user-label t-16">班级：</label>
