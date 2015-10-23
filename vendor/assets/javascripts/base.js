@@ -92,6 +92,7 @@ $(function () {
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
                 paginationClickable: true,
+                autoplay: 5000
             });
             $('.thumb-menu>.items>.item').on('click', function () {
                 if (!$(this).hasClass('active')) {

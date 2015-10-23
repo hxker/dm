@@ -243,7 +243,21 @@
                 <input class="form-control" type="text" name="school" value="<%= current_user.user_profile.try(:school) %>" placeholder="请输入学校"/>
               </div>
               <div class="input-row">
-                <input class="form-control" type="text" name="grade" value="<%= current_user.user_profile.try(:grade) %>" placeholder="请输入年级和班级 例：三（1）班"/>
+                <select class="form-control" name="grade">
+                  <option value="0">请选择</option>
+                  <option value="1">一年级</option>
+                  <option value="2">二年级</option>
+                  <option value="3">三年级</option>
+                  <option value="4">四年级</option>
+                  <option value="5">五年级</option>
+                  <option value="6">六年级</option>
+                  <option value="7">七年级</option>
+                  <option value="8">八年级</option>
+                  <option value="9">九年级</option>
+                </select>
+              </div>
+              <div class="input-row">
+                <input class="form-control" type="text" name="bj" value="<%= current_user.user_profile.try(:bj) %>" placeholder="请输入班级"/>
               </div>
               <div class="input-row">
                 <button class="btn-save-profile">确认信息</button>

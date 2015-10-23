@@ -126,7 +126,8 @@
     height: 111px;
     overflow: hidden;
 }
-#user-info .username .editInput{
+
+#user-info .username .editInput {
     line-height: 26px;
     width: 79px;
 }
@@ -212,6 +213,10 @@
     margin-bottom: 16px;
 }
 
+#user-info .competitions .competition-item:hover {
+    outline: 1px solid #00a1ff;
+}
+
 #user-info .competitions .competition-item .item-pic {
     float: left;
     height: 136px;
@@ -248,6 +253,10 @@
     box-sizing: border-box;
     height: 50px;
     margin-bottom: 0;
+}
+
+#user-info .secret-info #user_profile_grade.form-control,#user-info .secret-info #user_profile_bj.form-control{
+    width: 150px;
 }
 
 .clickMe {

@@ -202,7 +202,7 @@
                         <span class="t-12 col-r grey"><%= news.created_at.try(:strftime, '%Y-%m-%d') %></span>
                       </p>
 
-                      <p class="t-14"><%= news.content.html_safe %></p>
+                      <p class="t-14"><%= "#{news.content.html_safe.at(0..100)}..." %></p>
                     </div>
                   </div>
               <% end %>

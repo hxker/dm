@@ -249,10 +249,11 @@
 
 }
 
-/*#news .new-list .content {*/
-    /*position: relative;*/
+#news .new-list .content {
+    position: relative;
     /*height: 800px;*/
-/*}*/
+    padding: 0 0 50px;
+}
 
 #news .new-list .footer {
     padding: 10px 0 20px;
@@ -271,43 +272,43 @@
 }
 
 #news .new-list .content .item {
-    overflow: hidden;
     background: #fff;
     padding: 20px;
     border-bottom: 1px solid #9d9d9d;
     transition: all .4s;
-    /*position: absolute;*/
+    position: relative;
     height: 90px;
     left: 0;
+    z-index: 0;
 }
 
-#news .new-list .content .item:nth-of-type(1) {
-    top: 0;
-}
+/*#news .new-list .content .item:nth-of-type(1) {*/
+    /*top: 0;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(2) {
-    top: 131px;
-}
+/*#news .new-list .content .item:nth-of-type(2) {*/
+    /*top: 131px;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(3) {
-    top: 262px;
-}
+/*#news .new-list .content .item:nth-of-type(3) {*/
+    /*top: 262px;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(4) {
-    top: 393px;
-}
+/*#news .new-list .content .item:nth-of-type(4) {*/
+    /*top: 393px;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(5) {
-    top: 524px;
-}
+/*#news .new-list .content .item:nth-of-type(5) {*/
+    /*top: 524px;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(6) {
-    top: 655px;
-}
+/*#news .new-list .content .item:nth-of-type(6) {*/
+    /*top: 655px;*/
+/*}*/
 
-#news .new-list .content .item:nth-of-type(7) {
-    top: 916px;
-}
+/*#news .new-list .content .item:nth-of-type(7) {*/
+    /*top: 916px;*/
+/*}*/
 
 .grey {
     color: #9d9d9d;
@@ -325,11 +326,31 @@
     height: 90px;
 }
 
-#news .new-list .content .item:hover {
-    margin: -10px;
-    padding: 30px;
+#news .new-list .content .item:after{
+    content: "";
+    height: 130px;
+    width: 1100px;
+    opacity: 0;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: all .4s;
+    background: #ffffff;
+}
+
+#news .new-list .content .item:hover{
+    z-index: 2;
+    border-color: #ffffff;
+}
+
+#news .new-list .content .item:hover:after {
+    opacity: 1;
     box-shadow: 0 0 10px #878787;
-    z-index: 10;
+    height: 150px;
+    width: 1120px;
+    top: -10px;
+    left: -10px;
 }
 
 #news .show-news {
@@ -363,7 +384,8 @@
 #news .new-main .content img {
     max-width: 100%;
 }
-#news .new-main .footer{
+
+#news .new-main .footer {
     padding: 20px 0;
 }
 
@@ -444,29 +466,31 @@
 
 #news .sidebar .news-recommend .content {
     position: relative;
+    padding-bottom: 50px;
 }
 
 #news .sidebar .news-recommend .content .item {
-    overflow: hidden;
     border-bottom: 1px solid #cccccc;
     padding: 20px 0;
     height: 90px;
-    position: absolute;
     transition: all .4s;
     background: #ffffff;
+    width: 360px;
+    position: relative;
+    z-index: 0;
 }
 
-#news .sidebar .news-recommend .content .item:nth-of-type(1) {
-    top: 0;
-}
+/*#news .sidebar .news-recommend .content .item:nth-of-type(1) {*/
+/*top: 0;*/
+/*}*/
 
-#news .sidebar .news-recommend .content .item:nth-of-type(2) {
-    top: 131px;
-}
+/*#news .sidebar .news-recommend .content .item:nth-of-type(2) {*/
+/*top: 131px;*/
+/*}*/
 
-#news .sidebar .news-recommend .content .item:nth-of-type(3) {
-    top: 262px;
-}
+/*#news .sidebar .news-recommend .content .item:nth-of-type(3) {*/
+/*top: 262px;*/
+/*}*/
 
 #news .sidebar .news-recommend .content .item .pic {
     float: left;
@@ -480,10 +504,31 @@
     height: 90px;
 }
 
-#news .sidebar .news-recommend .content .item:hover {
-    padding: 30px 10px;
-    margin: -10px;
+#news .sidebar .news-recommend .content .item:after {
+    width: 360px;
+    height: 130px;
+    content: "";
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .4s;
     box-shadow: 0 0 20px #ccc;
-    z-index: 10;
+    z-index: -1;
     border: none;
+    opacity: 0;
+}
+
+#news .sidebar .news-recommend .content .item:hover{
+    z-index: 2;
+}
+
+#news .sidebar .news-recommend .content .item:hover:after {
+    content: "";
+    display: block;
+    top: -10px;
+    left: -10px;
+    height: 150px;
+    width: 380px;
+    opacity: 1;
 }
