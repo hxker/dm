@@ -155,12 +155,16 @@
           <div class="competitions-tab" data-id="<%= index + 1 %>">
             <div class="container-content">
               <h1><%= event.name %></h1>
-              <input type="hidden" id="team-limit" value="<%= event.team_max_num%>"/>
+              <input type="hidden" id="team-limit" value="<%= event.team_max_num %>"/>
               <% if current_user.present? %>
                   <% if is_apply_event(current_user.id, event.id) %>
                       您已报名该项目,<a href="#" class="blue">查看报名信息</a>
                   <% else %>
-                      <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
+                      <% if event.id==4 %>
+                          <a href="#">上传作品</a>
+                      <% else %>
+                          <button class="btn btn-warning btn-lg user-apply-in" data-toggle="modal" data-target="#check_profile">报名</button>
+                      <% end %>
                   <% end %>
               <% else %>
                   <p class="t-18">
