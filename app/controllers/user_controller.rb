@@ -71,6 +71,12 @@ class UserController < ApplicationController
     @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id)
   end
 
+  def creative_activity
+    @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
+
+  end
+
+
   def score
     t_u = TeamUserShip.where(user_id: 1, event_id: params[:id]).select(:team_id).take
     user_scores = Score.includes(:schedule, :team1, :team2).where(event_id: params[:id]).where(['team1_id = :value OR team2_id = :value', {:value => t_u.team_id}]).select(:team1_id, :team2_id, :score1, :score2, :th, :comp_name, :kind).map { |s| {
