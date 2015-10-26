@@ -191,6 +191,21 @@
     margin-bottom: 30px;
 }
 
+#creative_activities #new-activities .content .upload-list {
+    overflow: hidden;
+}
+
+#creative_activities #new-activities .content .upload-item {
+    width: 300px;
+    /*border: 2px solid #ffc000;*/
+    margin-left: 20px;
+    padding: 20px;
+}
+
+#creative_activities #new-activities .content .upload-item:first-child {
+    margin-left: 0;
+}
+
 #creative_activities #new-activities .content #creative_activity_name {
     box-sizing: border-box;
 }
@@ -206,9 +221,11 @@
     padding-right: 20px;
     border-bottom: none;
 }
-#creative_activities #activities-list .items{
+
+#creative_activities #activities-list .items {
     padding: 10px;
 }
+
 #creative_activities #activities-list .items .item {
     height: 220px;
     background: #eeeeee;

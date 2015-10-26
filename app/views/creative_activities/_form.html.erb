@@ -15,48 +15,63 @@
         <%= f.input :name, placeholder: '请输入作品名称' %>
       </div>
       <hr/>
+      <div class="upload-list">
+        <div class="col-l upload-item">
+          <% if @creative_activity.cover? %>
+              <div class="form-group">
+                <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-l upload-item">
+          <% if @creative_activity.file? %>
+              <div class="form-group">
+                <%= @creative_activity.file_url %>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-l upload-item">
+          <% if @creative_activity.media? %>
+              <div class="form-group">
+                <%= @creative_activity.media.html_safe %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="upload-list">
+        <div class="col-l upload-item">
 
-      <% if @creative_activity.cover? %>
           <div class="form-group">
-            <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+            <label for="exampleInputFile"><abbr title="必填字段">*</abbr>海报</label>
+            <br/>
+            <label class="btn btn-warning" for="creative_activity_cover">上传海报</label>
+            <%= f.file_field :cover, class: 'hide' %>
+            <%= f.hidden_field :cover_cache %>
+            <p class="help-block">格式：jpg jpeg gif png，尺寸：800x800</p>
           </div>
-      <% end %>
-      <div class="form-group">
-        <label for="exampleInputFile"><abbr title="必填字段">*</abbr>海报</label>
-        <br/>
-        <label class="btn btn-warning" for="creative_activity_cover">上传海报</label>
-        <%= f.file_field :cover, class: 'hide' %>
-        <%= f.hidden_field :cover_cache %>
-        <p class="help-block">格式：jpg jpeg gif png，尺寸：800x800</p>
-      </div>
-      <hr/>
+        </div>
 
-      <% if @creative_activity.file? %>
+        <div class="col-l upload-item">
+
           <div class="form-group">
-            <%= @creative_activity.file_url %>
+            <label for="exampleInputFile">附件</label>
+            <br/>
+            <label class="btn btn-warning" for="creative_activity_file">上传附件</label>
+            <%= f.file_field :file, class: 'hide' %>
+            <p class="help-block">格式：doc docx xls xlsx ppt htm html txt zip rar gz bz2</p>
           </div>
-      <% end %>
+        </div>
 
-      <div class="form-group">
-        <label for="exampleInputFile">附件</label>
-        <br/>
-        <label class="btn btn-warning" for="creative_activity_file">上传附件</label>
-        <%= f.file_field :file, class: 'hide' %>
-        <p class="help-block">格式：doc docx xls xlsx ppt htm html txt zip rar gz bz2</p>
-      </div>
-      <hr/>
-
-      <div class="form-group">
-        <%= @creative_activity.media_identifier %>
-      </div>
-
-      <div class="form-group">
-        <label for="exampleInputFile">音频</label>
-        <br/>
-        <label class="btn btn-warning" for="creative_activity_media">上传音频</label>
-        <%= f.file_field :media, class: 'hide' %>
-        <%= f.hidden_field :media_cache %>
-        <p class="help-block">格式：swf flv mp3 wav wma wmv mid avi mpg asf rm rmvb mp4</p>
+        <div class="col-l upload-item">
+          <div class="form-group">
+            <label for="exampleInputFile">音频</label>
+            <br/>
+            <label class="btn btn-warning" for="creative_activity_media">上传音频</label>
+            <%= f.file_field :media, class: 'hide' %>
+            <%= f.hidden_field :media_cache %>
+            <p class="help-block">格式：swf flv mp3 wav wma wmv mid avi mpg asf rm rmvb mp4</p>
+          </div>
+        </div>
       </div>
       <hr/>
 
