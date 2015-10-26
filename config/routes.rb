@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   match 'user/notification' => 'user#notification', as: 'user_notification', via: [:get, :post]
   match 'user/comp' => 'user#comp', as: 'user_comp', via: [:get, :post]
   match 'user/creative_activity' => 'user#creative_activity', as: 'user_creative_activity', via: [:get, :post]
+  match 'user/creative_activity/:id' => 'user#creative_activity', as: 'user_creative_activity', via: [:get]
   get 'user/score' => 'user#score'
 
   namespace :user do |u|
