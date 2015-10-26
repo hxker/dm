@@ -1,13 +1,17 @@
 <!--<script type="text/javascript" src="/assets/kindeditor/kindeditor.js"></script>-->
 
-<div class="container">
-  <h1 class="page-header">
-    新增<%= t('activerecord.models.creative_activity') %>
-    <small class="pull-right">
-      <a href="<%= creative_activities_path %>" class="btn btn-default" title="创意列表">
-        列表</a>
-    </small>
-  </h1>
-  <!--<textarea class="" id="creative_activity_description1" name="content" style="width: 80%; height:300px;"></textarea>-->
-  <%= render 'form' %>
+<div id="creative_activities">
+  <div class="floor">
+    <div id="nav" class="nav-v2">
+      <%= render 'layouts/nav_menu' %>
+    </div>
+    <div class="container-content" id="new-activities">
+      <div class="title">
+        <p class="col-r blue t-48 t-bold pull-down-0">上传作品</p>
+      </div>
+      <div class="content">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
 </div>

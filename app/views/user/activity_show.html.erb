@@ -1,0 +1,82 @@
+<div class="floor">
+  <div id="nav" class="nav-v2">
+    <%= render 'layouts/nav_menu' %>
+  </div>
+  <div class="container-content">
+    <div id="user-info">
+      <div class="menu">
+        <div class="menu-item clearfix">
+          <%= simple_form_for(current_user, html: {id: 'form_change_avatar', multipart: true}, url: user_update_avatar_path, method: :post) do |f| %>
+              <div class="avatar">
+                <%= image_tag(current_user.avatar_url(:middle), class: 'avatar-img') %>
+              </div>
+              <label class="edit-avatar" for="user_avatar">修改头像</label>
+
+              <div class="username">
+                <div class="edit" data-edit="text" data-name="user[nickname]" title="点击编辑">
+                  <%= current_user.nickname %>
+                </div>
+                <input type="hidden" name="user[nickname]" value="<%= current_user.nickname %>"/>
+              </div>
+              <div class="clearfix"></div>
+              <div class="edit-plus">
+                <%= f.file_field :avatar %>
+                <%= f.submit class: 'btn-user-update', value: '更新个人信息' %>
+              </div>
+          <% end %>
+        </div>
+        <%= render 'user/menu' %>
+      </div>
+      <div class="content">
+        <div class="activity-panel">
+          <div class="activity-title">
+            <div class="col-l">
+              <p class="t-20 t-bold pull-down-5"><%= @creative_activity.name %></p>
+
+              <p class="t-12 grey">上传时间：<%= @creative_activity.created_at.try(:strftime, '%Y-%m-%d') %></p>
+
+              <div class="pull-down-10">
+                <% if @creative_activity.is_audit==0 %>
+                    <label class="t-14 label label-default">待审核</label>
+                <% elsif @creative_activity.is_audit == 1 %>
+                    <label class="t-14 label label-success">审核通过</label>
+                <% else %>
+                    <label class="t-14 label label-danger">审核未通过</label>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-r">
+              <div class="btn-rate">
+                <a href="<%= user_creative_activity_path %>" class="btn-back-to-list">返回列表</a>
+              </div>
+            </div>
+          </div>
+          <div class="activity-content">
+            <% if @creative_activity.cover? %>
+                <div class="form-group pull-down-20">
+                  <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+                </div>
+            <% end %>
+            <% if @creative_activity.file? %>
+                <div class="form-group pull-down-20">
+                  <%= @creative_activity.file %>
+                  <%= link_to '下载附件', @creative_activity.file_url %>
+                </div>
+            <% end %>
+            <div class="form-group pull-down-20">
+              <% if @creative_activity.media? %>
+                  <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="p=0&f=<%= @creative_activity.media_url %>"
+                         type="application/x-shockwave-flash" width="550" height="400" autostart="false" loop="true">
+                  </embed>
+                  <%= link_to '下载音频', @creative_activity.media_url %>
+              <% end %>
+            </div>
+            <!--富文本内容-->
+            <%= @creative_activity.description.html_safe %>
+            <!--富文本内容结束-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

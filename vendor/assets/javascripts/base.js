@@ -3,7 +3,7 @@
  */
 $(function () {
         if ($('body').height() < $(window).height()) {
-            $('.floor').height($(window).height());
+            $('.floor').height($(window).height()-120);
         }
 
         if ($('#competition').length > 0) {

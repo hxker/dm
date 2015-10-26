@@ -1,50 +1,136 @@
-<div class="container">
-  <h1 class="page-header">
-    编辑<%= t('activerecord.models.creative_activity') %>
-    <small class="pull-right">
-      <%= link_to edit_creative_activity_path(@creative_activity), title: '编辑', class: 'btn btn-default' do %>
-          编辑
-      <% end %>
+<!--<div class="container">-->
+<!--<h1 class="page-header">-->
+编辑<%= t('activerecord.models.creative_activity') %>
+<!--<small class="pull-right">-->
+<!--<%= link_to edit_creative_activity_path(@creative_activity), title: '编辑', class: 'btn btn-default' do %>-->
+    <!--编辑-->
+    <!--
+<% end %>-->
 
-      <a href="<%= creative_activities_path %>" title="列表" class="btn btn-default">
-        列表</a>
-    </small>
-  </h1>
-  <% if @creative_activity.present? %>
-      <h1 class="page-header">
-        <%= @creative_activity.name %>
-      </h1>
-      <% if @creative_activity.cover? %>
-          <div class="form-group">
-            <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+<!--<a href="<%= creative_activities_path %>" title="列表" class="btn btn-default">-->
+<!--列表</a>-->
+<!--</small>-->
+<!--</h1>-->
+<!--
+<% if @creative_activity.present? %>-->
+    <!--<h1 class="page-header">-->
+    <!--<%= @creative_activity.name %>-->
+    <!--</h1>-->
+    <!--
+    <% if @creative_activity.cover? %>-->
+        <!--<div class="form-group">-->
+        <!--<%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>-->
+        <!--</div>-->
+        <!--
+    <% end %>-->
+    <!--
+    <% if @creative_activity.file? %>-->
+        <!--<div class="form-group">-->
+        <!--<%= @creative_activity.file %>-->
+        <!--<%= link_to '下载附件', @creative_activity.file_url %>-->
+        <!--</div>-->
+        <!--
+    <% end %>-->
+    <!--<div class="form-group">-->
+    <!--
+    <% if @creative_activity.media? %>-->
+        <!--<embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="p=0&f=<%= @creative_activity.media_url %>"-->
+        <!--type="application/x-shockwave-flash" width="550" height="400" autostart="false" loop="true">-->
+        <!--</embed>-->
+        <!--<%= link_to '下载音频', @creative_activity.media_url %>-->
+        <!--
+    <% end %>-->
+    <!--</div>-->
+    <!--<p>描述：<%= @creative_activity.description.html_safe %></p>-->
+
+
+    <!--<h5 class="page-header"></h5>-->
+
+    <!--
+<% end %>-->
+
+
+
+
+<!--</div>-->
+
+<div id="art">
+  <div class="floor">
+    <div id="nav" class="nav-v2">
+      <%= render 'layouts/nav_menu' %>
+    </div>
+    <div class="container-content">
+      <div class="art-info">
+        <div class="title">
+          <img src="/images/competion-logo.png" alt=""/>
+          <span class="t-24 blue col-r">作品赏析</span>
+        </div>
+        <div class="content">
+          <div class="synopsis">
+            <div class="col-l">
+              <p class="t-20 t-bold pull-down-5"><%= @creative_activity.name %></p>
+
+              <p class="t-12 grey">上传时间：<%= @creative_activity.created_at.try(:strftime, '%Y-%m-%d') %></p>
+
+              <!--<p class="t-14">这里是绿豆蛙卖萌机器人的一些简介，这里是绿豆蛙卖萌机器人的一些简介，这里是绿豆蛙卖萌机器人的一些简介，这里是绿豆蛙卖萌机器人的一些简介，这里是绿豆蛙卖萌机器人的一些简介，这里是绿豆蛙卖萌机器人的一些简介，</p>-->
+            </div>
+            <div class="col-r">
+              <div class="author">
+                <p class="t-20 t-bold"><%= @creative_activity.user.nickname %></p>
+              </div>
+              <div class="vote">
+                <i class="t-26 fa fa-heart-o"></i>
+                <span class="t-14"><%= @creative_activity.likes_count %></span>
+              </div>
+              <div class="clearfix"></div>
+              <div class="btn-rate">
+                <%= link_to "#{user_likes_path}?id=#{@creative_activity.id}", data: {id: @creative_activity.id, method: :post, type: 'script', remote: true}, title: '点赞', class: 'btn-like' do %>
+                    <i class="glyphicon glyphicon-thumbs-up <%= 'text-danger' if @user_likes.try(:include?, @creative_activity.id) %>"></i>
+                    <span class="hidden-xs"><%= @user_likes.try(:include?, @creative_activity.id) ? "取消赞#{"(#{@creative_activity.likes_count})" }" : "赞#{"(#{@creative_activity.likes_count})" if @creative_activity.likes_count.to_i > 0 }" %></span>
+                <% end %>
+                <!--<button class="btn-prev-art"><i class="fa fa-caret-left"></i></button>-->
+                <a href="<%= creative_activities_path %>" class="btn-back-to-list">返回列表</a>
+                <!--<button class="btn-next-art active"><i class="fa fa-caret-right"></i></button>-->
+              </div>
+            </div>
           </div>
-      <% end %>
-      <% if @creative_activity.file? %>
-          <div class="form-group">
-            <%= @creative_activity.file %>
-            <%= link_to '下载附件', @creative_activity.file_url %>
+          <div class="content-content" style="padding: 50px">
+            <% if @creative_activity.cover? %>
+                <div class="form-group pull-down-20">
+                  <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
+                </div>
+            <% end %>
+            <% if @creative_activity.file? %>
+                <div class="form-group pull-down-20">
+                  <%= @creative_activity.file %>
+                  <%= link_to '下载附件', @creative_activity.file_url %>
+                </div>
+            <% end %>
+            <div class="form-group pull-down-20">
+              <% if @creative_activity.media? %>
+                  <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="p=0&f=<%= @creative_activity.media_url %>"
+                         type="application/x-shockwave-flash" width="550" height="400" autostart="false" loop="true">
+                  </embed>
+                  <%= link_to '下载音频', @creative_activity.media_url %>
+              <% end %>
+            </div>
+
+
+            <!--富文本内容-->
+            <%= @creative_activity.description.html_safe %>
           </div>
-      <% end %>
-      <div class="form-group">
-        <% if @creative_activity.media? %>
-            <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="p=0&f=<%= @creative_activity.media_url %>"
-                   type="application/x-shockwave-flash" width="550" height="400" autostart="false" loop="true">
-            </embed>
-            <%= link_to '下载音频', @creative_activity.media_url %>
-        <% end %>
+          <div class="btn-rate">
+            <%= link_to "#{user_likes_path}?id=#{@creative_activity.id}", data: {id: @creative_activity.id, method: :post, type: 'script', remote: true}, title: '点赞', class: 'btn-like' do %>
+                <i class="glyphicon glyphicon-thumbs-up <%= 'text-danger' if @user_likes.try(:include?, @creative_activity.id) %>"></i>
+                <span class="hidden-xs"><%= @user_likes.try(:include?, @creative_activity.id) ? "取消赞#{"(#{@creative_activity.likes_count})" }" : "赞#{"(#{@creative_activity.likes_count})" if @creative_activity.likes_count.to_i > 0 }" %></span>
+            <% end %>
+            <!--<button class="btn-prev-art"><i class="fa fa-caret-left"></i></button>-->
+            <a href="<%= creative_activities_path %>" class="btn-back-to-list">返回列表</a>
+            <!--<button class="btn-next-art active"><i class="fa fa-caret-right"></i></button>-->
+
+          </div>
+        </div>
       </div>
-      <p>描述：<%= @creative_activity.description.html_safe %></p>
-
-
-      <h5 class="page-header"></h5>
-
-  <% end %>
-
-  <%= link_to "#{user_likes_path}?id=#{@creative_activity.id}", data: {id: @creative_activity.id, method: :post, type: 'script', remote: true}, title: '点赞', class: 'btn btn-default btn-like' do %>
-      <i class="glyphicon glyphicon-thumbs-up <%= 'text-danger' if @user_likes.try(:include?, @creative_activity.id) %>"></i>
-      <span class="hidden-xs"><%= @user_likes.try(:include?, @creative_activity.id) ? "取消赞#{"(#{@creative_activity.likes_count})" }" : "赞#{"(#{@creative_activity.likes_count})" if @creative_activity.likes_count.to_i > 0 }" %></span>
-  <% end %>
-
-
+    </div>
+  </div>
 </div>
-

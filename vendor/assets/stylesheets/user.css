@@ -137,6 +137,7 @@
     background: #FFFFFF;
     box-shadow: 0 0 3px #ccc;
     padding-bottom: 40px;
+    min-height: 400px;
 }
 
 #user-info .content .signature, #user-info .content .secret-info {
@@ -261,4 +262,25 @@
 
 .clickMe {
     display: inline-block;
+}
+#user-info .activity-panel{
+    padding: 10px;
+}
+#user-info .activity-panel .activity-title{
+    border-bottom: 1px dotted #ccc;
+    overflow: hidden;
+}
+#user-info .activity-panel .activity-title .btn-back-to-list{
+    padding: 5px 15px;
+    background: #ffc000;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ffc000;
+    font-size: 14px;
+    display: inline-block;
+    transition: all .3s;
+}
+#user-info .activity-panel .activity-content{
+    padding: 50px;
 }

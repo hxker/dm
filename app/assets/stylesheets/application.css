@@ -26,6 +26,7 @@
  *= require competition
  *= require user
  *= require news
+ *= require art
  *= require jquery.pagination
  *= require_tree .
  *= require_self

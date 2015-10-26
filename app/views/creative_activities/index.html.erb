@@ -1,39 +1,48 @@
-<div class="container">
-  <h1 class="page-header">
-    创意列表
-    <small>
-      <%= link_to '新增创意', new_creative_activity_path, 'data-no-turbolink' => true, :class => 'btn btn-default' %>
+<div id="art">
+  <div class="floor">
+    <div id="nav" class="nav-v2">
+      <%= render 'layouts/nav_menu' %>
+    </div>
+    <div class="container-content">
+      <div class="art-list">
+        <div class="title">
+          <img src="/images/competion-logo.png" alt=""/>
+          <span class="t-24 blue col-r">上传作品列表</span>
+        </div>
+        <div class="content">
+          <!--作品列表-->
+          <% if @creative_activities.present? %>
+              <% @creative_activities.each do |comp| %>
+                  <a href="/creative_activities/<%= comp.id %>">
+                    <div class="item">
+                      <div class="pic">
+                        <%= image_tag(comp.cover_url(:middle)) %>
+                      </div>
+                      <div class="dec">
+                        <p class="t-14 pull-down-20">
+                          <i class="t-18 fa fa-play"></i>&nbsp;&nbsp;&nbsp;&nbsp;<%= comp.name %></p>
 
-    </small>
-  </h1>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="row">
-        <% @creative_activities.each do |comp| %>
-            <div class="col-xs-12" data-competition-id="<%= comp.id %>">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div>
-                    <h4 class="name">
-                      <%= link_to comp do %>
-                          <%= comp.name %>
-                      <% end %>
-                      <%= link_to comp, method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
-                          删除
-                      <% end %>
-                    </h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <% end %>
+                        <p class="pull-down-0 t-14"><%= comp.user.nickname %>
+                          <a class="col-r t-14"><i class="fa fa-heart-o"></i>&nbsp;&nbsp;<%= comp.likes_count %></a>
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+              <% end %>
+          <% else %>
+              <p class="t-20 pull-down-0">您当前没有上传任何作品</p>
+              您可以&nbsp;&nbsp;<a class="btn btn-warning" href="/creative_activities/new">上传作品</a>
+          <% end %>
+          <!--作品列表结束-->
+          <div class="clear"></div>
+          <div class="footer text-center">
+            <nav>
+              <%= paginate @creative_activities %>
+            </nav>
+          </div>
+        </div>
       </div>
-
-      <nav>
-        <%= paginate @creative_activities %>
-      </nav>
     </div>
   </div>
-
 </div>
+

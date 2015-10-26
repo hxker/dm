@@ -4,3 +4,6 @@
 <div class="<%= "menu-item #{'active' if action_name=='comp'}" %>">
   <a href="<%= user_comp_path %>" class="t-18">我的比赛</a>
 </div>
+<div class="<%= "menu-item #{'active' if action_name=='creative_activity' || action_name=='activity_show'}" %>">
+  <a href="<%= user_creative_activity_path %>" class="t-18">我的作品</a>
+</div>

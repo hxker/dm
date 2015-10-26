@@ -1,0 +1,281 @@
+#art {
+
+}
+
+#art .art-list {
+    padding-top: 126px;
+
+}
+
+#art .art-list .title {
+    height: 80px;
+    background: #ffffff url("../images/dy-title-bk.jpg") bottom repeat-x;
+    border-left: 3px solid #FEBF00;
+    padding-left: 15px;
+    padding-right: 20px;
+    line-height: 80px;
+    position: relative;
+}
+
+#art .art-list .title img {
+    height: 44px;
+}
+
+#art .art-list .content {
+    padding: 20px 0 0;
+    background: #ffffff;
+    box-shadow: 0 0 2px #ccc;
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+
+#art .art-list .content .item {
+    float: left;
+    width: 216px;
+    background: #f5f5f5;
+    transition: all .3s;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+#art .art-list .content .item:nth-child(5n+1) {
+    margin-left: 0;
+}
+
+#art .art-list .content .item .pic {
+    width: 216px;
+    height: 216px;
+}
+
+#art .art-list .content .item .pic img {
+    height: 216px;
+    width: 216px;
+}
+
+#art .art-list .content .item .dec {
+    padding: 15px 20px;
+    background: #f5f5f5;
+    transition: all .3s;
+}
+
+#art .art-list .content .item:hover {
+    background: #ffffff;
+    box-shadow: 0 0 10px #ccc;
+}
+
+#art .art-list .content .item:hover .dec {
+    background: #ffffff;
+}
+
+#art .art-list .content .item:hover .dec .pull-down-0 .fa {
+    color: #ff77d5;
+}
+
+#art .art-list .footer {
+    padding: 10px 0 30px;
+}
+
+#art .art-list .footer * {
+    margin: 0 4px;
+}
+
+#art .art-info {
+    padding-top: 126px;
+}
+
+#art .art-info .title {
+    height: 80px;
+    background: #ffffff url("../images/dy-title-bk.jpg") bottom repeat-x;
+    border-left: 3px solid #FEBF00;
+    padding-left: 15px;
+    padding-right: 20px;
+    line-height: 80px;
+    position: relative;
+    box-shadow: 0 0 10px #ccc;
+}
+
+#art .art-info .title img {
+    height: 44px;
+}
+
+#art .art-info .content {
+    background: #ffffff;
+    box-shadow: 0 0 10px #ccc;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+#art .art-info .content .synopsis {
+    border-bottom: 1px dotted #cccccc;
+    padding: 20px 0 25px;
+    margin: 0 20px;
+    overflow: hidden;
+}
+
+#art .art-info .content .synopsis .col-l {
+    width: 50%;
+}
+
+#art .art-info .content .synopsis .col-r {
+    overflow: hidden;
+}
+
+#art .art-info .content .synopsis .col-r .author {
+    height: 50px;
+    line-height: 50px;
+    border-right: 1px solid #ccc;
+    padding: 0 20px;
+    float: left;
+}
+
+#art .art-info .content .synopsis .col-r .vote {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#art .art-info .content .synopsis .col-r .vote .fa {
+    vertical-align: sub;
+    color: #ff4949;
+    margin-right: 10px;
+}
+
+#art .art-info .btn-rate {
+    clear: both;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#art .art-info .btn-rate a {
+    padding: 5px 15px;
+    background: #ffc000;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ffc000;
+    font-size: 14px;
+    display: inline-block;
+    transition: all .3s;
+}
+
+#art .art-info .btn-rate button:hover {
+    background: #ffffff;
+    color: #ffc000;
+}
+
+#creative_activities #new-activities {
+    padding-top: 128px;
+}
+
+#creative_activities #new-activities > .title {
+    height: 90px;
+    background: url("../images/competition-detail-title-bk.jpg");
+    line-height: 90px;
+    padding-right: 20px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+#creative_activities #new-activities .content {
+    padding: 30px 15px 10px;
+    background: #ffffff;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ddd;
+    border-top: none;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 30px;
+}
+
+#creative_activities #new-activities .content #creative_activity_name {
+    box-sizing: border-box;
+}
+
+#creative_activities #activities-list {
+    /*padding-top: 128px;*/
+}
+
+#creative_activities #activities-list > .title {
+    height: 90px;
+    background: url("../images/competition-detail-title-bk.jpg");
+    line-height: 90px;
+    padding-right: 20px;
+    border-bottom: none;
+}
+#creative_activities #activities-list .items{
+    padding: 10px;
+}
+#creative_activities #activities-list .items .item {
+    height: 220px;
+    background: #eeeeee;
+    transition: all .3s;
+    outline: 1px solid #fff;
+    margin-bottom: 30px;
+}
+
+#creative_activities #activities-list .items .item .pic {
+    height: 220px;
+    width: 220px;
+    float: left;
+}
+
+#creative_activities #activities-list .items .item .pic img {
+    height: 220px;
+    width: 220px;
+}
+
+#creative_activities #activities-list .items .item .dec {
+    margin-left: 220px;
+    padding: 30px;
+    height: 160px;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-title {
+    height: 40px;
+    line-height: 40px;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-main {
+    height: 40px;
+    line-height: 20px;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-icon {
+    height: 40px;
+    line-height: 40px;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-foot {
+    height: 40px;
+}
+
+#creative_activities #activities-list .items .item:hover {
+    background: #ffffff;
+    outline: 1px solid #ddd;
+    box-shadow: 0 0 20px #ccc;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-icon span {
+    margin-right: 30px;
+}
+
+#creative_activities #activities-list .items .item .dec .dec-icon span .fa-heart-o {
+    color: #ff4949;
+    font-size: 18px;
+}
+
+#creative_activities #activities-list .dec-foot a {
+    padding: 5px 15px;
+    background: #ffc000;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ffc000;
+    font-size: 14px;
+    display: inline-block;
+    transition: all .3s;
+}

@@ -1,0 +1,106 @@
+<div class="floor">
+  <div id="nav" class="nav-v2">
+    <%= render 'layouts/nav_menu' %>
+  </div>
+  <div class="container-content">
+    <div id="user-info">
+      <div class="menu">
+        <div class="menu-item clearfix">
+          <%= simple_form_for(current_user, html: {id: 'form_change_avatar', multipart: true}, url: user_update_avatar_path, method: :post) do |f| %>
+              <div class="avatar">
+                <%= image_tag(current_user.avatar_url(:middle), class: 'avatar-img') %>
+              </div>
+              <label class="edit-avatar" for="user_avatar">修改头像</label>
+
+              <div class="username">
+                <div class="edit" data-edit="text" data-name="user[nickname]" title="点击编辑">
+                  <%= current_user.nickname %>
+                </div>
+                <input type="hidden" name="user[nickname]" value="<%= current_user.nickname %>"/>
+              </div>
+              <div class="clearfix"></div>
+              <div class="edit-plus">
+                <%= f.file_field :avatar %>
+                <%= f.submit class: 'btn-user-update', value: '更新个人信息' %>
+              </div>
+          <% end %>
+        </div>
+        <%= render 'user/menu' %>
+      </div>
+      <div class="content">
+        <div id="creative_activities">
+          <div id="activities-list">
+            <div class="title">
+              <p class="col-r blue t-38 t-bold pull-down-0">我的作品列表</p>
+            </div>
+            <div class="items">
+              <% if @creative_activities.present? %>
+                  <% @creative_activities.each do |comp| %>
+                      <div class="item">
+                        <div class="pic">
+                          <%= image_tag(comp.cover_url(:middle)) %>
+                        </div>
+                        <div class="dec">
+                          <div class="dec-title">
+                            <%= link_to comp, class: 't-18 blue t-blod ' do %>
+                                <%= comp.name %>
+                            <% end %>
+                            <div class="col-r t-14 grey">
+                              <% if comp.is_audit==0 %>
+                                  <label class="t-14 label label-default">待审核</label>
+                              <% elsif comp.is_audit == 1 %>
+                                  <label class="t-14 label label-success">审核通过</label>
+                              <% else %>
+                                  <label class="t-14 label label-danger">审核未通过</label>
+                              <% end %>
+                            </div>
+                          </div>
+                          <div class="dec-main t-14">
+                            <p class=""><%= comp.description[0..100].html_safe %></p>
+                          </div>
+                          <div class="dec-icon">
+                              <span class="vote">
+                                <i class="fa fa-heart-o"></i>
+                                <%= comp.likes_count %>
+                              </span>
+                              <span class="video">
+                                <i class="fa fa-video-camera"></i>
+                                视频
+                              </span>
+                              <span class="package">
+                                <i class="fa fa-folder-o"></i>
+                                附件
+                              </span>
+                          </div>
+                          <div class="dec-foot">
+                            <a href="/user/activity_show?id=<%= comp.id %>">
+                              <i class="fa fa-eye"></i>
+                              查看
+                            </a>
+                            <%= link_to edit_creative_activity_path(comp) do %>
+                                <i class="fa fa-edit"></i>
+                                编辑
+                            <% end %>
+                            <%= link_to comp, method: :delete, data: {confirm: '确认删除吗?'}, title: '删除' do %>
+                                <i class="fa fa-trash-o"></i>
+                                删除
+                            <% end %>
+                            <span class="col-r grey"><%= comp.created_at.try(:strftime, '%Y-%m-%d') %></span>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+              <% else %>
+                  <p class="t-20 pull-down-0">您当前没有上传任何作品</p>
+                  <a class="btn btn-warning" href="/creative_activities/new">上传作品</a>
+              <% end %>
+            </div>
+            <nav>
+              <%= paginate @creative_activities %>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
