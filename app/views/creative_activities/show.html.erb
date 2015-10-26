@@ -19,12 +19,32 @@
             <%= image_tag(@creative_activity.cover_url(:middle), class: 'img-thumbnail') %>
           </div>
       <% end %>
+      <% if @creative_activity.file? %>
+          <div class="form-group">
+            <%= @creative_activity.file %>
+            <%= link_to '下载附件', @creative_activity.file_url %>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <% if @creative_activity.media? %>
+            <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="p=0&f=<%= @creative_activity.media_url %>"
+                   type="application/x-shockwave-flash" width="550" height="400" autostart="false" loop="true">
+            </embed>
+            <%= link_to '下载音频', @creative_activity.media_url %>
+        <% end %>
+      </div>
       <p>描述：<%= @creative_activity.description.html_safe %></p>
 
 
       <h5 class="page-header"></h5>
 
   <% end %>
+
+  <%= link_to "#{user_likes_path}?id=#{@creative_activity.id}", data: {id: @creative_activity.id, method: :post, type: 'script', remote: true}, title: '点赞', class: 'btn btn-default btn-like' do %>
+      <i class="glyphicon glyphicon-thumbs-up <%= 'text-danger' if @user_likes.try(:include?, @creative_activity.id) %>"></i>
+      <span class="hidden-xs"><%= @user_likes.try(:include?, @creative_activity.id) ? "取消赞#{"(#{@creative_activity.likes_count})" }" : "赞#{"(#{@creative_activity.likes_count})" if @creative_activity.likes_count.to_i > 0 }" %></span>
+  <% end %>
+
 
 </div>
 
