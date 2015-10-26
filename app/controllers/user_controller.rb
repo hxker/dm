@@ -72,11 +72,11 @@ class UserController < ApplicationController
   end
 
   def creative_activity
-    if params[:id].present?
-      @creative_activity = CreativeActivity.find(params[:id])
-    else
       @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
-    end
+  end
+
+  def activity_show
+    @creative_activity = CreativeActivity.find(params[:id])
   end
 
 
