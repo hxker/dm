@@ -52,7 +52,7 @@
   <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.id %></td>
-        <td><%= activity.user.nickname %></td>
+        <td><%= activity.user_id==0 ? '官方发布' : "#{activity.user.nickname}" %></td>
         <td><%= activity.name %></td>
         <td><%= "#{(activity.description).at(0..20)}......" if activity.description.length > 20 %></td>
         <td>
@@ -61,7 +61,7 @@
           <% elsif activity.is_audit == 2 %>
               <span class="btn btn-xs btn-danger btn-primary switch-audit-user-activity" data-id="<%= activity.id %>">未通过</span>
           <% else %>
-              <span class="btn btn-xs btn-info audit-user-activity" data-id="<%= activity.id %>">待审核</span>
+              <span class="btn btn-xs btn-info audit-user-activity" id="<%= "audit-result#{activity.id}" %>" data-id="<%= activity.id %>">待审核</span>
           <% end %>
         </td>
         <td id="<%= "like-count#{activity.id}" %>"><%= activity.likes_count %></td>

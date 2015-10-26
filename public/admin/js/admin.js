@@ -399,7 +399,7 @@ $(function () {
                                                 }
                                             }
                                         });
-                                        var audio = $('.audit-user-activity');
+                                        var audio = $('#audit-result' + activity_id);
                                         audio.removeClass('btn-info');
                                         //console.log($('.audit-user-activity').text());
                                         if (status == 1) {
