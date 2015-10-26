@@ -72,8 +72,11 @@ class UserController < ApplicationController
   end
 
   def creative_activity
-    @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
-
+    if params[:id].present?
+      @creative_activity = CreativeActivity.find(params[:id])
+    else
+      @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
+    end
   end
 
 
