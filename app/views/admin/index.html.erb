@@ -72,11 +72,13 @@
   <div class="col-md-4">
     <div class="panel panel-info">
       <div class="panel-heading">
-        用户信息
+        作品信息
       </div>
       <div class="panel-body">
         <ul>
-          <li>用户总数： <span><%= @all_user_num %></span></li>
+          <li>总数： <span><%= @all_creative_activities %></span></li>
+          <li>待审核： <span><%= @on_audit %></span></li>
+          <li>未通过： <span><%= @no_audit %></span></li>
         </ul>
       </div>
     </div>

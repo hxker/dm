@@ -25,7 +25,7 @@
     <li class="list-group-item">
       <h4>作者:</h4>
 
-      <%= @activity.user.nickname %>
+      <%= @activity.user_id == 0 ? '官方发布' : "#{@activity.user.nickname}" %>
     </li>
     <% if @activity.cover? %>
         <li class="list-group-item">

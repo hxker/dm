@@ -10,16 +10,15 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
-
-          <div class="form-group integer required creative_activity_user_id">
-            <label class="integer required control-label" for="creative_activity_user_id">
-              <abbr title="必填字段">*</abbr>
-              作者
-            </label>
-            <input id="creative_activity_user_id" class="numeric integer required form-control" type="number" step="1" value="0" disabled name="creative_activity[user_id]">
-          </div>
+          <%= f.hidden_field :user_id, value: 0 %>
           <%= f.input :name %>
-          <%= f.input :cover, :label => '海报' %>
+          <%= f.input :event_id, collection: Event.where(status: 0) %>
+          <div class="form-group">
+            <label for="exampleInputFile"><abbr title="必填字段">*</abbr> 海报</label>
+            <%= f.file_field :cover, :label => '海报' %>
+            <%= f.hidden_field :cover_cache %>
+            <p class="help-block">格式：jpg jpeg gif png，尺寸：800x800</p>
+          </div>
           <label class="select required control-label" for="creative_activity_description"><abbr title="必填字段">*</abbr>内容:</label>
           <%= f.kindeditor :description, :window_onload => true, :owner_id => @activity.id, :items => ['source', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'media', 'insertfile', 'baidumap', 'link', 'unlink', 'quickformat', 'preview', 'fullscreen'] %>
 
