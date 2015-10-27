@@ -3,8 +3,20 @@
  */
 $(function () {
         if ($('body').height() < $(window).height()) {
-            $('.floor').height($(window).height()-120);
+            $('.floor').height($(window).height() - 120);
         }
+
+        if ($('#competition-detail').length > 0) {
+            $('.head-item').on('click', function (event) {
+                event.preventDefault();
+                if (!$(this).hasClass('active')) {
+                    $(this).addClass('active').siblings('.head-item').removeClass('active');
+                    var index = $(this).index();
+                    $('.head-item-sub').eq(index).addClass('active').siblings('.head-item-sub').removeClass('active');
+                }
+            })
+        }
+
 
         if ($('#competition').length > 0) {
             $('#competition-items').find('.item').on('click', function () {

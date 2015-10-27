@@ -30,7 +30,7 @@
                     <img src="/images/competition-item01.jpg" alt="机器人冰壶赛"/>
                   </div>
                   <div class="item-dec">
-                    <a href="<%= user_comp_path %>/<%= t_u.event_id %>" class="t-22 blue pull-down-10"><%= t_u.event.name %></a>
+                    <a href="/user/comp_show?id=<%= t_u.team_id %>" class="t-22 blue pull-down-10"><%= t_u.event.name %></a>
 
                     <p class="t-14 pull-down-10">比赛时间： <%= t_u.event.start_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
 

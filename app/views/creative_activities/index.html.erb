@@ -22,7 +22,7 @@
                         <p class="t-14 pull-down-20">
                           <i class="t-18 fa fa-play"></i>&nbsp;&nbsp;&nbsp;&nbsp;<%= comp.name %></p>
 
-                        <p class="pull-down-0 t-14"><%= comp.user.nickname %>
+                        <p class="pull-down-0 t-14"><%=  comp.user_id==0 ? '示例作品':comp.user.nickname %>
                           <a class="col-r t-14"><i class="fa fa-heart-o"></i>&nbsp;&nbsp;<%= comp.likes_count %></a>
                         </p>
                       </div>
@@ -30,7 +30,7 @@
                   </a>
               <% end %>
           <% else %>
-              <p class="t-20 pull-down-0">您当前没有上传任何作品</p>
+              <p class="t-20 pull-down-0">当前没有上传任何作品</p>
               您可以&nbsp;&nbsp;<a class="btn btn-warning" href="/creative_activities/new">上传作品</a>
           <% end %>
           <!--作品列表结束-->

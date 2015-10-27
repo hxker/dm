@@ -76,7 +76,7 @@
             </div>
             <div class="col-r">
               <div class="author">
-                <p class="t-20 t-bold"><%= @creative_activity.user.nickname %></p>
+                <p class="t-20 t-bold"><%= @creative_activity.user_id==0 ? '示例作品':@creative_activity.user.nickname %></p>
               </div>
               <div class="vote">
                 <i class="t-26 fa fa-heart-o"></i>
