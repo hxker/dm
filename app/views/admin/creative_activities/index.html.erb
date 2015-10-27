@@ -69,7 +69,7 @@
           <% if activity.expert_score.present? %>
               <span class="btn btn-xs btn-info edit-expert-score" id="<%= "edit-expert-score#{activity.id}" %>" title="编辑分数" data-id="<%= activity.id %>"><%= activity.expert_score %></span>
           <% else %>
-              <button class="btn btn-xs btn-warning add-expert-score" id="add-expert-score" type="button" data-id="<%= activity.id %>">评分</button>
+              <button class="btn btn-xs btn-warning add-expert-score" id="<%= "add-expert-score#{activity.id}" %>" type="button" data-id="<%= activity.id %>">评分</button>
           <% end %>
         </td>
 

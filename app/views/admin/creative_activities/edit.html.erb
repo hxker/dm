@@ -22,7 +22,7 @@
         <div class="form-inputs">
           <div class="form-group string optional creative_activity_user_id">
             <label class="string optional control-label" for="creative_activity_user_id">作者</label>
-            <input id="creative_activity_user_id" class="string optional form-control" type="text" disabled value="<%= @activity.user.nickname %>" name="creative_activity[user_id]">
+            <input id="creative_activity_user_id" class="string optional form-control" type="text" disabled value="<%= @activity.user_id==0 ? '官方发布' : @activity.user.nickname %>" name="creative_activity[user_id]">
           </div>
           <%= f.input :name %>
           <label class="select required control-label" for="creative_activity_description"><abbr title="必填字段">*</abbr>内容:</label>

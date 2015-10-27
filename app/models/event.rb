@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   belongs_to :competition
   has_many :teams
   has_many :scores
-  has_many :team_user_ships, through: :teams
+  has_many :team_user_ships, through: :team
   has_many :creative_activities
   has_many :news
   mount_uploader :cover, EventUploader

@@ -1,3 +1,23 @@
+<div class="menu-item clearfix">
+  <%= simple_form_for(current_user, html: {id: 'form_change_avatar', multipart: true}, url: user_update_avatar_path, method: :post) do |f| %>
+      <div class="avatar">
+        <%= image_tag(current_user.avatar_url(:middle), class: 'avatar-img') %>
+      </div>
+      <label class="edit-avatar" for="user_avatar">修改头像</label>
+
+      <div class="username">
+        <div class="edit" data-edit="text" data-name="user[nickname]" title="点击编辑">
+          <%= current_user.nickname %>
+        </div>
+        <input type="hidden" name="user[nickname]" value="<%= current_user.nickname %>"/>
+      </div>
+      <div class="clearfix"></div>
+      <div class="edit-plus">
+        <%= f.file_field :avatar %>
+        <%= f.submit class: 'btn-user-update', value: '更新个人信息' %>
+      </div>
+  <% end %>
+</div>
 <div class="<%= "menu-item #{'active' if action_name=='profile'}" %>">
   <a class="t-18" href="<%= user_profile_path %>">我的资料</a>
 </div>

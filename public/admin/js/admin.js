@@ -286,9 +286,10 @@ $(function () {
                                     size: 'small',
                                     message: data[1]
                                 });
-                                document.getElementById('add-expert-score').innerHTML = result;
-                                document.getElementById('last-score' + activity_id).innerHTML = parseInt(document.getElementById('like-count' + activity_id).innerHTML) + parseFloat(result);
-                                var score = $('.add-expert-score');
+
+                                document.getElementById('add-expert-score' + activity_id).innerHTML = result;
+                                document.getElementById('last-score' + activity_id).innerHTML = (parseInt(document.getElementById('like-count' + activity_id).innerHTML) + parseFloat(result)).toFixed(1);
+                                var score = $('#add-expert-score' + activity_id);
                                 score.removeClass('btn-warning');
                                 score.addClass('btn-info');
                             } else {
@@ -327,7 +328,7 @@ $(function () {
                                     message: data[1]
                                 });
                                 document.getElementById('edit-expert-score' + activity_id).innerHTML = result;
-                                document.getElementById('last-score' + activity_id).innerHTML = parseInt(document.getElementById('like-count' + activity_id).innerHTML) + parseFloat(result);
+                                document.getElementById('last-score' + activity_id).innerHTML = (parseInt(document.getElementById('like-count' + activity_id).innerHTML) + parseFloat(result)).toFixed(1);
                             } else {
                                 alert(data[1]);
                             }

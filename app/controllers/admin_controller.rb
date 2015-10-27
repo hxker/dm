@@ -6,6 +6,10 @@ class AdminController < ActionController::Base
 
     # 用户总数
     @all_user_num = User.count
+    @all_creative_activities = CreativeActivity.count
+    @on_audit = CreativeActivity.where(is_audit: 0).count
+    @no_audit = CreativeActivity.where(is_audit: 2).count
+
 
   end
 

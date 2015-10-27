@@ -1,0 +1,30 @@
+<div class="floor" id="user">
+  <div id="nav" class="nav-v2 container-layer">
+    <%= render 'layouts/nav_menu' %>
+  </div>
+  <div class="container-content">
+    <div id="user-info">
+      <div class="menu">
+        <%= render 'user/menu' %>
+      </div>
+      <div class="content">
+        队伍名称:<%= @team.name %><br>
+        队伍描述:<%= @team.description %><br>
+        队长:<%= @team.user.user_profile.username %><br>
+        队伍秘钥:<%= @team.team_code %><br>
+        队伍编号：<%= @team.identifier %>
+        <hr>
+        队员信息
+        <% @players.each do |t| %>
+            姓名:<%= t[:username] %><br>
+            个性签名：<%= t[:autograph] %><br>
+            头像：<%= image_tag(t[:avatar]) %>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

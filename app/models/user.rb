@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :creative_activities
   has_many :likes, foreign_key: :user_id
   has_one :user_profile, :dependent => :destroy
-  has_many :roles, through: :user_roles
+  has_many :roles, through: :user_role
   has_many :user_roles
   has_many :notifications
 

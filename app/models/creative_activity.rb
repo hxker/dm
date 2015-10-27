@@ -1,7 +1,7 @@
 class CreativeActivity < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  has_many :users, through: :likes
+  has_many :users, through: :like
   has_many :likes, foreign_key: :creative_activity_id
 
   validates :name, presence: true, length: {in: 1..20}

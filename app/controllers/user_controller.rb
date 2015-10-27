@@ -68,11 +68,18 @@ class UserController < ApplicationController
   end
 
   def comp
-    @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id)
+    @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id).page(params[:page]).per(5)
+  end
+
+  def comp_show
+    @team = Team.find(params[:id])
+    @players = TeamUserShip.includes(:user).where(team_id: params[:id]).select(:user_id).map { |t| {
+        username: t.user.user_profile.username, autograph: t.user.user_profile.autograph, avatar: ActionController::Base.helpers.asset_path(t.user.avatar_url(:small)),
+    } }
   end
 
   def creative_activity
-      @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
+    @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
   end
 
   def activity_show

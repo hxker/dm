@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   has_many :team_user_ships, foreign_key: :team_id
-  has_many :users, through: :team_user_ships
+  has_many :users, through: :team_user_ship
   has_many :scores
 
   validates :name, presence: true, length: {in: 2..6}
