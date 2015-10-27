@@ -284,15 +284,30 @@
     box-sizing: border-box;
     padding: 15px;
 }
+#competition .input-team .random{
+    overflow: hidden;
+}
 
 #competition .input-team #random_name {
-    width: 315px;
-    display: inline-block;
+    width: 300px;
+    display: block;
+    float: left;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-right: 20px;
 }
 #competition .input-team #random_effect{
-    height: 47px;
-    width: 50px;
-    display: inline-block;
+    height: 48px;
+    width: 52px;
+    display: block;
+    float: left;
+    border: none;
+    outline: none;
+    background: #ffc000;
+    color: #fff;
+    border-radius: 5px;
 }
 
 #competition .btn-create-team {
