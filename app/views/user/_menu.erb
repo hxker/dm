@@ -21,7 +21,7 @@
 <div class="<%= "menu-item #{'active' if action_name=='profile'}" %>">
   <a class="t-18" href="<%= user_profile_path %>">我的资料</a>
 </div>
-<div class="<%= "menu-item #{'active' if action_name=='comp'}" %>">
+<div class="<%= "menu-item #{'active' if action_name=='comp' || action_name=='comp_show'}" %>">
   <a href="<%= user_comp_path %>" class="t-18">我的比赛</a>
 </div>
 <div class="<%= "menu-item #{'active' if action_name=='creative_activity' || action_name=='activity_show'}" %>">
