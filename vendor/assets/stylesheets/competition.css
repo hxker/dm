@@ -287,11 +287,12 @@
 
 #competition .input-team #random_name {
     width: 315px;
+    display: inline-block;
 }
 #competition .input-team #random_effect{
     height: 47px;
     width: 50px;
-    float: right;
+    display: inline-block;
 }
 
 #competition .btn-create-team {
