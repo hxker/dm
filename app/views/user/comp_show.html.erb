@@ -10,7 +10,7 @@
       <div class="content">
         <div id="competition-detail">
           <div class="detail-title">
-            <p class="t-48 blue text-right"><%= @team.event.name %></p><!--比赛项目名称-->
+            <p class="t-48 blue text-right"><%= @team.event.name %></p>
           </div>
           <div class="detail-head">
             <div class="head-item active t-22">战队成绩</div>
@@ -19,7 +19,7 @@
           <div class="head-item-sub detail-process active">
             <div class="detail-team-info">
               <div class="team-pic">
-                <img src="/images/team-avatar-default.jpg" alt="战队头像"/>
+                <%= image_tag(@team.cover_url(:small)) %>
               </div>
               <div class="team-dec">
                 <p class="t-18 blue pull-down-10"><%= @team.name %></p>
@@ -28,7 +28,7 @@
 
                 <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
 
-                <p class="t-14">暗号：<%= @team.team_code %></p>
+                <p class="t-14">秘钥：<%= @team.team_code %></p>
               </div>
               <div class="team-number">
                 <p class="blue t-14">战队编号：</p>
@@ -39,6 +39,7 @@
             <div class="team-score">
               <div class="time-line col-l">
                 <p class="text-center t-18 blue pull-down-20">时间流程</p>
+
                 <div class="item active">
                   <div class="pic">
                     <div class="circle">
@@ -107,7 +108,7 @@
           <div class="head-item-sub my-team">
             <div class="detail-team-info">
               <div class="team-pic">
-                <img src="/images/team-avatar-default.jpg" alt="战队头像"/>
+                <%= image_tag(@team.cover_url(:small)) %>
               </div>
               <div class="team-dec">
                 <p class="t-18 blue pull-down-10"><%= @team.name %></p>
@@ -116,7 +117,7 @@
 
                 <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
 
-                <p class="t-14">暗号：<%= @team.team_code %></p>
+                <p class="t-14">秘钥：<%= @team.team_code %></p>
               </div>
               <div class="team-number">
                 <p class="blue t-14">战队编号：</p>
@@ -125,21 +126,26 @@
               </div>
             </div>
             <div class="my-team-menu">
-              <button class="btn-disband">解散队伍</button>
+              <% if @team.event.start_time > Time.now && current_user.id == @team.user_id %>
+                  <button class="btn-disband delete-team">解散队伍</button>
+              <% else %>
+                  <button class="btn-disband reduce-team-amount" data-name="<%= @team.id %>">退出该队</button>
+              <% end %>
+
             </div>
             <div class="my-team-member">
               <% @players.each do |t| %>
-                  <div class="member-info <%= t[:user_id]==@team.user_id ? 'captain' : '' %>">
+                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>">
                     <div class="member-pic">
-                      <img class="" src="/images/avatar-default.png" alt="队员头像"/>
+                      <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
                     </div>
                     <div class="member-dec">
-                      <% if t[:user_id]!=@team.user_id %>
+                      <% if t.user_id != @team.user_id %>
                           <i class="fa fa-remove" title="移除该队员"></i>
                       <% end %>
-                      <p class="member-name t-18 blue pull-down-10"><%= t[:username] %><br></p>
+                      <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
 
-                      <p class="member-autograph t-14"><%= t[:autograph] %><br></p>
+                      <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
                     </div>
                   </div>
               <% end %>

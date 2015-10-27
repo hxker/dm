@@ -360,25 +360,25 @@ $(function () {
         }
     });
     // 请退团队成员
-    //$('.reduce-team-amount').on('click', function () {
-    //    var user_id = $(this).attr('data-id');
-    //    var team_id = $(this).attr('data-name');
-    //
-    //    if (!isNaN(user_id)) {
-    //        $.ajax({
-    //            url: '/competitions/reduce_team_amount',
-    //            type: 'post',
-    //            data: {"user_id": user_id, "team_id": team_id},
-    //            success: function (data) {
-    //                if (data[0]) {
-    //                    alert(data[1]);
-    //                    window.location.reload();
-    //                } else {
-    //                    alert(data[0]);
-    //                }
-    //            }
-    //        });
-    //    }
-    //});
+    $('.reduce-team-amount').on('click', function () {
+        var team_id = $(this).attr('data-name');
+        console.log(team_id);
+        var value = confirm('确认退出该队吗？');
+        if (!isNaN(team_id) && value) {
+            $.ajax({
+                url: '/competitions/reduce_team_amount',
+                type: 'post',
+                data: {"id": team_id},
+                success: function (data) {
+                    if (data[0]) {
+                        alert(data[1]);
+                        window.location.href = '/user/comp'
+                    } else {
+                        alert(data[1]);
+                    }
+                }
+            });
+        }
+    });
 
 });
