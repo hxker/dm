@@ -24,18 +24,24 @@
       <div class="content">
         <div class="user-comp-list">
           <div class="competitions">
-            <% @user_events.each do |t_u| %>
-                <div class="competition-item">
-                  <div class="item-pic">
-                    <img src="/images/competition-item01.jpg" alt="机器人冰壶赛"/>
-                  </div>
-                  <div class="item-dec">
-                    <a href="/user/comp_show?id=<%= t_u.team_id %>" class="t-22 blue pull-down-10"><%= t_u.event.name %></a>
+            <% if @user_events.present? %>
+                <% @user_events.each do |t_u| %>
+                    <div class="competition-item">
+                      <div class="item-pic">
+                        <img src="/images/competition-item01.jpg" alt="机器人冰壶赛"/>
+                      </div>
+                      <div class="item-dec">
+                        <a href="/user/comp_show?id=<%= t_u.team_id %>" class="t-22 blue pull-down-10"><%= t_u.event.name %></a>
 
-                    <p class="t-14 pull-down-10">比赛时间： <%= t_u.event.start_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
+                        <p class="t-14 pull-down-10">比赛时间： <%= t_u.event.start_time.try(:strftime, '%Y-%m-%d %H:%M') %></p>
 
-                    <p class="t-14 pull-down-10">我的身份 : <%= t_u.team.user_id == current_user.id ? '队长' : '队员' %></p>
-                  </div>
+                        <p class="t-14 pull-down-10">我的身份 : <%= t_u.team.user_id == current_user.id ? '队长' : '队员' %></p>
+                      </div>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="alert alert-warning t-18">
+                  您暂无参加任何比赛项目!
                 </div>
             <% end %>
           </div>

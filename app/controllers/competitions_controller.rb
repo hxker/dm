@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, only: [:apply_in, :login_in]
+  before_action :authenticate_user!, only: [:apply_in, :login_in, :reduce_team_amount]
 
   def index
     @competitions = Competition.includes(:organizer).all.page(params[:page]).per(params[:per])
@@ -79,12 +79,16 @@ class CompetitionsController < ApplicationController
 
 
   def reduce_team_amount
-    team_user = TeamUserShip.where(user_id: params[:user_id], team_id: params[:team_id]).take
+    team_user = TeamUserShip.where(user_id: current_user.id, team_id: params[:id]).take
     team_user.destroy
     if team_user.destroy
-      flash[:success] = '成功退出该队!'
-      redirect_to '/competitions/apply_in/?id='+ params[:competition_id]
+      status = true
+      message = '成功退出该队!'
+    else
+      status = false
+      message = '退出该队失败!'
     end
+    render json: [status, message]
   end
 
   def login_in
