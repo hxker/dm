@@ -66,7 +66,8 @@ Rails.application.routes.draw do
   match 'user/comp' => 'user#comp', as: 'user_comp', via: [:get, :post]
   match 'user/creative_activity' => 'user#creative_activity', as: 'user_creative_activity', via: [:get, :post]
   get 'user/activity_show' => 'user#activity_show'
-  get 'user/score' => 'user#score'
+  get 'user/comp_show' => 'user#comp_show'
+  # get 'user/score' => 'user#score'
 
   namespace :user do |u|
 
