@@ -352,13 +352,14 @@
 }
 
 #competition-detail .detail-team-info .team-dec {
-    margin-left: 120px;
+    margin: 0 20px;
+    width: 550px;
+    float: left;
+    overflow: hidden;
 }
 
 #competition-detail .detail-team-info .team-number {
-    position: absolute;
-    right: 30px;
-    top: 0;
+    float: left;
     border-left: 1px solid #CCCCCC;
     padding-left: 30px;
 }
