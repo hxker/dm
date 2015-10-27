@@ -279,10 +279,24 @@
     margin-right: 75px;
     box-sizing: border-box;
 }
+#competition .input-team input{
+    width: 374px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+#competition .input-team #random_name {
+    width: 315px;
+}
+#competition .input-team #random_effect{
+    height: 47px;
+    width: 50px;
+    float: right;
+}
 
 #competition .btn-create-team {
     display: block;
-    width: 398px;
+    width: 372px;
     height: 48px;
     font-size: 22px;
     color: #FFFFFF;
@@ -367,15 +381,18 @@
     text-align: center;
 }
 
-#competition .competitions-tabs-collect{
+#competition .competitions-tabs-collect {
 
 }
-#competition .competitions-tabs-collect .competitions-tab{
+
+#competition .competitions-tabs-collect .competitions-tab {
     display: none;
 }
-#competition .competitions-tabs-collect .competitions-tab.active{
+
+#competition .competitions-tabs-collect .competitions-tab.active {
     display: block;
 }
+
 #check_profile {
 
 }
@@ -409,9 +426,11 @@
     outline: none;
     border: 1px solid #f1ba0c;
 }
-#valid_team_code{
+
+#valid_team_code {
     box-sizing: border-box;
 }
-#search-team-name{
+
+#search-team-name {
     box-sizing: border-box;
 }

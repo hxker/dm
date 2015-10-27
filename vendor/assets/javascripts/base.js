@@ -17,6 +17,43 @@ $(function () {
             })
         }
 
+        if ($('#random_name').length > 0) {
+            var random_name = {
+                status: "true",
+                data: [
+                    "梦之队",
+                    "梦想之队",
+                    "乐思",
+                    "格兰芬多",
+                    "擎天柱",
+                    "赛博坦",
+                    "大黄蜂",
+                    "金刚",
+                    "泰坦",
+                    "银色渡鸦",
+                    "自由之翼",
+                    "终结者",
+                    "小萝卜头",
+                    "机械迷城",
+                    "青蛙王子",
+                    "长江七号",
+                    "SATAN",
+                    "纳米核心",
+                    "钢羽",
+                    "东方",
+                    "银河漫游",
+                    "Angel",
+                    "灰色金属",
+                    "SuperMan",
+                    "钢铁侠",
+                    "东方荣耀"
+                ]
+            };
+            $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
+            $('#random_effect').on('click',function(){
+                $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
+            });
+        }
 
         if ($('#competition').length > 0) {
             $('#competition-items').find('.item').on('click', function () {
