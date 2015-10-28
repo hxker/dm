@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get :apply_in
       get :event_teams
       post :reduce_team_amount
+      post :delete_team
+      post :leader_delete_player
       post :valid_team_code
       post :send_email_code
       post :reset_team_code_by_mobile
