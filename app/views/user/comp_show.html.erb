@@ -13,10 +13,61 @@
             <p class="t-48 blue text-right"><%= @team.event.name %></p>
           </div>
           <div class="detail-head">
-            <div class="head-item active t-22">战队成绩</div>
-            <div class="head-item t-22">我的战队</div>
+
+            <div class="head-item active t-22">我的战队</div>
+            <div class="head-item  t-22">战队成绩</div>
           </div>
-          <div class="head-item-sub detail-process active">
+
+          <div class="head-item-sub my-team active">
+            <div class="detail-team-info">
+              <div class="team-pic">
+                <%= image_tag(@team.cover_url(:small)) %>
+              </div>
+              <div class="team-dec">
+                <p class="t-18 blue pull-down-10"><%= @team.name %></p>
+
+                <p class="t-14 pull-down-5">队长：<%= @team.user.user_profile.username %></p>
+
+                <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
+
+                <p class="t-14">秘钥：<%= @team.team_code %></p>
+              </div>
+              <div class="team-number">
+                <p class="blue t-14">战队编号：</p>
+
+                <p class="number"><%= @team.identifier %></p>
+              </div>
+            </div>
+            <div class="my-team-menu">
+
+              <% if @team.event.apply_end_time > Time.now %>
+                  <% if current_user.id == @team.user_id %>
+                      <button class="btn-disband leader-delete-team" data-name="<%= @team.id %>">解散队伍</button>
+                  <% else %>
+                      <button class="btn-disband reduce-team-amount" data-name="<%= @team.id %>">退出该队</button>
+                  <% end %>
+              <% end %>
+
+            </div>
+            <div class="my-team-member">
+              <% @players.each do |t| %>
+                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>">
+                    <div class="member-pic">
+                      <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
+                    </div>
+                    <div class="member-dec">
+                      <% if @team.event.apply_end_time > Time.now && @team.user_id == current_user.id && current_user.id != t.user_id %>
+                          <i class="" title="移除该队员">12</i>
+                      <% end %>
+                      <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
+
+                      <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="head-item-sub detail-process">
             <div class="detail-team-info">
               <div class="team-pic">
                 <%= image_tag(@team.cover_url(:small)) %>
@@ -103,52 +154,6 @@
                   <p class="result">PK</p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="head-item-sub my-team">
-            <div class="detail-team-info">
-              <div class="team-pic">
-                <%= image_tag(@team.cover_url(:small)) %>
-              </div>
-              <div class="team-dec">
-                <p class="t-18 blue pull-down-10"><%= @team.name %></p>
-
-                <p class="t-14 pull-down-5">队长：<%= @team.user.user_profile.username %></p>
-
-                <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
-
-                <p class="t-14">秘钥：<%= @team.team_code %></p>
-              </div>
-              <div class="team-number">
-                <p class="blue t-14">战队编号：</p>
-
-                <p class="number"><%= @team.identifier %></p>
-              </div>
-            </div>
-            <div class="my-team-menu">
-              <% if @team.event.start_time > Time.now && current_user.id == @team.user_id %>
-                  <button class="btn-disband delete-team">解散队伍</button>
-              <% else %>
-                  <button class="btn-disband reduce-team-amount" data-name="<%= @team.id %>">退出该队</button>
-              <% end %>
-
-            </div>
-            <div class="my-team-member">
-              <% @players.each do |t| %>
-                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>">
-                    <div class="member-pic">
-                      <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
-                    </div>
-                    <div class="member-dec">
-                      <% if t.user_id != @team.user_id %>
-                          <i class="fa fa-remove" title="移除该队员"></i>
-                      <% end %>
-                      <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
-
-                      <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
-                    </div>
-                  </div>
-              <% end %>
             </div>
           </div>
         </div>

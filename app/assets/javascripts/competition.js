@@ -359,14 +359,33 @@ $(function () {
 
         }
     });
-    // 请退团队成员
+    // 队员退出队伍
     $('.reduce-team-amount').on('click', function () {
         var team_id = $(this).attr('data-name');
-        console.log(team_id);
         var value = confirm('确认退出该队吗？');
         if (!isNaN(team_id) && value) {
             $.ajax({
                 url: '/competitions/reduce_team_amount',
+                type: 'post',
+                data: {"id": team_id},
+                success: function (data) {
+                    if (data[0]) {
+                        alert(data[1]);
+                        window.location.href = '/user/comp'
+                    } else {
+                        alert(data[1]);
+                    }
+                }
+            });
+        }
+    });
+    // 队长解散队伍
+    $('.leader-delete-team').on('click', function () {
+        var team_id = $(this).attr('data-name');
+        var value = confirm('确认解散该队吗？');
+        if (!isNaN(team_id) && value) {
+            $.ajax({
+                url: '/competitions/delete_team',
                 type: 'post',
                 data: {"id": team_id},
                 success: function (data) {
