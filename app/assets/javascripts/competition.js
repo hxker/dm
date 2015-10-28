@@ -5,20 +5,20 @@
 $(function () {
 
 
-    $('.reset-by-mobile').on('click', function () {
+    $('.reset-code-by-mobile').on('click', function () {
         var team_id = $(this).attr('data-id');
         var mobile = $(this).attr('data-name');
 
         BootstrapDialog.show({
             title: '重置队伍密钥:',
             message: ' <div class="row">' +
-            '<div class="col-sm-12">' +
+            '<div class="col-sm-10">' +
             '<input type="text" id="leader_mobile" class="form-control" value="' + mobile + '" disabled><br>' +
             '<div class="row">' +
-            '<div class="form-group tel required  col-md-12">' +
-            '<input id="leader_mobile_code" class="form-control" type="tel" placeholder="请输入手机验证码">' +
+            '<div class="form-group tel required col-sm-11">' +
+            '<input id="leader_mobile_code" name="mobile_code" class="form-control" type="text" placeholder="请输入手机验证码">' +
             '</div></div>' +
-            '<input type="text" value="" id="new_team_code" placeholder="请输入队伍新密钥" class="form-control"><br>' +
+            '<input type="text" value="" id="new_team_code" placeholder="请输入队伍新密钥" class="form-control col-sm-10"><br>' +
             '</div></div>',
 
             cssClass: 'login-dialog',
@@ -43,7 +43,6 @@ $(function () {
                                     alert(data[1]);
                                 },
                                 error: function (data) {
-                                    alert('12');
                                     alert(data[1]);
                                 }
                             });
@@ -73,6 +72,7 @@ $(function () {
                                     // 重置成功提示信息
                                     alert(data[1]);
                                     dialogItself.close();
+                                    document.getElementById('team-code-value').innerHTML = new_team_code
                                 }
                                 else {
                                     alert(data[1]);
@@ -87,20 +87,20 @@ $(function () {
         });
     });
     // 通过邮箱重置队伍密钥
-    $('.reset-by-email').on('click', function () {
+    $('.reset-code-by-email').on('click', function () {
         var team_id = $(this).attr('data-id');
         var email = $(this).attr('data-name');
 
         BootstrapDialog.show({
             title: '重置队伍密钥:',
             message: ' <div class="row">' +
-            '<div class="col-sm-12">' +
+            '<div class="col-sm-10">' +
             '<input type="text" id="leader_email" class="form-control" value="' + email + '" disabled><br>' +
             '<div class="row">' +
-            '<div class="form-group tel required  col-md-12">' +
-            '<input id="leader_email_code" class="form-control" type="tel" placeholder="请输入邮箱验证码">' +
+            '<div class="form-group tel required  col-md-11">' +
+            '<input id="leader_email_code" name="email_code" class="form-control" type="text" placeholder="请输入邮箱验证码">' +
             '</div></div>' +
-            '<input type="text" value="" id="new_team_code" placeholder="请输入队伍新密钥" class="form-control"><br>' +
+            '<input type="text" value="" id="new_team_code" placeholder="请输入队伍新密钥" class="form-control col-sm-10"><br>' +
             '</div></div>',
 
             cssClass: 'login-dialog',
@@ -156,6 +156,7 @@ $(function () {
                                         // 重置成功提示信息
                                         alert(data[1]);
                                         dialogItself.close();
+                                        document.getElementById('team-code-value').innerHTML = new_team_code
                                     }
                                     else {
                                         alert(data[1]);
@@ -392,6 +393,28 @@ $(function () {
                     if (data[0]) {
                         alert(data[1]);
                         window.location.href = '/user/comp'
+                    } else {
+                        alert(data[1]);
+                    }
+                }
+            });
+        }
+    });
+    // 队长清退队员
+    $('.leader-delete-player').on('click', function () {
+        var user_id = $(this).attr('data-name');
+        var team_id = $(this).attr('data-id');
+        var value = confirm('确认清退该队员吗？');
+        if (!isNaN(user_id) && value) {
+            $.ajax({
+                url: '/competitions/leader_delete_player',
+                type: 'post',
+                data: {"user_id": user_id, "team_id": team_id},
+                success: function (data) {
+                    if (data[0]) {
+                        alert(data[1]);
+                        $('#hide-player' + user_id).addClass('hide');
+                        //window.location.reload();
                     } else {
                         alert(data[1]);
                     }

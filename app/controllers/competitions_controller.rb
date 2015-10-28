@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, only: [:apply_in, :login_in, :reduce_team_amount, :delete_team]
+  before_action :authenticate_user!, only: [:apply_in, :login_in, :reduce_team_amount, :delete_team, :leader_delete_player, :reset_team_code_by_mobile]
 
   def index
     @competitions = Competition.includes(:organizer).all.page(params[:page]).per(params[:per])
@@ -103,6 +103,17 @@ class CompetitionsController < ApplicationController
       end
     else
       result = [false, '您不是该队队长，无法解散队伍!']
+    end
+    render json: result
+  end
+
+  def leader_delete_player
+    t_u = TeamUserShip.where(user_id: params[:user_id], team_id: params[:team_id]).take
+    t_u.destroy
+    if t_u.destroy
+      result = [true, '清退成功!']
+    else
+      result = [false, '清退失败!']
     end
     render json: result
   end

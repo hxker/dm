@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <!--<title></title>-->
+</head>
+<body>
+<h1>您好！<%= @user.nickname %></h1>
+
+<p>为防止他人冒充您以队长身份重置<span style="color: darkred"><%= @team_name %></span>密钥</p>
+
+<p>该操作的验证码为<span style="color: darkred;font-size: 20px"><%= @code %></span>，10分钟内有效，请尽快验证</p>
+
+</body>
+</html>

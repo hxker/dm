@@ -32,11 +32,19 @@
 
                 <% if current_user.id == @team.user_id %>
                     <div class="team-code">
-                      <span class="t-14" style="margin-right: 30px;">秘钥：<%= @team.team_code %></span>
+                      <span class="t-14" style="margin-right: 30px;">秘钥：<span id="team-code-value"><%= @team.team_code %></span></span>
                       <span class="blue t-14 menu-text" style="cursor: pointer;">重置秘钥 <i class="fa fa-caret-down"></i>
                         <ul class="menu-toggle">
-                          <li class="item"><i class="t-50 fa fa-mobile"></i><br/>手机重置</li>
-                          <li class="item"><i class="t-50 fa fa-envelope-o"></i><br/>邮箱重置</li>
+                          <% if current_user.mobile.present? %>
+                              <li class="item reset-code-by-mobile" data-name="<%= current_user.mobile %>" data-id="<%= @team.id %>">
+                                <i class="t-50 fa fa-mobile"></i><br/>手机重置
+                              </li>
+                          <% end %>
+                          <% if current_user.email.present? %>
+                              <li class="item reset-code-by-email" data-name="<%= current_user.email %>" data-id="<%= @team.id %>">
+                                <i class="t-50 fa fa-envelope-o"></i><br/>邮箱重置
+                              </li>
+                          <% end %>
                         </ul>
                       </span>
                     </div>
@@ -61,15 +69,16 @@
             </div>
             <div class="my-team-member">
               <% @players.each do |t| %>
-                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>">
+                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>" id="<%= "hide-player#{t.user_id}" %>">
                     <div class="member-pic">
                       <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
                     </div>
                     <div class="member-dec">
                       <% if @team.event.apply_end_time > Time.now && @team.user_id == current_user.id && current_user.id != t.user_id %>
-                          <div class="destroy-member col-r">
+                          <div class="destroy-member col-r leader-delete-player" data-name="<%= t.user_id %>" data-id="<%= @team.id %>">
                             <div class="destroy-text">移除该队员</div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i>
+                          </div>
                       <% end %>
                       <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
 
@@ -81,28 +90,6 @@
           </div>
           <div class="head-item-sub detail-process">
             <div class="detail-team-info">
-              <div class="team-pic">
-                <%= image_tag(@team.cover_url(:small)) %>
-              </div>
-              <div class="team-dec">
-                <p class="t-18 blue pull-down-10"><%= @team.name %></p>
-
-                <p class="t-14 pull-down-5">队长：<%= @team.user.user_profile.username %></p>
-
-                <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
-
-                <% if current_user.id == @team.user_id %>
-                    <div class="team-code">
-                      <span class="t-14" style="margin-right: 30px;">秘钥：<%= @team.team_code %></span>
-                      <span class="blue t-14 menu-text" style="cursor: pointer;">重置秘钥 <i class="fa fa-caret-down"></i>
-                        <ul class="menu-toggle">
-                          <li class="item"><i class="t-50 fa fa-mobile"></i><br/>手机重置</li>
-                          <li class="item"><i class="t-50 fa fa-envelope-o"></i><br/>邮箱重置</li>
-                        </ul>
-                      </span>
-                    </div>
-                <% end %>
-              </div>
               <div class="team-number">
                 <p class="blue t-14">战队编号：</p>
 
