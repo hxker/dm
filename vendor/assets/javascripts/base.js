@@ -50,7 +50,7 @@ $(function () {
                 ]
             };
             $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
-            $('#random_effect').on('click',function(){
+            $('#random_effect').on('click', function () {
                 $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
             });
         }
@@ -152,6 +152,15 @@ $(function () {
                 }
             });
         }
+
+        $('.menu-text').on('mouseenter', function (event) {
+            event.preventDefault();
+            $(this).addClass('active');
+        })
+        $('.menu-text').on('mouseleave', function (event) {
+            event.preventDefault();
+            $(this).removeClass('active');
+        });
     }
 );
 

@@ -30,7 +30,17 @@
 
                 <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
 
-                <p class="t-14">秘钥：<%= @team.team_code %></p>
+                <% if current_user.id == @team.user_id %>
+                    <div class="team-code">
+                      <span class="t-14" style="margin-right: 30px;">秘钥：<%= @team.team_code %></span>
+                      <span class="blue t-14 menu-text" style="cursor: pointer;">重置秘钥 <i class="fa fa-caret-down"></i>
+                        <ul class="menu-toggle">
+                          <li class="item"><i class="t-50 fa fa-mobile"></i><br/>手机重置</li>
+                          <li class="item"><i class="t-50 fa fa-envelope-o"></i><br/>邮箱重置</li>
+                        </ul>
+                      </span>
+                    </div>
+                <% end %>
               </div>
               <div class="team-number">
                 <p class="blue t-14">战队编号：</p>
@@ -57,7 +67,9 @@
                     </div>
                     <div class="member-dec">
                       <% if @team.event.apply_end_time > Time.now && @team.user_id == current_user.id && current_user.id != t.user_id %>
-                          <i class="" title="移除该队员">12</i>
+                          <div class="destroy-member col-r">
+                            <div class="destroy-text">移除该队员</div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i></div>
                       <% end %>
                       <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
 
@@ -79,7 +91,17 @@
 
                 <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
 
-                <p class="t-14">秘钥：<%= @team.team_code %></p>
+                <% if current_user.id == @team.user_id %>
+                    <div class="team-code">
+                      <span class="t-14" style="margin-right: 30px;">秘钥：<%= @team.team_code %></span>
+                      <span class="blue t-14 menu-text" style="cursor: pointer;">重置秘钥 <i class="fa fa-caret-down"></i>
+                        <ul class="menu-toggle">
+                          <li class="item"><i class="t-50 fa fa-mobile"></i><br/>手机重置</li>
+                          <li class="item"><i class="t-50 fa fa-envelope-o"></i><br/>邮箱重置</li>
+                        </ul>
+                      </span>
+                    </div>
+                <% end %>
               </div>
               <div class="team-number">
                 <p class="blue t-14">战队编号：</p>

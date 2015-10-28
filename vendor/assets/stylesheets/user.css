@@ -341,10 +341,16 @@
 }
 
 #competition-detail .detail-team-info {
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
     padding-bottom: 30px;
     border-bottom: 1px dashed #CCCCCC;
+}
+
+#competition-detail .detail-team-info:after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 #competition-detail .detail-team-info .team-pic {
@@ -355,7 +361,79 @@
     margin: 0 20px;
     width: 550px;
     float: left;
-    overflow: hidden;
+    /*overflow: hidden;*/
+}
+
+#competition-detail .detail-team-info .team-dec .team-code {
+    box-sizing: border-box;
+    line-height: 20px;
+}
+
+#competition-detail .detail-team-info .team-dec .team-code span {
+    position: relative;
+    display: inline-block;
+    padding-top: 2px;
+    border: 1px solid #ffffff;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text:after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    display: block;
+    background: #ffffff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text.active {
+    border-color: #ccc;
+    border-bottom: none;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text .fa-caret-down {
+    transition: transform .3s;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text.active .fa-caret-down {
+    transform: rotate(180deg);
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text .menu-toggle {
+    position: absolute;
+    z-index: 10;
+    right: -1px;
+    top: 21px;
+    display: none;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: #ffffff;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text.active .menu-toggle {
+    display: block;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text .menu-toggle .item {
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+}
+
+#competition-detail .detail-team-info .team-dec .menu-text .menu-toggle .item:hover {
+    background: #ccc;
 }
 
 #competition-detail .detail-team-info .team-number {
@@ -401,7 +479,7 @@
 
 #competition-detail .my-team .my-team-member .member-info {
     overflow: hidden;
-    width: 50%;
+    width: 400px;
     float: left;
     margin-bottom: 40px;
 }
@@ -414,17 +492,49 @@
     float: left;
     width: 100px;
     height: 100px;
+    position: relative;
 }
 
 #competition-detail .my-team .my-team-member .member-info .member-pic img {
     width: 90px;
     height: 90px;
+    border-radius: 50%;
+}
+
+#competition-detail .my-team .my-team-member .member-info .member-pic i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ffc000;
+}
+
+#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member{
+
+    position: relative;
+    text-align: right;
+    width: 100px;
+    cursor: pointer;
+    color: #aaa;
+}
+#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member{
+    color: #444;
+
+}
+#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member .destroy-text{
+    position: absolute;
+    left: 180px;
+    width: 80px;
+    transition: left .3s;
+}
+
+#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member .destroy-text{
+    left: 0;
 }
 
 #competition-detail .my-team .my-team-member .member-info .member-dec {
-    margin-left: 120px;
+    float: left;
     padding: 15px 0;
-    width: 320px;
+    width: 300px;
     position: relative;
 }
 
@@ -434,7 +544,7 @@
     top: 18px;
     font-size: 18px;
     cursor: pointer;
-    color: #ccc;
+    color: #000;
 }
 
 #competition-detail .my-team .my-team-member .member-info .member-dec .fa-remove:hover {
