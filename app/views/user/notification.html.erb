@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 hidden-xs">
+      <%= render 'user/menu' %>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+      <h1 class="page-header">
+        我的账户
+      </h1>
+
+      <%= render 'user/tab' %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <% $chats[@channel].each do |chat| %>
+              <tr>
+                <td>
+                  <%= chat[:content] %>
+                </td>
+                <td>
+                  <%= chat[:time] %>
+                </td>
+              </tr>
+          <% end %>
+          <% @notifications.each do |notification| %>
+              <%= notification.message %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
