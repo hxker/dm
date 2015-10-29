@@ -72,8 +72,24 @@ class UserController < ApplicationController
   end
 
   def comp_show
-    @team = Team.find(params[:id])
-    @players = TeamUserShip.includes(:user).where(team_id: params[:id]).select(:user_id)
+    @no_access = TeamUserShip.where(user_id: current_user.id, team_id: params[:id]).exists?
+    if @no_access
+      @team = Team.find(params[:id])
+      @players = TeamUserShip.includes(:user).where(team_id: params[:id])
+      @team_scores = Score.includes(:schedule, :team1, :team2).where(['team1_id = :value OR team2_id = :value', {:value => 3}]).select(:team1_id, :team2_id, :score1, :score2, :th, :comp_name, :kind).map { |s| {
+          team1: s.team1.identifier,
+          team2: s.team2.identifier,
+          identifier1: s.team1.identifier,
+          identifier2: s.team2.identifier,
+          cover1: ActionController::Base.helpers.asset_path(s.team1.cover_url(:small)),
+          cover2: ActionController::Base.helpers.asset_path(s.team2.cover_url(:small)),
+          score1: s.score1,
+          score2: s.score2,
+          th: s.th.to_s,
+          comp_name: s.schedule.name,
+          kind: t('kind.kind'+s.kind.to_s)
+      } }
+    end
   end
 
   def creative_activity
@@ -84,20 +100,6 @@ class UserController < ApplicationController
     @creative_activity = CreativeActivity.find(params[:id])
   end
 
-
-  def score
-    t_u = TeamUserShip.where(user_id: 1, event_id: params[:id]).select(:team_id).take
-    user_scores = Score.includes(:schedule, :team1, :team2).where(event_id: params[:id]).where(['team1_id = :value OR team2_id = :value', {:value => t_u.team_id}]).select(:team1_id, :team2_id, :score1, :score2, :th, :comp_name, :kind).map { |s| {
-        team1: s.team1.name,
-        team2: s.team2.name,
-        score1: s.score1,
-        score2: s.score2,
-        th: s.th.to_s,
-        comp_name: s.schedule.name,
-        kind: t('kind.kind'+s.kind.to_s)
-    } }
-    render json: user_scores
-  end
 
   # 修改密码请求
   def passwd

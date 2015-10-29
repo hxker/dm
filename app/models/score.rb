@@ -4,6 +4,7 @@ class Score < ActiveRecord::Base
   belongs_to :team2, foreign_key: :team2_id, class_name: Team
   belongs_to :admin, foreign_key: :operator
   belongs_to :schedule, foreign_key: :comp_name
+  validates_uniqueness_of :team1_id, :scope => [:th, :kind, :comp_name, :team2_id], message: '这队本场成绩已存在(同一赛程名、赛制、场次)'
 
   KIND = {mark: 1, confrontation: 2}
 

@@ -68,7 +68,7 @@ class Admin::ScoresController < AdminController
   def destroy
     @score.destroy
     respond_to do |format|
-      format.html { redirect_to admin_scores_url, notice: '成绩删除成功' }
+      format.html { redirect_to '/events/scores?id='+@score.event_id.to_s, notice: '成绩删除成功' }
       format.json { head :no_content }
     end
   end

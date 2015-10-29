@@ -8,31 +8,32 @@
         <%= render 'user/menu' %>
       </div>
       <div class="content">
-        <div id="competition-detail">
-          <div class="detail-title">
-            <p class="t-48 blue text-right"><%= @team.event.name %></p>
-          </div>
-          <div class="detail-head">
-
-            <div class="head-item active t-22">我的战队</div>
-            <div class="head-item  t-22">战队成绩</div>
-          </div>
-
-          <div class="head-item-sub my-team active">
-            <div class="detail-team-info">
-              <div class="team-pic">
-                <%= image_tag(@team.cover_url(:small)) %>
+        <% if @no_access %>
+            <div id="competition-detail">
+              <div class="detail-title">
+                <p class="t-48 blue text-right"><%= @team.event.name %></p>
               </div>
-              <div class="team-dec">
-                <p class="t-18 blue pull-down-10"><%= @team.name %></p>
+              <div class="detail-head">
 
-                <p class="t-14 pull-down-5">队长：<%= @team.user.user_profile.username %></p>
+                <div class="head-item active t-22">我的战队</div>
+                <div class="head-item  t-22">战队成绩</div>
+              </div>
 
-                <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
+              <div class="head-item-sub my-team active">
+                <div class="detail-team-info">
+                  <div class="team-pic">
+                    <%= image_tag(@team.cover_url(:small)) %>
+                  </div>
+                  <div class="team-dec">
+                    <p class="t-18 blue pull-down-10"><%= @team.name %></p>
 
-                <% if current_user.id == @team.user_id %>
-                    <div class="team-code">
-                      <span class="t-14" style="margin-right: 30px;">秘钥：<span id="team-code-value"><%= @team.team_code %></span></span>
+                    <p class="t-14 pull-down-5">队长：<%= @team.user.user_profile.username %></p>
+
+                    <p class="t-14 pull-down-5">描述：<%= @team.description %></p>
+
+                    <% if current_user.id == @team.user_id %>
+                        <div class="team-code">
+                          <span class="t-14" style="margin-right: 30px;">秘钥：<span id="team-code-value"><%= @team.team_code %></span></span>
                       <span class="blue t-14 menu-text" style="cursor: pointer;">重置秘钥 <i class="fa fa-caret-down"></i>
                         <ul class="menu-toggle">
                           <% if current_user.mobile.present? %>
@@ -47,126 +48,124 @@
                           <% end %>
                         </ul>
                       </span>
-                    </div>
-                <% end %>
-              </div>
-              <div class="team-number">
-                <p class="blue t-14">战队编号：</p>
+                        </div>
+                    <% end %>
+                  </div>
+                  <div class="team-number">
+                    <p class="blue t-14">战队编号：</p>
 
-                <p class="number"><%= @team.identifier %></p>
-              </div>
-            </div>
-            <div class="my-team-menu">
+                    <p class="number"><%= @team.identifier %></p>
+                  </div>
+                </div>
+                <div class="my-team-menu">
 
-              <% if @team.event.apply_end_time > Time.now %>
-                  <% if current_user.id == @team.user_id %>
-                      <button class="btn-disband leader-delete-team" data-name="<%= @team.id %>">解散队伍</button>
-                  <% else %>
-                      <button class="btn-disband reduce-team-amount" data-name="<%= @team.id %>">退出该队</button>
-                  <% end %>
-              <% end %>
-
-            </div>
-            <div class="my-team-member">
-              <% @players.each do |t| %>
-                  <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>" id="<%= "hide-player#{t.user_id}" %>">
-                    <div class="member-pic">
-                      <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
-                    </div>
-                    <div class="member-dec">
-                      <% if @team.event.apply_end_time > Time.now && @team.user_id == current_user.id && current_user.id != t.user_id %>
-                          <div class="destroy-member col-r leader-delete-player" data-name="<%= t.user_id %>" data-id="<%= @team.id %>">
-                            <div class="destroy-text">移除该队员</div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i>
-                          </div>
+                  <% if @team.event.apply_end_time > Time.now %>
+                      <% if current_user.id == @team.user_id %>
+                          <button class="btn-disband leader-delete-team" data-name="<%= @team.id %>">解散队伍</button>
+                      <% else %>
+                          <button class="btn-disband reduce-team-amount" data-name="<%= @team.id %>">退出该队</button>
                       <% end %>
-                      <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
+                  <% end %>
 
-                      <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
-                    </div>
-                  </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="head-item-sub detail-process">
-            <div class="detail-team-info">
-              <div class="team-number">
-                <p class="blue t-14">战队编号：</p>
-
-                <p class="number"><%= @team.identifier %></p>
-              </div>
-            </div>
-            <div class="team-score">
-              <div class="time-line col-l">
-                <p class="text-center t-18 blue pull-down-20">时间流程</p>
-
-                <div class="item active">
-                  <div class="pic">
-                    <div class="circle">
-                      <p class="t-14 text-center">海选赛</p>
-                    </div>
-                  </div>
-                  <div class="dec">
-                    <p class="t-14 t-bold">10月27日</p>
-
-                    <p class="t-12">比赛时间：2015年10月27日15:35:55</p>
-
-                    <p class="t-12">比赛地点：XX体育管</p>
-
-                    <p class="t-12">我的身份：选手</p>
-                  </div>
                 </div>
-                <div class="item">
-                  <div class="pic">
-                    <div class="circle">
-                      <p class="t-14 text-center">小组赛</p>
-                    </div>
-                  </div>
-                  <div class="dec">
-                    <p class="t-14 t-bold">10月27日</p>
+                <div class="my-team-member">
+                  <% @players.each do |t| %>
+                      <div class="member-info <%= t.user_id == @team.user_id ? 'captain' : '' %>" id="<%= "hide-player#{t.user_id}" %>">
+                        <div class="member-pic">
+                          <%= image_tag(t.user.avatar_url(:small), alt: '队员头像') %>
+                        </div>
+                        <div class="member-dec">
+                          <% if @team.event.apply_end_time > Time.now && @team.user_id == current_user.id && current_user.id != t.user_id %>
+                              <div class="destroy-member col-r leader-delete-player" data-name="<%= t.user_id %>" data-id="<%= @team.id %>">
+                                <div class="destroy-text">移除该队员</div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i>
+                              </div>
+                          <% end %>
+                          <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
 
-                    <p class="t-12">比赛时间：2015年10月27日15:35:55</p>
-
-                    <p class="t-12">比赛地点：XX体育管</p>
-
-                    <p class="t-12">我的身份：选手</p>
-                  </div>
+                          <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
+                        </div>
+                      </div>
+                  <% end %>
                 </div>
               </div>
-              <div class="battle-situation col-r">
-                <p class="text-center t-18 blue pull-down-20">对战情况</p>
+              <div class="head-item-sub detail-process">
+                <div class="detail-team-info">
+                  <div class="team-number">
+                    <p class="blue t-14">战队编号：</p>
 
-                <div class="item">
-                  <div class="col-l">
-                    <img src="/images/team-avatar-default.jpg" alt=""/>
-
-                    <p class="t-14 text-center"><%= @team.name %></p>
+                    <p class="number"><%= @team.identifier %></p>
                   </div>
-                  <div class="col-r">
-                    <img src="/images/team-avatar-default.jpg" alt=""/>
-
-                    <p class="t-14 text-center"><%= @team.name %></p>
-                  </div>
-                  <p class="result">2-1</p>
                 </div>
-                <div class="item">
-                  <div class="col-l">
-                    <img src="/images/team-avatar-default.jpg" alt=""/>
+                <div class="team-score">
+                  <p class="text-center t-18 blue pull-down-20">对战情况</p>
+                  <!--<div class="time-line col-l">-->
+                  <!--<p class="text-center t-18 blue pull-down-20">时间流程</p>-->
 
-                    <p class="t-14 text-center"><%= @team.name %></p>
-                  </div>
-                  <div class="col-r">
-                    <img src="/images/team-avatar-default.jpg" alt=""/>
+                  <!--<div class="item active">-->
+                  <!--<div class="pic">-->
+                  <!--<div class="circle">-->
+                  <!--<p class="t-14 text-center">海选赛</p>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="dec">-->
+                  <!--<p class="t-14 t-bold">10月27日</p>-->
 
-                    <p class="t-14 text-center"><%= @team.name %></p>
+                  <!--<p class="t-12">比赛时间：2015年10月27日15:35:55</p>-->
+
+                  <!--<p class="t-12">比赛地点：XX体育管</p>-->
+
+                  <!--<p class="t-12">我的身份：选手</p>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--<div class="pic">-->
+                  <!--<div class="circle">-->
+                  <!--<p class="t-14 text-center">小组赛</p>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="dec">-->
+                  <!--<p class="t-14 t-bold">10月27日</p>-->
+
+                  <!--<p class="t-12">比赛时间：2015年10月27日15:35:55</p>-->
+
+                  <!--<p class="t-12">比赛地点：XX体育管</p>-->
+
+                  <!--<p class="t-12">我的身份：选手</p>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <div class="battle-situation">
+                    <% %>
+
+                    <% @team_scores.each do |ts| %>
+                        <div style="float: left">
+                          <%= ts[:comp_name] %><br>
+                          第<%= ts[:th] %>场
+                        </div>
+                        <div class="item">
+                          <div class="col-l">
+                            <img src="<%= ts[:cover1] %>" alt=""/>
+
+                            <p class="t-14 text-center"><%= ts[:identifier1] %></p>
+                          </div>
+                          <div class="col-r">
+                            <img src="<%= ts[:cover2] %>" alt=""/>
+
+                            <p class="t-14 text-center"><%= ts[:identifier2] %></p>
+                          </div>
+                          <p class="result">2-1</p>
+                        </div>
+                    <% end %>
                   </div>
-                  <p class="result">PK</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
+        <% else %>
+            <div class="alert alert-warning t-18 col-sm-8 text-center" style="margin:180px 130px;">
+              您没有权限查看!
+            </div>
+        <% end %>
       </div>
     </div>
   </div>

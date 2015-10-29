@@ -57,9 +57,9 @@
         <td><%= score.schedule.try(:name) %></td>
         <td><%= t('kind.kind'+score.kind.to_s) %></td>
         <td><%= score.th %></td>
-        <td><%= score.team.name %></td>
-        <td><%= score.team.name %></td>
-        <td><%= score.score1 %><%= " : #{score.score2} " if t('kind.kind'+score.kind.to_s) ==2 %></td>
+        <td><%= score.team1.name %></td>
+        <td><%= score.team2.name %></td>
+        <td><%= score.score1 %><%= " : #{score.score2} " if score.kind ==2 %></td>
         <td><%= score.referee_id %></td>
         <td><%= score.admin.try(:name) %></td>
         <td>
