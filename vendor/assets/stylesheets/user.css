@@ -508,33 +508,33 @@
     color: #ffc000;
 }
 
-#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member{
-
+#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member {
     position: relative;
     text-align: right;
     width: 100px;
     cursor: pointer;
     color: #aaa;
 }
-#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member{
-    color: #444;
 
+#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member {
+    color: #444;
 }
-#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member .destroy-text{
+
+#competition-detail .my-team .my-team-member .member-info .member-dec .destroy-member .destroy-text {
     position: absolute;
     left: 180px;
     width: 80px;
     transition: left .3s;
 }
 
-#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member .destroy-text{
+#competition-detail .my-team .my-team-member .member-info .member-dec:hover .destroy-member .destroy-text {
     left: 0;
 }
 
 #competition-detail .my-team .my-team-member .member-info .member-dec {
     float: left;
     padding: 15px 0;
-    width: 300px;
+    width: 260px;
     position: relative;
 }
 

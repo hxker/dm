@@ -49,7 +49,7 @@ $(function () {
                     "东方荣耀"
                 ]
             };
-            $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
+            //$('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
             $('#random_effect').on('click', function () {
                 $('#random_name').val(random_name.data[Math.round(Math.random() * (random_name.data.length - 1))]);
             });
@@ -161,6 +161,197 @@ $(function () {
             event.preventDefault();
             $(this).removeClass('active');
         });
+        if ($('#svg').length > 0) {
+            //模拟队伍数据
+
+            var team_arr = [];
+            var count = 0;
+            for (var i = 0; i < 16; i += 2) {
+                team_arr[i] = {
+                    name: 'A' + count
+                };
+                team_arr[i + 1] = {
+                    name: 'B' + count
+                };
+                count++;
+            }
+
+            var data = {};
+
+            //数据结束
+
+            //option
+            var data = {
+                team_count: 15,
+//        winner_count: 1
+            };
+            //end option
+
+
+            //main method
+            var svg = {
+                init: function (data) {
+
+                }
+            };
+            //end main method
+            var s = Snap('#svg');
+            //轮数
+            var round = 1;
+            //剩余队伍数量
+            var alive = data.team_count;
+            //结束数量
+            var winner = data.winner_count;
+            //比赛总数据
+            var allCom = [];
+            //计算比赛数据
+            do {
+
+                //统计当前轮数比赛数据
+                var com = {
+                    round: round,//轮数
+                    team_join: alive,//参加队伍数量
+                    team_alive: parseInt(alive / 2) + alive % 2,//队伍剩余
+                    comCount: parseInt(alive / 2),//比赛次数
+                    blankCount: alive % 2//轮空数量
+                };
+                allCom[round - 1] = com;
+                if (alive == 1) {
+                    break;
+                }
+                //下轮队伍数量
+                alive = com.team_alive;
+                //轮数累计
+                round++;
+                console.log(alive);
+            }
+            while (alive > 0);
+            //计算完毕
+
+//        console.log(allCom);
+
+            //drawSvg
+            //初始高度
+            var height = 0;
+
+            var option = {
+                //行间距
+                h: 40,
+                //列间距
+                w: 150,
+                //矩形高度
+                innerH: 50,
+                //矩形宽度
+                innerW: 50,
+                //矩形圆角
+                innerR: 5,
+                //矩形填充色
+                innerC: '#ccc',
+                //矩形边框色
+                borderC: '#aaa',
+                //矩形边框宽度
+                borderW: '1'
+            };
+
+
+            //矩形列表
+            var rects = [];
+            //round loop
+            for (var i = 1; i <= allCom.length; i++) {
+                //team loop
+                var core = {};
+                var arr = [];
+                for (var j = 1; j <= allCom[i - 1].team_join; j++) {
+                    //计算起始点
+                    core = {
+                        x: (i - 1) * option.w,
+                        y: height + (j - 1) * (Math.pow(2, i - 1)) * 2 * option.h
+                    };
+                    //draw
+                    var r = s.paper.rect(core.x, core.y, option.innerW, option.innerW, option.innerR).attr({
+                        fill: option.innerC,
+                        stroke: option.borderC,
+                        strokeWidth: option.borderW
+                    });
+                    arr[j] = {
+                        x: core.x + option.innerW / 2,
+                        y: core.y + option.innerH / 2,
+                        element: r
+                    };
+                }
+                rects[i] = arr;
+                height = (Math.pow(2, i) - 1) * option.h;
+            }
+            console.log(rects);
+            for (var i = 1; i < rects.length; i++) {
+                if (rects[i + 1]) {
+                    for (var j in rects[i]) {
+                        if (j % 2 != 0) {
+                            var target = rects[i + 1][parseInt(j / 2) + 1];
+                            var start = rects[i][j];
+                            var lineStr = 'M' + start.x + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + target.y + 'L' + target.x + ',' + target.y;
+                            start.element.after(s.paper.text(start.x - 5, start.y + 5, 'A')).after(s.paper.path(lineStr).attr({
+                                stroke: '#ccc',
+                                fill: 'transparent',
+                                strokeWidth: '2'
+                            }));
+                        } else {
+                            var target = rects[i + 1][parseInt(j / 2)];
+                            var start = rects[i][j];
+                            var lineStr = 'M' + start.x + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + target.y + 'L' + target.x + ',' + target.y;
+                            start.element.after(s.paper.text(start.x - 5, start.y + 5, 'B')).after(s.paper.path(lineStr).attr({
+                                stroke: '#ccc',
+                                fill: 'transparent',
+                                strokeWidth: '2'
+                            }));
+                        }
+                    }
+                }
+            }
+
+
+            //        drawTeam(0, 0, s, 'A1', 'B1', '2-1', 0, true, false);
+            //        drawTeam(200, 100, s, 'A2', 'B2');
+            //        drawTeam(0, 200, s, 'A3', 'B3', '1-2', 1, true, true);
+            //        drawTeam(0, 300, s, 'A1', 'B1', '2-1', 0, true, false);
+            //        drawTeam(200, 400, s, 'A2', 'B2');
+            //        drawTeam(0, 500, s, 'A3', 'B3', '1-2', 1, true, true);
+
+
+            function drawTeam(x, y, s, name1, name2, result, winner, next, iseven) {
+                var rectBack = s.paper.rect(x + 0, y + 0, data.innerWidth, data.innerHeight, 5).attr({
+                    fill: '#f5f5f5'
+                });
+                var teams = [];
+                teams[0] = s.paper.rect(x + 10, y + 10, 45, 45, 5).attr({
+                    fill: '#ccc'
+                });
+                teams[1] = s.paper.rect(x + 95, y + 10, 45, 45, 5).attr({
+                    fill: '#ccc'
+                });
+                var teams_name = [];
+                teams_name[0] = s.paper.text(x + 23, y + 70, name1);
+                teams_name[1] = s.paper.text(x + 108, y + 70, name2);
+                if (result) {
+                    var result_text = s.paper.text(x + 63, y + 40, result);
+                }
+                if (winner || winner == 0) {
+                    teams[winner].attr({
+                        stroke: '#ee0000',
+                        strokeWidth: '2'
+                    })
+                }
+                if (next) {
+                    var lineStr = '';
+                    if (iseven) {
+                        lineStr = 'M' + (x + 150) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40 - 60);
+                    } else {
+                        lineStr = 'M' + (x + 150) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40 + 60);
+                    }
+                    var nextPath = s.paper.path(lineStr).attr({stroke: '#ccc', fill: '#fff'});
+                }
+            }
+        }
     }
 );
 
