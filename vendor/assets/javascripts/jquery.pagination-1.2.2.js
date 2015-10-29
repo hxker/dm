@@ -16,10 +16,9 @@
         pageClicked: 'pageClicked',
         jumpClicked: 'jumpClicked',
         pageSizeChanged: 'pageSizeChanged'
-    }
+    };
 
     var Page = function (element, options) {
-        console.log(element);
         var defaultOption = {
             pageSize: 10,
             pageBtnCount: 11,
@@ -44,7 +43,7 @@
             showPageSizes: false,
             pageSizeItems: null,
             debug: false
-        }
+        };
         this.$element = $(element);
         this.$page = $('<ul class="m-pagination-page"></ul>');
         this.$size = $('<div class="m-pagination-size"></div>');
@@ -52,7 +51,7 @@
         this.$info = $('<div class="m-pagination-info"></div>');
         this.options = $.extend(true, {}, defaultOption, $.fn.page.defaults, options);
         this.total = this.options.total || 0;
-        this.options.pageSizeItems = this.options.pageSizeItems || [5, 10, 15, 20],
+        this.options.pageSizeItems = this.options.pageSizeItems || [5, 10, 15, 20];
         this.currentPageIndex = 1;
         this.currentPageSize = this.options.pageSize;
         this.pageCount = this.getPageCount(this.total, this.currentPageSize);
@@ -89,7 +88,7 @@
             that.$element.off('click').off('change')
                 .on('click', { page: that }, function (event) { eventHandler(event); })
                 .on('change', { page: that }, function (event) { eventHandler(event); });
-        }
+        };
 
         var eventHandler = function (event) {
             var that = event.data.page;
@@ -117,7 +116,7 @@
                 that.debug('event[ pageSizeChanged ] : pageSize = ' + pageSize);
                 that._remoteOrRedner(0);
             }
-        }
+        };
 
 
         if (typeof this.options.total === 'undefined' && this.options.remote.url === null) {
@@ -129,7 +128,7 @@
         else {
             init(this);
         }
-    }
+    };
 
     Page.prototype = {
         _remoteOrRedner: function (pageIndex, loadFirstPage) {
@@ -295,8 +294,8 @@
                 message && console.info(message);
                 data && console.info(data);
             }
-        },
-    }
+        }
+    };
 
     var checkPageIndex = function (pageIndex, maxPage) {
         var reg = /^\+?[1-9][0-9]*$/;
@@ -305,7 +304,7 @@
             result = pageIndex <= maxPage;
         }
         return result;
-    }
+    };
 
     $.fn.page = function (option) {
         var args = arguments;
@@ -330,4 +329,4 @@
             }
         });
     }
-}(window.jQuery)
+}(window.jQuery);
