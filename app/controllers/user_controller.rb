@@ -92,6 +92,21 @@ class UserController < ApplicationController
     end
   end
 
+  def update_team_cover
+    @team = Team.find(params[:team][:id])
+    if current_user.id == @team.user_id
+      @team.update_attributes(params.require(:team).permit(:cover))
+      if @team.save
+        flash[:success] = '队伍头像上传成功'
+      else
+        flash[:error] = '队伍头像上传失败'
+      end
+    else
+      flash[:error] = '非法请求'
+    end
+    redirect_to '/user/comp_show?id='+params[:team][:id].to_s
+  end
+
   def creative_activity
     @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
   end

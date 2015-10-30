@@ -24,6 +24,16 @@
                   <div class="team-pic">
                     <%= image_tag(@team.cover_url(:small)) %>
                   </div>
+                  <% if current_user.id == @team.user_id %>
+                      <div class="team_cover">
+                        <%= simple_form_for(@team, html: {multipart: true}, url: user_update_team_cover_path, method: :post) do |f| %>
+                            <%= f.file_field :cover %>
+                            <%= f.hidden_field :cover_cache %>
+                            <%= f.hidden_field :id, value: @team.id %>
+                            <%= f.button :submit, value: '更新头像', class: 'btn btn-primary' %>
+                        <% end %>
+                      </div>
+                  <% end %>
                   <div class="team-dec">
                     <p class="t-18 blue pull-down-10"><%= @team.name %></p>
 
@@ -81,7 +91,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;<i class="t-14 fa fa-sign-out" title="移除该队员"></i>
                               </div>
                           <% end %>
-                          <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br></p>
+                          <p class="member-name t-18 blue pull-down-10"><%= t.user.user_profile.username %><br>
+                          </p>
 
                           <p class="member-autograph t-14"><%= t.user.user_profile.autograph %><br></p>
                         </div>

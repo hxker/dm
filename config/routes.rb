@@ -1,18 +1,10 @@
 Rails.application.routes.draw do
 
-  # resources :apply_roles do
-  #   collection do
-  #     post :apply_role
-  #   end
-  # end
-  get 'test' => 'test#index'
-
   root to: 'home#index'
   get 'competition' => 'competitions#index'
   get 'competitions/team/:id' => 'competitions#team'
   get 'competitions/shows' => 'competitions#shows'
   get 'competitions/login_in' => 'competitions#login_in'
-  # get 'competitions/apply_in/:id' => 'competitions#apply_in'
   resources :competitions, only: [:index, :show] do
     collection do
       # post :valid_apply
@@ -69,14 +61,14 @@ Rails.application.routes.draw do
   match 'user/creative_activity' => 'user#creative_activity', as: 'user_creative_activity', via: [:get, :post]
   get 'user/activity_show' => 'user#activity_show'
   get 'user/comp_show' => 'user#comp_show'
-  # get 'user/score' => 'user#score'
+  post 'user/update_team_cover' => 'user#update_team_cover', as: 'user_update_team_cover'
 
   namespace :user do |u|
 
     resources :likes, only: [:index, :create, :destroy]
 
   end
-
+  get 'test' => 'test#index'
 
   # -----------------------------------------------------------
   # Admin
