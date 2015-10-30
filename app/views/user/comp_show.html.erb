@@ -23,14 +23,15 @@
                 <div class="detail-team-info">
                   <div class="team-pic">
                     <%= image_tag(@team.cover_url(:small)) %>
+                    <label id="change_team_cover_async" for="team_cover">更换头像</label>
                   </div>
                   <% if current_user.id == @team.user_id %>
                       <div class="team_cover">
                         <%= simple_form_for(@team, html: {multipart: true}, url: user_update_team_cover_path, method: :post) do |f| %>
-                            <%= f.file_field :cover %>
+                            <%= f.file_field :cover, class: 'hide' %>
                             <%= f.hidden_field :cover_cache %>
                             <%= f.hidden_field :id, value: @team.id %>
-                            <%= f.button :submit, value: '更新头像', class: 'btn btn-primary' %>
+                            <%= f.button :submit, value: '更新头像', class: 'btn btn-primary hide' %>
                         <% end %>
                       </div>
                   <% end %>

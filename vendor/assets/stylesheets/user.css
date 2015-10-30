@@ -355,6 +355,13 @@
 
 #competition-detail .detail-team-info .team-pic {
     float: left;
+    width: 100px;
+    height: 100px;
+}
+
+#competition-detail .detail-team-info .team-pic img {
+    width: 100px;
+    height: 100px;
 }
 
 #competition-detail .detail-team-info .team-dec {
@@ -362,6 +369,26 @@
     width: 550px;
     float: left;
     /*overflow: hidden;*/
+}
+
+#competition-detail .detail-team-info .team-pic #change_team_cover_async {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 18px;
+    opacity: 0;
+    background: rgba(180, 180, 180, 0.5);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#competition-detail .detail-team-info .team-pic #change_team_cover_async:hover {
+    opacity: 1;
 }
 
 #competition-detail .detail-team-info .team-dec .team-code {

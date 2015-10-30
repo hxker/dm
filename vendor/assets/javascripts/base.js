@@ -17,6 +17,14 @@ $(function () {
             })
         }
 
+        if ($('#change_team_cover_async').length > 0) {
+            var target = $('#change_team_cover_async').attr('for');
+            $('#' + target).on('change', function (event) {
+                event.preventDefault();
+                $(this).parents('form').submit();
+            })
+        }
+
         if ($('#random_name').length > 0) {
             var random_name = {
                 status: "true",
