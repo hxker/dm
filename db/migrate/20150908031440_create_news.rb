@@ -6,6 +6,7 @@ class CreateNews < ActiveRecord::Migration
       t.string :cover
       t.text :content
       t.integer :admin_id
+      t.integer :event_id
 
       t.timestamps
     end
@@ -13,5 +14,7 @@ class CreateNews < ActiveRecord::Migration
     add_index :news, :name, unique: true
     add_index :news, :news_type_id
     add_index :news, :admin_id
+    add_index :news, :event_id
+
   end
 end

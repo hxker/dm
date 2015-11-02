@@ -9,6 +9,8 @@ class CreateScores < ActiveRecord::Migration
       t.integer :team2_id
       t.string :score1
       t.string :score2
+      t.integer :rank
+      t.text :note
       t.integer :referee_id # 主裁判
       t.integer :operator # 成绩录入员
 
