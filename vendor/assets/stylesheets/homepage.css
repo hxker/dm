@@ -43,6 +43,7 @@
     width: 275px;
     transition: all .4s;
     top: 0;
+    z-index: 1;
 }
 
 #competitions .com-item:nth-of-type(1) {
@@ -65,7 +66,7 @@
     margin: -10px -20px 0;
     width: 315px;
     box-shadow: 0 0 10px #383838;
-    z-index: 2;
+    z-index: 10;
 }
 
 #competitions .com-item:hover .com-pic img {
