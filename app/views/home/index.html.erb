@@ -21,65 +21,22 @@
   </div>
   <div id="competitions" class="">
     <div class="container-content">
-
-      <div class="com-item">
-        <div class="com-pic">
-          <img src="images/competion01.png" alt=""/>
-        </div>
-        <div class="com-dec">
-          <div class="dec-title">
-            少年科技组
+      <% @events.each_with_index do |event, index| %>
+          <div class="com-item">
+            <div class="com-pic">
+              <%= image_tag(event.cover_url(:middle)) %>
+            </div>
+            <div class="com-dec">
+              <div class="dec-title">
+                <%= event.name %>
+              </div>
+              <div class="dec-main">
+                <%= event.name %>
+              </div>
+              <a href="/competitions/shows#<%= index %>" class="robodou-btn btn-sign-in">报名</a>
+            </div>
           </div>
-          <div class="dec-main">
-            这是少年科技组的文案,相关介绍等等
-          </div>
-          <button class="robodou-btn btn-sign-in">报名</button>
-        </div>
-      </div>
-      <div class="com-item">
-        <div class="com-pic">
-          <img src="images/competion01.png" alt=""/>
-        </div>
-        <div class="com-dec">
-          <div class="dec-title">
-            少年科技组
-          </div>
-          <div class="dec-main">
-            这是少年科技组的文案,相关介绍等等
-          </div>
-          <button class="robodou-btn btn-sign-in">报名</button>
-        </div>
-      </div>
-
-      <div class="com-item">
-        <div class="com-pic">
-          <img src="images/competion01.png" alt=""/>
-        </div>
-        <div class="com-dec">
-          <div class="dec-title">
-            少年科技组
-          </div>
-          <div class="dec-main">
-            这是少年科技组的文案,相关介绍等等
-          </div>
-          <button class="robodou-btn btn-sign-in">报名</button>
-        </div>
-      </div>
-
-      <div class="com-item">
-        <div class="com-pic">
-          <img src="images/competion01.png" alt=""/>
-        </div>
-        <div class="com-dec">
-          <div class="dec-title">
-            少年科技组
-          </div>
-          <div class="dec-main">
-            这是少年科技组的文案,相关介绍等等
-          </div>
-          <button class="robodou-btn btn-sign-in">报名</button>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
   <div id="dynamic">
@@ -104,8 +61,8 @@
           </div>
         </div>
         <div class="dy-video col-r">
-            <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="i=/images/dy-video-bk.jpg&p=0&f=/video/1008.mp4"
-                      allowFullscreen="true" type="application/x-shockwave-flash" width="547" height="318" autostart="false" loop="true">
+          <embed src="/assets/kindeditor/plugins/ckplayer/ckplayer.swf" flashvars="i=/images/dy-video-bk.jpg&p=0&f=/video/1008.mp4"
+                 allowFullscreen="true" type="application/x-shockwave-flash" width="547" height="318" autostart="false" loop="true">
           </embed>
           <div class="video-btn">
             <i class="fa fa-play"></i>

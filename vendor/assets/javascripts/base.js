@@ -64,6 +64,9 @@ $(function () {
         }
 
         if ($('#competition').length > 0) {
+            var url = window.location.href;
+            var id = parseInt(url.substring(url.length - 1, url.length));
+            $('.competitions-tab').removeClass('active').eq(id + 1).addClass('active');
             $('#competition-items').find('.item').on('click', function () {
                 $('.competitions-tab').removeClass('active').eq($(this).index()).addClass('active');
             })
