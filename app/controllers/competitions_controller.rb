@@ -11,7 +11,7 @@ class CompetitionsController < ApplicationController
   end
 
   def shows
-    @competition = Competition.find(1)
+    @competition = Competition.last
     @events = Event.where(competition_id: @competition.id)
   end
 
