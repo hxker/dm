@@ -1,6 +1,8 @@
 <h1 class="page-header">
   显示<%= t('activerecord.models.event') %>
   <small class="pull-right">
+    <a href="<%= new_admin_event_path %>" title="添加项目" class="btn btn-default">
+      <i class="icon-plus icon-only"></i></a>
     <a href="<%= edit_admin_event_path(@event) %>" title="编辑" class="btn btn-default">
       <i class="icon-edit icon-only"></i></a>
     <a href="<%= admin_events_path %>" title="列表" class="btn btn-default">

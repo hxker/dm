@@ -19,9 +19,10 @@
 
         <div class="form-inputs">
           <%= f.input :name %>
-          <%= f.input :competition_id, collection: Competition.all %>
+          <%= f.input :competition_id, collection: Competition.where(status: 0) %>
+          <%= f.input :parent_id, collection: Event.where(status: 0, is_father: true), label: '所属项目' %>
+          <%= f.input :is_father, label: '是否包含子项目' %>
           <%= f.input :description %>
-          <!--<%= f.input :cover %>-->
           <% if @event.cover? %>
               <div class="form-group">
                 <%= image_tag(@event.cover_url(:middle), class: 'img-thumbnail') %>
