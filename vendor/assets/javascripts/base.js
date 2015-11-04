@@ -169,199 +169,99 @@ $(function () {
         $('.menu-text').on('mouseenter', function (event) {
             event.preventDefault();
             $(this).addClass('active');
-        })
+        });
         $('.menu-text').on('mouseleave', function (event) {
             event.preventDefault();
             $(this).removeClass('active');
         });
         if ($('#svg').length > 0) {
-            //模拟队伍数据
+//模拟数据
+            var roundData = [
+                [['A1', 'B1', '1 - 2'], ['C', 'D', '2 - 1'], ['E', 'F'], ['G', 'H'], ['I', 'J'], ['K']],
+                [['B1', 'C'], ['E', 'H'], ['I', 'K']],
+                [['E', 'I']],
+                [['B1', 'I']],
+                [['B1', 'L']],
+                [['L', 'Q']],
+                [['Q', 'W']],
+                [['L', 'O'], ['Q', 'T']],
+                [['L', 'M'], ['O', 'P'], ['Q', 'R'], ['S', 'T'], ['U', 'W']]
+            ];
 
-            var team_arr = [];
-            var count = 0;
-            for (var i = 0; i < 16; i += 2) {
-                team_arr[i] = {
-                    name: 'A' + count
-                };
-                team_arr[i + 1] = {
-                    name: 'B' + count
-                };
-                count++;
-            }
+            var placeData = [
+                [{x: 0, y: 0}, {x: 0, y: 120}, {x: 0, y: 240}, {x: 0, y: 360}, {x: 0, y: 480}, {x: 0, y: 600}],
+                [{x: 120, y: 60}, {x: 120, y: 300}, {x: 120, y: 540}],
+                [{x: 240, y: 420}],
+                [{x: 360, y: 240}],
+                [{x: 480, y: 180}],
+                [{x: 600, y: 240}],
+                [{x: 720, y: 420}],
+                [{x: 840, y: 60}, {x: 840, y: 300}],
+                [{x: 960, y: 0}, {x: 960, y: 120}, {x: 960, y: 240}, {x: 960, y: 360}, {x: 960, y: 480}]
+            ];
 
-            var data = {};
+            var lineData = [
+                [placeData[1][0], placeData[1][0], placeData[1][1], placeData[1][1], placeData[1][2], placeData[1][2], placeData[2][0]],
+                [placeData[3][0], placeData[2][0], placeData[2][0]],
+                [placeData[3][0]],
+                [placeData[4][0]],
+                [],
+                [placeData[4][0]],
+                [placeData[5][0]],
+                [placeData[5][0], placeData[6][0]],
+                [placeData[7][0], placeData[7][0], placeData[7][1], placeData[7][1], placeData[6][0]]
+            ];
 
-            //数据结束
 
-            //option
-            var data = {
-                team_count: 15,
-//        winner_count: 1
-            };
-            //end option
-
-
-            //main method
-            var svg = {
-                init: function (data) {
-
-                }
-            };
-            //end main method
             var s = Snap('#svg');
-            //轮数
-            var round = 1;
-            //剩余队伍数量
-            var alive = data.team_count;
-            //结束数量
-            var winner = data.winner_count;
-            //比赛总数据
-            var allCom = [];
-            //计算比赛数据
-            do {
+//        console.log(roundData.length);
+            for (var i = 0; i < placeData.length; i++) {
+                for (var j = 0; j < placeData[i].length; j++) {
 
-                //统计当前轮数比赛数据
-                var com = {
-                    round: round,//轮数
-                    team_join: alive,//参加队伍数量
-                    team_alive: parseInt(alive / 2) + alive % 2,//队伍剩余
-                    comCount: parseInt(alive / 2),//比赛次数
-                    blankCount: alive % 2//轮空数量
-                };
-                allCom[round - 1] = com;
-                if (alive == 1) {
-                    break;
-                }
-                //下轮队伍数量
-                alive = com.team_alive;
-                //轮数累计
-                round++;
-                console.log(alive);
-            }
-            while (alive > 0);
-            //计算完毕
-
-//        console.log(allCom);
-
-            //drawSvg
-            //初始高度
-            var height = 0;
-
-            var option = {
-                //行间距
-                h: 40,
-                //列间距
-                w: 150,
-                //矩形高度
-                innerH: 50,
-                //矩形宽度
-                innerW: 50,
-                //矩形圆角
-                innerR: 5,
-                //矩形填充色
-                innerC: '#ccc',
-                //矩形边框色
-                borderC: '#aaa',
-                //矩形边框宽度
-                borderW: '1'
-            };
-
-
-            //矩形列表
-            var rects = [];
-            //round loop
-            for (var i = 1; i <= allCom.length; i++) {
-                //team loop
-                var core = {};
-                var arr = [];
-                for (var j = 1; j <= allCom[i - 1].team_join; j++) {
-                    //计算起始点
-                    core = {
-                        x: (i - 1) * option.w,
-                        y: height + (j - 1) * (Math.pow(2, i - 1)) * 2 * option.h
-                    };
-                    //draw
-                    var r = s.paper.rect(core.x, core.y, option.innerW, option.innerW, option.innerR).attr({
-                        fill: option.innerC,
-                        stroke: option.borderC,
-                        strokeWidth: option.borderW
+                    var r = s.paper.rect(placeData[i][j].x + 10, placeData[i][j].y + 10, 100, 40, 8).attr({
+                        fill: '#ddd',
+                        col: i,
+                        row: j
                     });
-                    arr[j] = {
-                        x: core.x + option.innerW / 2,
-                        y: core.y + option.innerH / 2,
-                        element: r
-                    };
-                }
-                rects[i] = arr;
-                height = (Math.pow(2, i) - 1) * option.h;
-            }
-            console.log(rects);
-            for (var i = 1; i < rects.length; i++) {
-                if (rects[i + 1]) {
-                    for (var j in rects[i]) {
-                        if (j % 2 != 0) {
-                            var target = rects[i + 1][parseInt(j / 2) + 1];
-                            var start = rects[i][j];
-                            var lineStr = 'M' + start.x + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + target.y + 'L' + target.x + ',' + target.y;
-                            start.element.after(s.paper.text(start.x - 5, start.y + 5, 'A')).after(s.paper.path(lineStr).attr({
-                                stroke: '#ccc',
+
+                    if (lineData[i] != undefined) {
+                        if (lineData[i][j] != undefined) {
+                            var start = {
+                                x: placeData[i][j].x + 110, y: placeData[i][j].y + 30
+                            };
+                            var end = {
+                                x: lineData[i][j].x + 60, y: lineData[i][j].y + 10
+                            };
+                            var lineStr = 'M' + start.x + ',' + start.y + 'L' + end.x + ',' + start.y + 'L' + end.x + ',' + end.y;
+                            var l = s.paper.path(lineStr).attr({
                                 fill: 'transparent',
-                                strokeWidth: '2'
-                            }));
-                        } else {
-                            var target = rects[i + 1][parseInt(j / 2)];
-                            var start = rects[i][j];
-                            var lineStr = 'M' + start.x + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + start.y + 'L' + (target.x + start.x) / 2 + ',' + target.y + 'L' + target.x + ',' + target.y;
-                            start.element.after(s.paper.text(start.x - 5, start.y + 5, 'B')).after(s.paper.path(lineStr).attr({
-                                stroke: '#ccc',
-                                fill: 'transparent',
-                                strokeWidth: '2'
-                            }));
+                                stroke: '#ddd'
+                            })
                         }
                     }
-                }
-            }
 
 
-            //        drawTeam(0, 0, s, 'A1', 'B1', '2-1', 0, true, false);
-            //        drawTeam(200, 100, s, 'A2', 'B2');
-            //        drawTeam(0, 200, s, 'A3', 'B3', '1-2', 1, true, true);
-            //        drawTeam(0, 300, s, 'A1', 'B1', '2-1', 0, true, false);
-            //        drawTeam(200, 400, s, 'A2', 'B2');
-            //        drawTeam(0, 500, s, 'A3', 'B3', '1-2', 1, true, true);
-
-
-            function drawTeam(x, y, s, name1, name2, result, winner, next, iseven) {
-                var rectBack = s.paper.rect(x + 0, y + 0, data.innerWidth, data.innerHeight, 5).attr({
-                    fill: '#f5f5f5'
-                });
-                var teams = [];
-                teams[0] = s.paper.rect(x + 10, y + 10, 45, 45, 5).attr({
-                    fill: '#ccc'
-                });
-                teams[1] = s.paper.rect(x + 95, y + 10, 45, 45, 5).attr({
-                    fill: '#ccc'
-                });
-                var teams_name = [];
-                teams_name[0] = s.paper.text(x + 23, y + 70, name1);
-                teams_name[1] = s.paper.text(x + 108, y + 70, name2);
-                if (result) {
-                    var result_text = s.paper.text(x + 63, y + 40, result);
-                }
-                if (winner || winner == 0) {
-                    teams[winner].attr({
-                        stroke: '#ee0000',
-                        strokeWidth: '2'
-                    })
-                }
-                if (next) {
-                    var lineStr = '';
-                    if (iseven) {
-                        lineStr = 'M' + (x + 150) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40 - 60);
-                    } else {
-                        lineStr = 'M' + (x + 150) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40) + 'L' + (x + 150 + 125) + ',' + (y + 40 + 60);
+                    if (roundData[i][j].length > 1) {
+                        var lr = s.paper.rect(placeData[i][j].x + 20, placeData[i][j].y + 20, 20, 20, 4).attr({
+                            fill: '#ccc',
+                            teamId: roundData[i][j][0]
+                        });
+                        var rr = s.paper.rect(placeData[i][j].x + 80, placeData[i][j].y + 20, 20, 20, 4).attr({
+                            fill: '#ccc',
+                            teamId: roundData[i][j][1]
+                        });
+                        var lt = s.paper.text(placeData[i][j].x + 26 - (roundData[i][j][0].length - 1) * 3, placeData[i][j].y + 34, roundData[i][j][0]);
+                        var rt = s.paper.text(placeData[i][j].x + 86 - (roundData[i][j][1].length - 1) * 3, placeData[i][j].y + 34, roundData[i][j][1]);
+                        if (roundData[i][j][2] != undefined) {
+                            var t = s.paper.text(placeData[i][j].x + 60 - (roundData[i][j][2].length - 1) * 3, placeData[i][j].y + 34, roundData[i][j][2]);
+                        }
                     }
-                    var nextPath = s.paper.path(lineStr).attr({stroke: '#ccc', fill: '#fff'});
+                    else {
+                        var r = s.paper.rect(placeData[i][j].x + 50, placeData[i][j].y + 20, 20, 20, 4).attr({
+                            fill: '#ccc'
+                        });
+                        var t = s.paper.text(placeData[i][j].x + 55 - (roundData[i][j][0].length - 1) * 3, placeData[i][j].y + 34, roundData[i][j][0]);
+                    }
                 }
             }
         }
