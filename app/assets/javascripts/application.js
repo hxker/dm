@@ -21,6 +21,7 @@
 //= require bootstrap-star-rating
 //= require notify
 //= require swiper.min
+//= require snap-svg
 //= require base
 //= require jquery.pagination-1.2.2
 
