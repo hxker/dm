@@ -10,8 +10,15 @@ class Event < ActiveRecord::Base
   validates :name, presence: true
   validates :competition_id, presence: true
   validates :status, presence: true
-  validates :team_min_num, presence: true
-  validates :team_max_num, presence: true
+  before_save :update_level
+
+  def update_level
+    if self.parent_id.present?
+      self.level = 2
+    end
+  end
+  # validates :team_min_num, presence: true
+  # validates :team_max_num, presence: true
   # validates :apply_start_time, presence: true
   # validates :apply_end_time, presence: true
   # validates :start_time, presence: true
