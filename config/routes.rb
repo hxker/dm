@@ -86,7 +86,11 @@ Rails.application.routes.draw do
     end
 
     resources :admins
-    resources :competitions
+    resources :competitions do
+      collection do
+        get :get_events
+      end
+    end
     resources :events do
       collection do
         get :teams

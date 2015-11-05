@@ -1,5 +1,8 @@
 class Admin::CompetitionsController < AdminController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
+  before_action do
+    authenticate_permissions(['admin'])
+  end
 
   # GET /admin/competitions
   # GET /admin/competitions.json
@@ -9,6 +12,11 @@ class Admin::CompetitionsController < AdminController
     else
       @competitions = Competition.all.page(params[:page]).per(params[:per])
     end
+  end
+
+  def get_events
+    events = Event.where(competition_id: params[:id], level: params[:level]).select(:id, :name, :parent_id, :is_father)
+    render json: events
   end
 
   # GET /admin/competitions/1
