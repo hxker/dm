@@ -474,7 +474,111 @@ $(function () {
         });
     });
 
-});
+
+    //tree
+    var DataSourceTree = function (options) {
+        this._data = options.data;
+        this._delay = options.delay;
+    };
+
+    DataSourceTree.prototype.data = function (options, callback) {
+        var self = this;
+        var $data = null;
+
+        if (!("name" in options) && !("type" in options)) {
+            $data = this._data;//the root tree
+            callback({data: $data});
+            return;
+        }
+        else if ("type" in options && options.type == "folder") {
+            if ("additionalParameters" in options && "children" in options.additionalParameters)
+                $data = options.additionalParameters.children;
+            else $data = {}//no data
+        }
+
+        if ($data != null)//this setTimeout is only for mimicking some random delay
+            setTimeout(function () {
+                callback({data: $data});
+            }, parseInt(Math.random() * 500) + 200);
+
+    };
+
+    var comp_index = $('#competition-data');
+    if (comp_index.length > 0) {
+        var comp_data = comp_index.val();
+        var comp_tree_data = [];
+        var events_data = [];
+        for (var i = 0; i < eval(comp_data).length; i++) {
+            var tree_item = {name: eval(comp_data)[i].name, type: 'folder', id: eval(comp_data)[i].id};
+            comp_tree_data.push(tree_item);
+        }
+        for (var j = 0; j < comp_tree_data.length; j++) {
+            events_data[j] = get_events(comp_tree_data[j].id, 1);
+            var events = {};
+            for (var key in events_data[j]) {
+                var obj = events_data[j][key];
+                events[obj.id] = {name: obj.name, type: (obj.is_father == false ? 'item' : 'folder')};
+            }
+            comp_tree_data[j]['additionalParameters'] = {
+                'children': events
+            };
+            //if (obj.is_father) {
+            //    var aac = get_events(comp_tree_data[j].id, 2);
+            //    console.log(aac);
+            //    comp_tree_data[j]['additionalParameters']['children'][obj.name]['additionalParameters'] = {
+            //        'children': events
+            //    };
+            //}
+            //console.log(events);
+        }
+
+        var treeDataSource = new DataSourceTree({data: comp_tree_data});
+
+        $('#competition-tree').ace_tree({
+            dataSource: treeDataSource,
+            multiSelect: true,
+            loadingHTML: '<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+            'open-icon': 'icon-minus',
+            'close-icon': 'icon-plus',
+            'selectable': true,
+            'selected-icon': 'icon-ok',
+            'unselected-icon': 'icon-remove'
+        });
+    }
+
+
+    //$('#tree1').on('loaded', function (evt, data) {
+    //});
+    //
+    //$('#tree1').on('opened', function (evt, data) {
+    //});
+    //
+    //$('#tree1').on('closed', function (evt, data) {
+    //});
+    //
+    //$('#tree1').on('selected', function (evt, data) {
+    //});
+    //
+
+
+})
+;
+function get_events(id, level) {
+    var events;
+    $.ajax({
+        url: '/admin/competitions/get_events',
+        type: 'get',
+        cache: false,
+        async: false,
+        data: {"id": id, "level": level},
+        success: function (data) {
+            if (data[0]) {
+                events = data;
+            }
+        }
+    });
+    return events;
+}
 //删除两边空格
 function trim(str) {
     return str.replace(/(^\s*)|(\s*$)/g, "");
