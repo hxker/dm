@@ -15,7 +15,11 @@ class Admin::CompetitionsController < AdminController
   end
 
   def get_events
-    events = Event.where(competition_id: params[:id], level: params[:level]).select(:id, :name, :parent_id, :is_father)
+    if params[:parent_id].present?
+      events = Event.where(competition_id: params[:id], parent_id: params[:parent_id], level: 2).select(:id, :name, :parent_id, :is_father)
+    else
+      events = Event.where(competition_id: params[:id], level: 1).select(:id, :name, :parent_id, :is_father)
+    end
     render json: events
   end
 

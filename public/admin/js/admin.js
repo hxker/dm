@@ -402,7 +402,6 @@ $(function () {
                                         });
                                         var audio = $('#audit-result' + activity_id);
                                         audio.removeClass('btn-info');
-                                        //console.log($('.audit-user-activity').text());
                                         if (status == 1) {
                                             audio.text('通过');
                                             audio.addClass('btn-primary');
@@ -513,23 +512,34 @@ $(function () {
             comp_tree_data.push(tree_item);
         }
         for (var j = 0; j < comp_tree_data.length; j++) {
-            events_data[j] = get_events(comp_tree_data[j].id, 1);
-            var events = {};
+            events_data[j] = get_events(comp_tree_data[j].id, null);
+            var events_1 = {};
+            var events_2 = {};
+            var obj_id = [];
             for (var key in events_data[j]) {
                 var obj = events_data[j][key];
-                events[obj.id] = {name: obj.name, type: (obj.is_father == false ? 'item' : 'folder')};
+                events_1[obj.id] = {name: obj.name, type: (obj.is_father == false ? 'item' : 'folder')};
+                if (obj.is_father) {
+                    obj_id.push(obj.id);
+                    var events_data2 = get_events(comp_tree_data[j].id, obj.id);
+                    for (var k in events_data2) {
+                        var obj2 = events_data2[k];
+                        events_2[obj2.id] = {name: obj2.name, type: (obj2.is_father == false ? 'item' : 'folder')}
+                    }
+                }
             }
             comp_tree_data[j]['additionalParameters'] = {
-                'children': events
+                'children': events_1
             };
-            //if (obj.is_father) {
-            //    var aac = get_events(comp_tree_data[j].id, 2);
-            //    console.log(aac);
-            //    comp_tree_data[j]['additionalParameters']['children'][obj.name]['additionalParameters'] = {
-            //        'children': events
-            //    };
-            //}
-            //console.log(events);
+            if (obj_id.length > 0) {
+                for (var l = 0; l < obj_id.length; l++) {
+                    comp_tree_data[j]['additionalParameters']['children'][obj_id[l]]['additionalParameters'] = {
+                        'children': events_2
+                    };
+                }
+
+            }
+
         }
 
         var treeDataSource = new DataSourceTree({data: comp_tree_data});
@@ -563,14 +573,14 @@ $(function () {
 
 })
 ;
-function get_events(id, level) {
+function get_events(id, p_id) {
     var events;
     $.ajax({
         url: '/admin/competitions/get_events',
         type: 'get',
         cache: false,
         async: false,
-        data: {"id": id, "level": level},
+        data: {"id": id, "parent_id": p_id},
         success: function (data) {
             if (data[0]) {
                 events = data;

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :districts
+  end
+
   root to: 'home#index'
   get 'competition' => 'competitions#index'
   get 'competitions/team/:id' => 'competitions#team'
@@ -125,6 +129,7 @@ Rails.application.routes.draw do
     resources :schedules
     resources :referees
     resources :roles
+    resources :districts
 
   end
 

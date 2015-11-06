@@ -154,6 +154,12 @@
             <span class="menu-text"> 单位 </span>
           </a>
         </li>
+        <li class="<%= params[:controller] == 'admin/districts' ? 'active' : '' %>">
+          <a href="<%= admin_districts_path %>">
+            <i class="icon-bullhorn"></i>
+            <span class="menu-text"> 区县 </span>
+          </a>
+        </li>
         <li class="<%= params[:controller] == 'admin/schedules' ? 'active' : '' %>">
           <a href="<%= admin_schedules_path %>">
             <i class="icon-calendar"></i>
@@ -185,10 +191,10 @@
           </a>
         </li>
         <!--<li class="<%= params[:controller] == 'admin/teams' ? 'active' : '' %>">-->
-          <!--<a href="<%= admin_teams_path %>">-->
-            <!--<i class="icon-flag-alt"></i>-->
-            <!--<span class="menu-text"> 队伍 </span>-->
-          <!--</a>-->
+        <!--<a href="<%= admin_teams_path %>">-->
+        <!--<i class="icon-flag-alt"></i>-->
+        <!--<span class="menu-text"> 队伍 </span>-->
+        <!--</a>-->
         <!--</li>-->
         <li class="<%= params[:controller] == 'admin/creative_activities' ? 'active' : '' %>">
           <a href="<%= admin_creative_activities_path %>">
@@ -198,10 +204,10 @@
         </li>
 
         <!--<li class="<%= params[:controller] == 'admin/scores' ? 'active' : '' %>">-->
-          <!--<a href="<%= admin_scores_path %>">-->
-            <!--<i class="icon-bell"></i>-->
-            <!--<span class="menu-text"> 成绩 </span>-->
-          <!--</a>-->
+        <!--<a href="<%= admin_scores_path %>">-->
+        <!--<i class="icon-bell"></i>-->
+        <!--<span class="menu-text"> 成绩 </span>-->
+        <!--</a>-->
         <!--</li>-->
         <li class="<%= params[:controller] == 'admin/news_types' ? 'active' : '' %>">
           <a href="<%= admin_news_types_path %>">

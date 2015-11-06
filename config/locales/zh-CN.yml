@@ -220,6 +220,11 @@ zh-CN:
     category1: '指导/主办/协办方'
     category2: '赞助方'
     category3: '承办方'
+  group:
+    primary: '小学组'
+    middle: '中学组'
+    primary1: '小学组'
+    middle2: '中学组'
   activerecord:
     models:
       user: '用户'
@@ -234,6 +239,7 @@ zh-CN:
       role: '角色'
       news: '新闻'
       news_type: '新闻类型'
+      district: '区县'
   views:
     pagination:
         first: "首页"
