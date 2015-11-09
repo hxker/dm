@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_one :user_profile, :dependent => :destroy
   has_many :roles, through: :user_role
   has_many :user_roles
-  has_many :notifications
+  # has_many :notifications
 
   mount_uploader :avatar, AvatarUploader
 

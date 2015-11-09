@@ -22,7 +22,7 @@ class CreateUserProfiles < ActiveRecord::Migration
     add_index :user_profiles, :user_id, unique: true
     add_index :user_profiles, :school
     add_index :user_profiles, :gender
-    add_index :user_profiles, :student_code, unique: true
-    add_index :user_profiles, :identity_card, unique: true
+    add_index :user_profiles, :student_code #, unique: true
+    add_index :user_profiles, :identity_card #, unique: true
   end
 end

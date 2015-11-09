@@ -5,7 +5,7 @@ class CreateTeams < ActiveRecord::Migration
       t.string :cover
       t.integer :user_id # 队长
       t.integer :group # 组别
-      t.string :district # 区县
+      t.integer :district_id # 区县
       t.string :description # 队伍介绍
       t.string :teacher # 指导教师
       t.string :teacher_mobile
@@ -26,7 +26,7 @@ class CreateTeams < ActiveRecord::Migration
     add_index :teams, :team_code
     add_index :teams, :user_id
     add_index :teams, :teacher
-    add_index :teams, :district
+    add_index :teams, :district_id
 
   end
 end

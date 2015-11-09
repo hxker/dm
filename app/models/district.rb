@@ -1,4 +1,4 @@
 class District < ActiveRecord::Base
-  has_many :teams, foreign_key: :district
+  has_many :teams
   validates :name, presence: true, uniqueness: true
 end
