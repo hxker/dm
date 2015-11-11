@@ -1,6 +1,11 @@
-<h1>Editing team</h1>
+<h1 class="page-header">
+  编辑<%= t('activerecord.models.team') %>
+  <small class="pull-right">
+    <a href="<%= admin_team_path(@team) %>" title="显示该队伍" class="btn btn-default">
+      <i class="icon-eye-open icon-only"></i></a>
+    <a href="<%= admin_teams_path %>" title="队伍列表" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', [:admin, @team] %> |
-<%= link_to 'Back', admin_teams_path %>

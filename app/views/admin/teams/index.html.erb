@@ -37,27 +37,32 @@
 
 
 
-<table  class="table table-bordered table-hover table-striped">
+<table class="table table-bordered table-hover table-striped">
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>名称</th>
-      <th>队长</th>
-      <th>所属比赛</th>
-      <th>队伍秘钥</th>
-      <th>操作</th>
+  <tr>
+    <th>ID</th>
+    <th>名称</th>
+    <th>所属比赛</th>
+    <th>得分情况</th>
+    <th>总成绩</th>
+    <th>名次</th>
+    <!--<th>队伍秘钥</th>-->
+    <th>操作</th>
 
-    </tr>
+  </tr>
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+  <% @teams.each do |team| %>
       <tr>
         <td><%= team.id %></td>
         <td><%= team.name %></td>
-        <td><%= team.user.user_profile.try(:username) %></td>
         <td><%= team.event.name %></td>
-        <td><%= team.team_code %></td>
+        <td><%= team.score_process %></td>
+        <td><%= team.last_score %></td>
+        <td><%= team.rank %></td>
+
+        <!--<td><%= team.team_code %></td>-->
         <td><%= link_to [:admin, team], title: '查看', class: 'btn btn-xs btn-warn' do %>
               <i class="icon-eye-open bigger-120"></i>
           <% end %>
@@ -68,7 +73,7 @@
               <i class="icon-trash bigger-120"></i>
           <% end %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
