@@ -23,7 +23,7 @@
             <ul class="dropdown-width dropdown-menu">
               <li data-search-option="name"><a><%= t('simple_form.labels.defaults.name') %></a></li>
               <li data-search-option="competition_id"><a><%= t('simple_form.labels.defaults.competition_id') %></a></li>
-              <li data-search-option="user_id"><a><%= t('simple_form.labels.defaults.user_id') %></a></li>
+              <!--<li data-search-option="user_id"><a>队长</a></li>-->
               <li data-search-option="id"><a>ID</a></li>
             </ul>
           </div>
@@ -58,7 +58,7 @@
         <td><%= team.id %></td>
         <td><%= team.name %></td>
         <td><%= team.event.name %></td>
-        <td><%= team.score_process %></td>
+        <td><%= truncate(team.score_process, :length => 17) %></td>
         <td><%= team.last_score %></td>
         <td><%= team.rank %></td>
 

@@ -9,11 +9,11 @@ class Team < ActiveRecord::Base
 
   # validates :name, presence: true, length: {in: 2..6}
   # validates :user_id, presence: true
-  validates :event_id, presence: true
-  validates :teacher, presence: true
+  # validates :event_id, presence: true
+  # validates :teacher, presence: true
   # validates :team_code, length: {in: 4..6}
   # validates_uniqueness_of :event_id, :scope => :user_id
-  validates_uniqueness_of :event_id, :scope => :name
+  # validates_uniqueness_of :event_id, :scope => :name
 
   mount_uploader :cover, CoverUploader
 end
