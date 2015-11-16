@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :districts
-  end
 
   root to: 'home#index'
   get 'competition' => 'competitions#index'

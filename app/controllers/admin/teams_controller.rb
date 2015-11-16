@@ -4,15 +4,35 @@ class Admin::TeamsController < AdminController
   # GET /admin/teams
   # GET /admin/teams.json
   def index
+    team=Team.includes(:event).all
     if params[:field].present? && params[:keyword].present?
-      if params[:field] == 'competition_id'
-        competition = Competition.where(name: params[:keyword]).take
-        @teams = Team.all.where(["#{params[:field]} like ?", competition.id]).page(params[:page]).per(params[:per])
+      if params[:field] == 'event_id'
+        event = Event.where(name: params[:keyword]).select(:id).take
+        if event.present?
+          @teams = team.where(["#{params[:field]} like ?", event.id]).page(params[:page]).per(params[:per])
+        end
       else
-        @teams = Team.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+        @teams = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
       end
     else
-      @teams = Team.all.page(params[:page]).per(params[:per])
+      @teams = team.page(params[:page]).per(params[:per])
+    end
+
+    respond_to do |format|
+      format.html
+      format.xls {
+        data = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).select(:id, :name, :event_id, :score_process, :last_score, :rank).map { |x| {
+            ID: x.id,
+            名称: x.name,
+            所属比赛: x.event.name,
+            得分过程: x.score_process,
+            最终成绩: x.last_score,
+            名次: x.rank
+        } }
+        filename = "Team-Export-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+        send_data(data.to_xls, :type => "text/xls;charset=utf-8,header=present", :filename => filename)
+
+      }
     end
 
   end

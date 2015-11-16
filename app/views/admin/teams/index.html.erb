@@ -1,10 +1,11 @@
 <h1 class="page-header">
   <%= t('activerecord.models.team') %>列表
   <small class="pull-right">
-    <a href="<%= new_admin_team_path %>" class="btn btn-default" title="添加队伍">
-      <i class="icon-only icon-plus"></i></a>
     <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
       <i class="icon-search icon-only"></i>
+    </a>
+    <a href="<%= admin_teams_path(format: 'xls') %>?field=<%= params[:field] %>&keyword=<%= params[:keyword] %>" class="btn btn-default" title="导出数据">
+      <i class="icon-external-link icon-only"></i>
     </a>
   </small>
 </h1>
@@ -22,12 +23,12 @@
               <span class="caret"></span></button>
             <ul class="dropdown-width dropdown-menu">
               <li data-search-option="name"><a><%= t('simple_form.labels.defaults.name') %></a></li>
-              <li data-search-option="competition_id"><a><%= t('simple_form.labels.defaults.competition_id') %></a></li>
+              <li data-search-option="event_id"><a><%= t('simple_form.labels.defaults.event_id') %></a></li>
               <!--<li data-search-option="user_id"><a>队长</a></li>-->
               <li data-search-option="id"><a>ID</a></li>
             </ul>
           </div>
-          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'competition_id' %>"/>
+          <input type="hidden" name="field" value="<%= params[:field].present? ? params[:field] : 'event_id' %>"/>
           <input placeholder="输入关键字，按回车键提交" value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" aria-label="...">
         </div>
       </form>
@@ -35,49 +36,51 @@
   </div>
 </div>
 
-
-
-<table class="table table-bordered table-hover table-striped">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>名称</th>
-    <th>所属比赛</th>
-    <th>得分情况</th>
-    <th>总成绩</th>
-    <th>名次</th>
-    <!--<th>队伍秘钥</th>-->
-    <th>操作</th>
-
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @teams.each do |team| %>
+<% if @teams.present? %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
       <tr>
-        <td><%= team.id %></td>
-        <td><%= team.name %></td>
-        <td><%= team.event.name %></td>
-        <td><%= truncate(team.score_process, :length => 17) %></td>
-        <td><%= team.last_score %></td>
-        <td><%= team.rank %></td>
+        <th>ID</th>
+        <th>名称</th>
+        <th>所属比赛</th>
+        <th>得分情况</th>
+        <th>总成绩</th>
+        <th>名次</th>
+        <!--<th>队伍秘钥</th>-->
+        <th>操作</th>
 
-        <!--<td><%= team.team_code %></td>-->
-        <td><%= link_to [:admin, team], title: '查看', class: 'btn btn-xs btn-warn' do %>
-              <i class="icon-eye-open bigger-120"></i>
-          <% end %>
-          <%= link_to edit_admin_team_path(team), title: '编辑', class: 'btn btn-xs btn-info' do %>
-              <i class="icon-edit bigger-120"></i>
-          <% end %>
-          <%= link_to [:admin, team], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
-              <i class="icon-trash bigger-120"></i>
-          <% end %></td>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @teams.each do |team| %>
+          <tr>
+            <td><%= team.id %></td>
+            <td><%= team.name %></td>
+            <td><%= team.event.name %></td>
+            <td><%= truncate(team.score_process, :length => 17) %></td>
+            <td><%= team.last_score %></td>
+            <td><%= team.rank %></td>
+
+            <!--<td><%= team.team_code %></td>-->
+            <td><%= link_to [:admin, team], title: '查看', class: 'btn btn-xs btn-warn' do %>
+                  <i class="icon-eye-open bigger-120"></i>
+              <% end %>
+              <%= link_to edit_admin_team_path(team), title: '编辑', class: 'btn btn-xs btn-info' do %>
+                  <i class="icon-edit bigger-120"></i>
+              <% end %>
+              <%= link_to [:admin, team], method: :delete, data: {confirm: '确认删除吗?'}, title: '删除', class: 'btn btn-xs btn-danger' do %>
+                  <i class="icon-trash bigger-120"></i>
+              <% end %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 
 
-<nav>
-  <%= paginate @teams %>
-</nav>
+    <nav>
+      <%= paginate @teams %>
+    </nav>
+<% elsif params[:keyword].present? %>
+    没有搜索到与<strong>“<%= params[:keyword] %>”</strong>相关的队伍
+<% end %>
