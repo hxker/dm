@@ -6,7 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :mobile, default: ''
       t.string :email, default: '', null: true
       t.string :avatar
-      t.string :validate, default: '0'
+      t.string :validate_status, default: '0'
       t.string :uuid
       t.decimal :money, precision: 10, scale: 2, default: 0
       t.string :encrypted_password, null: false, default: ''
@@ -42,7 +42,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
     add_index :users, :mobile
     add_index :users, :email
-    add_index :users, :validate
+    add_index :users, :validate_status
     # add_index :users, :nickname, unique: true
     # add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token
