@@ -7,9 +7,9 @@ class Admin::CreativeActivitiesController < AdminController
 
   def index
     if params[:field].present? && params[:keyword].present?
-      @activities = CreativeActivity.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @activities = CreativeActivity.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @activities = CreativeActivity.all.page(params[:page]).per(params[:per])
+      @activities = CreativeActivity.all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

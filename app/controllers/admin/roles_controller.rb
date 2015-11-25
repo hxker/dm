@@ -5,9 +5,9 @@ class Admin::RolesController < AdminController
   # GET /admin/roles.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @roles = Role.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @roles = Role.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @roles = Role.all.page(params[:page]).per(params[:per])
+      @roles = Role.all.per_page_kaminari(params[:page]).per(params[:per])
     end
 
   end

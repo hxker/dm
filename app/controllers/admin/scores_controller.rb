@@ -5,9 +5,9 @@ class Admin::ScoresController < AdminController
   # GET /admin/scores.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @scores = Score.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @scores = Score.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @scores = Score.all.page(params[:page]).per(params[:per])
+      @scores = Score.all.per_page_kaminari(params[:page]).per(params[:per])
     end
 
   end

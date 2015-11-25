@@ -68,7 +68,7 @@ class UserController < ApplicationController
   end
 
   def comp
-    @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id).page(params[:page]).per(5)
+    @user_events = TeamUserShip.includes(:event).where(user_id: current_user.id).select(:id, :event_id, :team_id).per_page_kaminari(params[:page]).per(params[:per])
   end
 
   def comp_show
@@ -108,7 +108,7 @@ class UserController < ApplicationController
   end
 
   def creative_activity
-    @creative_activities = CreativeActivity.where(user_id: current_user.id).page(params[:page]).per(params[:per])
+    @creative_activities = CreativeActivity.where(user_id: current_user.id).per_page_kaminari(params[:page]).per(params[:per])
   end
 
   def activity_show

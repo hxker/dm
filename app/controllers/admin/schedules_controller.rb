@@ -4,7 +4,7 @@ class Admin::SchedulesController < AdminController
   # GET /admin/schedules
   # GET /admin/schedules.json
   def index
-    @schedules = Schedule.all.page(params[:page]).per(params[:per])
+    @schedules = Schedule.all.per_page_kaminari(params[:page]).per(params[:per])
   end
 
   # GET /admin/schedules/1
