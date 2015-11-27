@@ -14,7 +14,7 @@ class Admin::EventsController < AdminController
   # GET /admin/events/1
   # GET /admin/events/1.json
   def show
-    @users = User.where(validate: 1)
+    @users = User.where(validate_status: 1)
   end
 
 
@@ -101,7 +101,7 @@ class Admin::EventsController < AdminController
   def teams
     @event = Event.find(params[:id])
     @teams = Team.where(event_id: params[:id]).page(params[:page]).per(params[:per])
-    @users = User.includes(:user_profile).where(validate: 1).where.not(id: TeamUserShip.where(event_id: params[:id]).pluck(:user_id)).select(:id, :nickname)
+    @users = User.includes(:user_profile).where(validate_status: 0).where.not(id: TeamUserShip.where(event_id: params[:id]).pluck(:user_id)).select(:id, :nickname)
     @against = Team.where(event_id: params[:id]).pluck(:id).shuffle.each_slice(2).to_a
   end
 

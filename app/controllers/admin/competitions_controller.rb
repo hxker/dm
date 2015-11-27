@@ -26,7 +26,7 @@ class Admin::CompetitionsController < AdminController
   # GET /admin/competitions/1
   # GET /admin/competitions/1.json
   def show
-    @users = User.where(validate: 1)
+    @users = User.where(validate_status: 1)
   end
 
   # GET /admin/competitions/new
