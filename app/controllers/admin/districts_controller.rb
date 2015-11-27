@@ -5,9 +5,9 @@ class Admin::DistrictsController < AdminController
   # GET /admin/districts.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @districts = District.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @districts = District.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @districts = District.all.page(params[:page]).per(params[:per])
+      @districts = District.all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

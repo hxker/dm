@@ -5,9 +5,9 @@ class Admin::NewsController < AdminController
   # GET /admin/news.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @news = News.includes(:event).all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @news = News.includes(:event).all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @news = News.includes(:event).all.page(params[:page]).per(params[:per])
+      @news = News.includes(:event).all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

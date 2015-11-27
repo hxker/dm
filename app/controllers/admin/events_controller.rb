@@ -5,9 +5,9 @@ class Admin::EventsController < AdminController
   # GET /admin/events.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @events = Event.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @events = Event.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @events = Event.all.page(params[:page]).per(params[:per])
+      @events = Event.all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

@@ -5,9 +5,9 @@ class Admin::UsersController < AdminController
   # GET /admin/users.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @users = User.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @users = User.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @users = User.includes(:user_profile).all.page(params[:page]).per(params[:per])
+      @users = User.includes(:user_profile).all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

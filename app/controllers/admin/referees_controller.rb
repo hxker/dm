@@ -5,9 +5,9 @@ class Admin::RefereesController < AdminController
   # GET /admin/referees.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @referees = UserRole.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @referees = UserRole.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @referees = UserRole.where(role_id: 1).page(params[:page]).per(params[:per])
+      @referees = UserRole.where(role_id: 1).per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

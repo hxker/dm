@@ -4,7 +4,7 @@ class CreativeActivitiesController < ApplicationController
   # GET /creative_activities
   # GET /creative_activities.json
   def index
-    @creative_activities = CreativeActivity.all.page(params[:page]).per(params[:per])
+    @creative_activities = CreativeActivity.all.per_page_kaminari(params[:page]).per(params[:per])
   end
 
   # GET /creative_activities/1

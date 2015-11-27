@@ -8,9 +8,9 @@ class Admin::CompetitionsController < AdminController
   # GET /admin/competitions.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @competitions = Competition.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @competitions = Competition.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @competitions = Competition.all.page(params[:page]).per(params[:per])
+      @competitions = Competition.all.per_page_kaminari(params[:page]).per(params[:per])
     end
   end
 

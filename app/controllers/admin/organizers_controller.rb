@@ -5,9 +5,9 @@ class Admin::OrganizersController < AdminController
   # GET /admin/organizers.json
   def index
     if params[:field].present? && params[:keyword].present?
-      @organizers = Organizer.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).page(params[:page]).per(params[:per])
+      @organizers = Organizer.all.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
     else
-      @organizers = Organizer.all.page(params[:page]).per(params[:per])
+      @organizers = Organizer.all.per_page_kaminari(params[:page]).per(params[:per])
     end
 
   end
