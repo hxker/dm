@@ -4,32 +4,47 @@ class Admin::TeamsController < AdminController
   # GET /admin/teams
   # GET /admin/teams.json
   def index
-    team=Team.includes(:event).all
+    team=Team.includes(:event, :district).all
     if params[:field].present? && params[:keyword].present?
       if params[:field] == 'event_id'
-        event = Event.where(name: params[:keyword]).select(:id).take
+        event = Event.where(id: params[:keyword]).select(:id).take
         if event.present?
-          @teams = team.where(["#{params[:field]} like ?", event.id]).per_page_kaminari(params[:page]).per(params[:per])
+          @teams = team.where(["#{params[:field]} like ?", event.id]).where(group: [1]).page(params[:page]).per(params[:per])
         end
       else
-        @teams = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).per_page_kaminari(params[:page]).per(params[:per])
+        @teams = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).where(group: [1]).page(params[:page]).per(params[:per])
       end
     else
-      @teams = team.per_page_kaminari(params[:page]).per(params[:per])
+      @teams = team.page(params[:page]).per(params[:per])
+    end
+    if @teams.present?
+      @teams_array = @teams.map { |t| {
+          id: t.id,
+          event: t.event.name+'-'+t.event.id.to_s,
+          group: t.group,
+          district: t.district.try(:name),
+          school: t.try(:description),
+          player: User.joins(:team_user_ships).where('team_user_ships.team_id=?', t.id).select('users.nickname').map { |u| u.nickname }.join('、'),
+          teacher: t.try(:teacher),
+      } }
     end
 
     respond_to do |format|
       format.html
       format.xls {
-        data = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).select(:id, :name, :event_id, :score_process, :last_score, :rank).map { |x| {
-            ID: x.id,
-            名称: x.name,
+        data = @teams.select(:id, :event_id, :group, :description, :district_id, :teacher, :score_process, :last_score, :rank).map { |x| {
+            队伍代码: x.id,
             所属比赛: x.event.name,
-            得分过程: x.score_process,
-            最终成绩: x.last_score,
-            名次: x.rank
+            组别: x.group== 1 ? '小学' : '中学',
+            区县: x.district.try(:name),
+            学校: x.try(:description),
+            队员: User.joins(:team_user_ships).where('team_user_ships.team_id=?', x.id).select('users.nickname').map { |u| u.nickname }.join(' '),
+            教师: x.try(:teacher),
         } }
-        filename = "Team-Export-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+        puts '12qwe'
+        puts data
+        # filename = "Team-Export-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+        filename = "#{data[0][:所属比赛].to_s}-#{data[0][:组别]}.xls"
         send_data(data.to_xls, :type => "text/xls;charset=utf-8,header=present", :filename => filename)
 
       }
