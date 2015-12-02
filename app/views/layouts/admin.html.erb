@@ -221,6 +221,12 @@
             <span class="menu-text"> 新闻 </span>
           </a>
         </li>
+        <li class="<%= params[:controller] == 'admin/pages' ? 'active' : '' %>">
+          <a href="<%= '/admin/pages' %>">
+            <i class="icon-comment-alt"></i>
+            <span class="menu-text"> cms </span>
+          </a>
+        </li>
       </ul>
       <!-- /.nav-list -->
       <div class="sidebar-collapse" id="sidebar-collapse">

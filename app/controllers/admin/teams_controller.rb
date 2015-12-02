@@ -9,13 +9,13 @@ class Admin::TeamsController < AdminController
       if params[:field] == 'event_id'
         event = Event.where(id: params[:keyword]).select(:id).take
         if event.present?
-          @teams = team.where(["#{params[:field]} like ?", event.id]).where(group: [1]).page(params[:page]).per(params[:per])
+          @teams = team.where(["#{params[:field]} like ?", event.id]).where(group: [1]).per_page_kaminari(params[:page]).per(params[:per])
         end
       else
-        @teams = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).where(group: [1]).page(params[:page]).per(params[:per])
+        @teams = team.where(["#{params[:field]} like ?", "%#{params[:keyword]}%"]).where(group: [1]).per_page_kaminari(params[:page]).per(params[:per])
       end
     else
-      @teams = team.page(params[:page]).per(params[:per])
+      @teams = team.per_page_kaminari(params[:page]).per(params[:per])
     end
     if @teams.present?
       @teams_array = @teams.map { |t| {
