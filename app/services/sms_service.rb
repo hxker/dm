@@ -16,7 +16,7 @@ class SMSService
   AUTH_KEY = '0308FC91AD80D3A657C04015BF21D912' #认证密钥
   SEND_TYPE = 'sendOnce'; #发送类型 ，可以有sendOnce短信发送，sendBatch一对一发送，sendParam	动态参数短信接口
   # CHANNEL_ID = '1574'; #通道组编号
-  CHANNEL_ID = '52'; #通道组编号
+  CHANNEL_ID = '5552'; #通道组编号
   SIGNATURE_ID = ''; #签名编号 ,可以为空时，使用系统默认的编号
   SEND_TIME = ''; #发送时间,可以为空表示立即发送,yyyyMMddHHmmss 如:20130721182038
   WAIT_MINUTE = 2; # 发送间隔

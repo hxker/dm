@@ -21,6 +21,11 @@
 
 en:
   hello: "Hello world"
+  views:
+#  will_paginate:
+#          previous_label: "&#8592; Pre"
+#          next_label: "Nex &#8594;"
+#          page_gap: "&hellip;"
 
 #  activerecord:
 #      errors:

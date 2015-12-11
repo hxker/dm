@@ -29,8 +29,6 @@
  *= require art
  *= require jquery.pagination
  *= require_tree .
- *= require refinery/formatting
- *= require refinery/theme
  *= require_self
  */
 .login-dialog .modal-dialog {
