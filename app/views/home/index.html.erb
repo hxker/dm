@@ -21,21 +21,23 @@
   </div>
   <div id="competitions" class="">
     <div class="container-content">
-      <% @events.each_with_index do |event, index| %>
-          <div class="com-item">
-            <div class="com-pic">
-              <%= image_tag(event.cover_url(:middle)) %>
-            </div>
-            <div class="com-dec">
-              <div class="dec-title">
-                <%= event.name %>
+      <% if @events.present? %>
+          <% @events.each_with_index do |event, index| %>
+              <div class="com-item">
+                <div class="com-pic">
+                  <%= image_tag(event.cover_url(:middle)) %>
+                </div>
+                <div class="com-dec">
+                  <div class="dec-title">
+                    <%= event.name %>
+                  </div>
+                  <div class="dec-main">
+                    <%= event.name %>
+                  </div>
+                  <a href="/competitions/shows#<%= index+1 %>" class="robodou-btn btn-sign-in">报名</a>
+                </div>
               </div>
-              <div class="dec-main">
-                <%= event.name %>
-              </div>
-              <a href="/competitions/shows#<%= index+1 %>" class="robodou-btn btn-sign-in">报名</a>
-            </div>
-          </div>
+          <% end %>
       <% end %>
     </div>
   </div>
