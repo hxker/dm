@@ -10,10 +10,6 @@ class SMSService
 
   #接口变量定义
   URL = 'http://smsapi.c123.cn/OpenPlatform/OpenApi'; #接口地址
-  #ACCOUNT = '1001@500989090001'; #用户账号
-  #AUTH_KEY = '2ECE5DD2D47A37F0E457B9B16A7A133E'; #认证密钥
-  ACCOUNT = '1001@501188570001' #用户账号
-  AUTH_KEY = '0308FC91AD80D3A657C04015BF21D912' #认证密钥
   SEND_TYPE = 'sendOnce'; #发送类型 ，可以有sendOnce短信发送，sendBatch一对一发送，sendParam	动态参数短信接口
   # CHANNEL_ID = '1574'; #通道组编号
   CHANNEL_ID = '5552'; #通道组编号
