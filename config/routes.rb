@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   get 'user/activity_show' => 'user#activity_show'
   get 'user/comp_show' => 'user#comp_show'
   post 'user/update_team_cover' => 'user#update_team_cover', as: 'user_update_team_cover'
-
+  get 'discourse/sso' => 'discourse_sso#sso'
   namespace :user do |u|
 
     resources :likes, only: [:index, :create, :destroy]
