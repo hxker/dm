@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :creative_activities
   resources :news
 
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+  devise_for :users, path: 'account', controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   captcha_route
 
   resources :accounts, only: [:new, :create, :destroy] do
@@ -43,6 +43,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # -----------------------------------------------------------
+  # Grape API
+  # -----------------------------------------------------------
+
+  mount API_v1::API => '/'
 
   # -----------------------------------------------------------
   # User
@@ -148,7 +153,7 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     # if Rails.env.production?
-    match '*path', via: :all, to: 'pages#error_404'
+    # match '*path', via: :all, to: 'pages#error_404'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
